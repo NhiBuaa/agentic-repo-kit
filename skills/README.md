@@ -1,19 +1,14 @@
 # Agentic Repo Kit Skills
 
-This directory contains reusable skills shipped by **Agentic Repo Kit itself**.
+`skills/` contains reusable skills shipped by Agentic Repo Kit itself.
 
-These are toolkit capabilities, not project-local user skills.
+These are toolkit capabilities, not project-local agent configuration.
 
-## Available Skills
+Current skill:
 
-### `bootstrap-agentic-repo`
+```text
+bootstrap-agentic-repo/
+└── SKILL.md
+```
 
-Reads a project's `PROJECT-OVERVIEW.md`, inspects repository reality, and bootstraps or aligns the repository with Agentic Repo Kit conventions.
-
-See `bootstrap-agentic-repo/SKILL.md`.
-
-## Boundary
-
-The generated project structure does not require a repository-local skills directory. Users may keep their own skills globally or through their preferred agent environment.
-
-Do not place user-global skills here merely because Agentic Repo Kit supports agent workflows.
+Consumer projects do not need to copy this directory into their repository. The skill is used to bootstrap or normalize those projects.

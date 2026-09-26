@@ -1,31 +1,16 @@
----
-name: bootstrap-agentic-repo
-description: Bootstrap or align a software repository using Agentic Repo Kit conventions, with PROJECT-OVERVIEW.md as the primary project input.
----
-
-# Bootstrap Agentic Repository
+# Skill: Bootstrap Agentic Repository
 
 ## Purpose
 
-Initialize or normalize a software repository from a project-level `PROJECT-OVERVIEW.md` without inventing missing decisions or recreating task tracking inside the repository.
+Initialize or normalize a software repository using Agentic Repo Kit from a project-level `PROJECT-OVERVIEW.md`.
 
-The flow is:
-
-```text
-Analyze project
-    ↓
-PROJECT-OVERVIEW.md
-    ↓
-bootstrap-agentic-repo
-    ↓
-canonical repository structure
-    ↓
-normal development
-```
+The workflow should make the repository easier to navigate without inventing missing project decisions or recreating task tracking inside the repository.
 
 ## Primary Input
 
-Read `PROJECT-OVERVIEW.md` completely for:
+`PROJECT-OVERVIEW.md`
+
+Read it for:
 
 - problem and product intent;
 - scope and boundaries;
@@ -36,7 +21,7 @@ Read `PROJECT-OVERVIEW.md` completely for:
 - current state;
 - explicit open questions.
 
-Treat open questions as unresolved. Do not convert them into decisions merely to complete the structure.
+Treat open questions as unresolved. Do not convert them into decisions merely to complete the template.
 
 ## Required Repository Inspection
 
@@ -45,13 +30,13 @@ Before creating or replacing files:
 1. inspect the existing tree;
 2. read existing root instructions and current-context files;
 3. identify existing architecture, product, standard, specification, decision, guide, and runbook documentation;
-4. identify repository-local agent infrastructure and tool-specific configuration;
-5. identify the Issue/PR work tracker when available;
+4. identify the repository work tracker when available;
+5. inspect existing `.agents/` project-local agent configuration when present;
 6. preserve useful existing information and report authority conflicts instead of silently choosing a winner.
 
-## Canonical Consumer Structure
+## Canonical Output Structure
 
-Ensure the target repository has this discoverable skeleton:
+Ensure the consumer repository has this discoverable skeleton:
 
 ```text
 README.md
@@ -73,17 +58,17 @@ docs/
 
 .agents/
 ├── README.md
-├── commands/README.md
-├── hooks/README.md
-├── references/README.md
-└── rules/README.md
+├── rules/README.md
+└── references/README.md
 ```
 
-The folder `README.md` files intentionally keep the structure visible even when no project-specific content exists yet.
+Do not create `.agents/commands/`, `.agents/hooks/`, or `.agents/skills/` by default.
 
-Do **not** scaffold `.agents/skills/` by default. User or organization skills may be installed globally or managed through the user's preferred agent environment.
+- commands are unnecessary when the project already uses explicit workflow planning and reusable skills;
+- hooks can duplicate workflow gates if they are used as orchestration;
+- personal/global skills remain outside the consumer repository unless the user explicitly wants project-local skills.
 
-The Agentic Repo Kit system skill itself remains in the toolkit repository at `skills/bootstrap-agentic-repo/SKILL.md`; it is not part of the consumer repository skeleton.
+Folder README files should exist even when no project-specific content is available yet. They keep the intended structure visible in Git and explain the local contract.
 
 ## Root File Generation
 
@@ -91,7 +76,7 @@ The Agentic Repo Kit system skill itself remains in the toolkit repository at `s
 
 Generate concise repository-wide agent guidance from verified project information.
 
-It should include:
+It should contain:
 
 - repository mission;
 - authority map;
@@ -99,7 +84,7 @@ It should include:
 - high-signal invariants;
 - validation expectations;
 - documentation synchronization rules;
-- routing to relevant `.agents/rules/`, commands, hooks, or references when they exist;
+- routing to `.agents/rules/` and `.agents/references/` when relevant;
 - guidance for Issues/PRs as the work plane.
 
 Do not place complete architecture, task plans, or project history in `AGENTS.md`.
@@ -114,9 +99,9 @@ Do not turn it into an issue backlog or historical diary.
 
 ## Durable Documentation
 
-Create project-specific documents only when supported by `PROJECT-OVERVIEW.md`, repository reality, existing documentation, or explicit decisions.
+Create project-specific documentation only when supported by `PROJECT-OVERVIEW.md`, existing code, existing documentation, or explicit decisions.
 
-Route durable information by meaning:
+Route information by meaning:
 
 - stable orientation → `docs/01-overview/`
 - current architecture → `docs/02-architecture/`
@@ -128,97 +113,50 @@ Route durable information by meaning:
 - abnormal recovery procedures → `docs/08-runbooks/`
 - non-authoritative retained notes → `docs/99-notes/`
 
-Do not create speculative content merely because a directory exists.
+## Project-Local Agent Configuration
 
-## Repository-Local Agent Infrastructure
+Use `.agents/` only for configuration that helps agents work inside the project:
 
-`.agents/` is agent infrastructure, not a task-state archive.
+- `.agents/rules/` — detailed or scoped agent-only rules;
+- `.agents/references/` — non-normative supporting material.
 
-Use:
+Do not use `.agents/` for task plans, progress, handoffs, PR reviews, or verification evidence. Keep those in Issues and Pull Requests.
 
-- `.agents/commands/` for repository-local explicit command/workflow entrypoints;
-- `.agents/hooks/` for event-triggered automation and guardrails;
-- `.agents/rules/` for scoped agent-working rules;
-- `.agents/references/` for non-authoritative supporting material.
+If a rule also applies to human developers or defines software behavior, place it in `docs/04-standards/` instead of `.agents/rules/`.
 
-Do not create repository-owned task-state directories such as:
+## Toolkit Skills
 
-```text
-.agents/plans/
-.agents/handoffs/
-.agents/reviews/
-.agents/evidence/
-```
-
-Task scope, planning, progress, and handoff updates belong in Issues. Implementation discussion, review, CI, and verification belong in Pull Requests when the repository host provides those capabilities.
-
-## Rules Boundary
-
-Keep a strict distinction:
+`bootstrap-agentic-repo` is a skill provided by Agentic Repo Kit itself and lives in the toolkit repository under:
 
 ```text
-AGENTS.md
-= repository-wide agent entry guidance
-
-.agents/rules/
-= scoped agent-working rules
-
-docs/04-standards/
-= durable implementation standards that apply beyond agents
+skills/bootstrap-agentic-repo/SKILL.md
 ```
 
-If a rule applies equally to humans and agents implementing the system, prefer `docs/04-standards/`.
-
-## Commands and Hooks Boundary
-
-Commands and hooks automate workflows; they do not own project truth.
-
-- A command may orchestrate skills, scripts, validation, or documentation workflows.
-- A hook may run safety checks, validation, synchronization, or policy enforcement.
-- Tool-specific invocation/configuration may live in optional adapters such as `.claude/` or `.github/`.
-- Shared intent should remain repository-local and vendor-neutral where practical.
+Do not copy the toolkit `skills/` directory into the consumer repository by default.
 
 ## Existing Repository Safety
 
 When bootstrapping an existing project:
 
 - do not overwrite useful documentation blindly;
-- do not delete history merely to fit the new layout;
+- do not delete history just to fit the new layout;
 - classify existing material before moving or consolidating it;
 - preserve source code and build configuration;
-- preserve existing global/user agent setup rather than copying it into `.agents/`;
 - report ambiguous ownership or conflicting truth;
 - prefer incremental normalization when migration risk is non-trivial.
 
 ## Idempotency
 
-Repeated runs should converge rather than duplicate structure.
+Running this workflow again should converge rather than duplicate structure.
+
+On repeated runs:
 
 - reuse existing canonical directories;
 - update root guidance only when repository reality changed;
 - do not create duplicate architecture/specification/decision documents;
-- do not recreate task-workspace directories;
-- do not add `.agents/skills/` unless explicitly requested by the user/project;
+- preserve explicit user choices about global vs project-local skills;
 - report unresolved conflicts.
 
 ## Completion Report
 
-At completion, report:
-
-### Created
-Files and folders newly created.
-
-### Updated
-Existing artifacts changed and why.
-
-### Preserved
-Important existing structures deliberately left unchanged.
-
-### Derived
-Project facts inferred from existing evidence, with their source.
-
-### Open Questions
-Information intentionally left unresolved.
-
-### Conflicts
-Competing sources of truth or configuration that require human review.
+Report created, updated, preserved, derived, open questions, and conflicts.

@@ -29,5 +29,5 @@ last_verified: YYYY-MM-DD
 
 - Project foundation: `PROJECT-OVERVIEW.md`
 - Documentation map: `docs/README.md`
-- Agent infrastructure: `.agents/README.md`
+- Project-local agent config: `.agents/README.md`
 - Current work: repository Issues and Pull Requests

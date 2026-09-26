@@ -19,14 +19,8 @@ These files are scaffolding inputs, not live authority for Agentic Repo Kit itse
 - `guide.md`
 - `runbook.md`
 
+The default consumer repository also receives `.agents/` folder manuals for `rules/` and `references/`.
+
 Task plans, handoffs, review logs, and verification summaries are intentionally not templated as repository files. Use the repository Issue/PR system for work state.
 
-Repository-local `.agents/` folders are scaffolded with small local `README.md` contracts rather than content templates because commands, hooks, rules, and references are project-specific.
-
-The Agentic Repo Kit bootstrap skill lives at:
-
-```text
-skills/bootstrap-agentic-repo/SKILL.md
-```
-
-It is a toolkit skill, not a consumer-project `.agents/skills/` artifact.
+The Agentic Repo Kit bootstrap skill lives at `skills/bootstrap-agentic-repo/SKILL.md` in this toolkit repository and is not copied into consumer repositories by default.

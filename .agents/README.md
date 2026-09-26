@@ -1,33 +1,43 @@
-# Repository Agent Infrastructure
+# Project Agent Configuration
 
-`.agents/` contains repository-local infrastructure that helps coding agents operate consistently in this project.
+`.agents/` contains project-local configuration that helps coding agents work consistently in this repository.
 
-It is **not** a task tracker and **not** a second project knowledge base.
+It is not a task tracker and must not duplicate Issue or Pull Request state.
 
 ## Structure
 
 ```text
 .agents/
 ├── README.md
-├── commands/
-├── hooks/
-├── references/
-└── rules/
+├── rules/
+│   └── README.md
+└── references/
+    └── README.md
 ```
 
-## Boundaries
+## Rules
 
-- Work scope, progress, handoffs, review discussion, CI, and verification belong in Issues and Pull Requests.
-- Durable product and engineering knowledge belongs in `docs/`.
-- Repository-wide entry guidance belongs in `AGENTS.md`.
-- System-level Agentic Repo Kit skills live in the toolkit's root `skills/` directory, not here.
-- User/global skills are outside this repository structure and are intentionally not scaffolded here.
+`.agents/rules/` contains detailed or scoped rules that apply specifically to agent behavior.
 
-## Local Areas
+Use it for instructions such as Git safety, agent editing discipline, or scoped behavior that would make the root `AGENTS.md` too large.
 
-- `commands/` — reusable explicit agent commands/workflow entrypoints for this repository.
-- `hooks/` — event-triggered automation or guardrails around agent workflows.
-- `rules/` — scoped agent-working rules that are not durable product standards.
-- `references/` — non-authoritative examples, patterns, checklists, and supporting material.
+If a rule must also be obeyed by human developers or by the software itself, it belongs in `docs/04-standards/` instead.
 
-Tool-specific adapters such as `.claude/` or `.github/` may consume or bridge these artifacts, but they should not create competing project truth.
+## References
+
+`.agents/references/` contains non-normative supporting material for agents: examples, patterns, lookup notes, or curated references.
+
+References do not override `AGENTS.md`, Standards, Specifications, ADRs, source code, or tests.
+
+## What Does Not Belong Here
+
+Do not use `.agents/` for:
+
+- task plans;
+- progress logs;
+- handoffs;
+- PR reviews;
+- verification evidence;
+- project-local copies of global personal skills.
+
+Use Issues and Pull Requests for work state.
