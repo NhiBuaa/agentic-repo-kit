@@ -1,0 +1,11 @@
+# Agent scratch space
+.agents/tmp/
+
+# Common local files
+.env
+.env.*
+!.env.example
+
+# OS / editor noise
+.DS_Store
+Thumbs.db
