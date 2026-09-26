@@ -1,317 +1,162 @@
----
-name: bootstrap-agentic-repo
-description: Bootstrap or align a software repository using Agentic Repo Kit conventions, with PROJECT-OVERVIEW.md as the primary project input.
----
-
-# Bootstrap Agentic Repo
+# Skill: Bootstrap Agentic Repository
 
 ## Purpose
 
-Initialize or align a software repository so humans and coding agents have a clear, low-ambiguity information structure.
+Initialize or normalize a software repository using Agentic Repo Kit from a project-level `PROJECT-OVERVIEW.md`.
 
-The bootstrap flow is:
+The workflow should make the repository easier to navigate without inventing missing project decisions or recreating task tracking inside the repository.
 
-```text
-Analyze project
-    ↓
-PROJECT-OVERVIEW.md
-    ↓
-bootstrap-agentic-repo
-    ↓
-AGENTS.md + CONTEXT.md + canonical folders
-    ↓
-ready for normal development
-```
+## Primary Input
 
-The skill must optimize for simplicity, explicit authority, low duplication, and low context volume.
+`PROJECT-OVERVIEW.md`
 
-## Required Input
+Read it for:
 
-The target repository must contain:
-
-```text
-PROJECT-OVERVIEW.md
-```
-
-Use it as the primary source for project intent, scope, architecture direction, concepts, constraints, invariants, current state, workflow expectations, and open questions.
-
-If `PROJECT-OVERVIEW.md` is missing or too incomplete to support a useful bootstrap, stop before inventing details. Report what information is missing.
-
-## Secondary Inputs
-
-Inspect the target repository itself before generating files.
-
-Relevant evidence may include:
-
-- existing source tree;
-- package/build configuration;
-- test configuration;
-- existing README and documentation;
-- current `AGENTS.md` or equivalent instructions;
-- CI configuration;
-- Issue/PR conventions when visible;
-- deployment or infrastructure configuration.
-
-Repository reality may refine current-state understanding, but do not silently override explicit project intent. Report meaningful conflicts.
-
-## Core Authority Model
-
-The generated repository should use this mental model:
-
-```text
-PROJECT-OVERVIEW.md
-    project foundation / bootstrap input
-
-AGENTS.md
-    how coding agents should work here
-
-CONTEXT.md
-    what matters about the repository now
-
-docs/
-    durable project knowledge
-
-.agents/
-    task-local agent work
-
-Issue / PR tracker
-    execution status
-
-source + tests
-    implementation reality
-```
-
-Prefer one canonical owner for each important fact. Other artifacts may point to that owner instead of copying the same authority.
-
-## Canonical Skeleton
-
-Create or preserve the following structure:
-
-```text
-project/
-├── README.md
-├── PROJECT-OVERVIEW.md
-├── AGENTS.md
-├── CONTEXT.md
-│
-├── docs/
-│   ├── README.md
-│   ├── architecture/
-│   │   └── README.md
-│   ├── standards/
-│   │   └── README.md
-│   ├── adr/
-│   │   └── README.md
-│   ├── specs/
-│   │   └── README.md
-│   ├── guides/
-│   │   └── README.md
-│   └── runbooks/
-│       └── README.md
-│
-└── .agents/
-    ├── README.md
-    ├── plans/
-    │   └── README.md
-    ├── handoffs/
-    │   └── README.md
-    ├── reviews/
-    │   └── README.md
-    ├── evidence/
-    │   └── README.md
-    └── tmp/
-        └── README.md
-```
-
-The README files intentionally keep canonical folders visible even when no project-specific artifact exists yet.
-
-Ensure `.agents/tmp/` remains scratch space. Configure `.gitignore` so the folder README remains tracked while other scratch files are ignored.
-
-## Bootstrap Workflow
-
-### 1. Read the project foundation
-
-Read `PROJECT-OVERVIEW.md` completely.
-
-Extract only information actually supported by the file:
-
-- problem and product;
-- scope;
+- problem and product intent;
+- scope and boundaries;
 - architecture direction;
-- core concepts;
-- constraints;
-- major invariants;
+- domain concepts;
+- constraints and invariants;
 - development workflow;
 - current state;
-- open questions.
+- explicit open questions.
 
-Do not convert open questions into decisions.
+Treat open questions as unresolved. Do not convert them into decisions merely to complete the template.
 
-### 2. Inspect repository reality
+## Required Repository Inspection
 
-Inspect enough of the repository to determine:
+Before creating or replacing files:
 
-- whether this is greenfield or an existing implementation;
-- current technology and folder structure;
-- available test/lint/build commands;
-- existing documentation or agent instructions;
-- current implemented state that should influence `CONTEXT.md`.
+1. inspect the existing tree;
+2. read existing root instructions and current-context files;
+3. identify existing architecture, product, standard, specification, decision, guide, and runbook documentation;
+4. identify the repository work tracker when available;
+5. inspect existing `.agents/` project-local agent configuration when present;
+6. preserve useful existing information and report authority conflicts instead of silently choosing a winner.
 
-Use progressive disclosure. Do not read the entire repository without a task-specific reason.
+## Canonical Output Structure
 
-### 3. Detect existing Agentic Repo Kit artifacts
+Ensure the consumer repository has this discoverable skeleton:
 
-Check whether canonical files or folders already exist.
+```text
+README.md
+PROJECT-OVERVIEW.md
+AGENTS.md
+CONTEXT.md
 
-If they do, operate idempotently:
+docs/
+├── README.md
+├── 01-overview/README.md
+├── 02-architecture/README.md
+├── 03-product/README.md
+├── 04-standards/README.md
+├── 05-specs/README.md
+├── 06-decisions/README.md
+├── 07-guides/README.md
+├── 08-runbooks/README.md
+└── 99-notes/README.md
 
-- preserve useful project-specific content;
-- do not create duplicate folders or competing authority;
-- do not blindly overwrite live governance or documentation;
-- update only when the new project input clearly supports the change;
-- report conflicts or ambiguous merges.
+.agents/
+├── README.md
+├── rules/README.md
+└── references/README.md
+```
 
-### 4. Create the canonical skeleton
+Do not create `.agents/commands/`, `.agents/hooks/`, or `.agents/skills/` by default.
 
-Create missing canonical directories and their local `README.md` contracts.
+- commands are unnecessary when the project already uses explicit workflow planning and reusable skills;
+- hooks can duplicate workflow gates if they are used as orchestration;
+- personal/global skills remain outside the consumer repository unless the user explicitly wants project-local skills.
 
-Folder READMEs should explain, concisely:
+Folder README files should exist even when no project-specific content is available yet. They keep the intended structure visible in Git and explain the local contract.
 
-- what belongs there;
-- when to create an artifact there;
-- what does not belong there;
-- naming conventions when useful;
-- which reusable template applies.
+## Root File Generation
 
-Do not fill empty folders with fake project content merely to make the repository look complete.
+### `AGENTS.md`
 
-### 5. Generate or align `AGENTS.md`
+Generate concise repository-wide agent guidance from verified project information.
 
-Use `templates/AGENTS.md` as the structural reference when available.
-
-Generate repository-specific content from supported project information.
-
-`AGENTS.md` should include:
+It should contain:
 
 - repository mission;
 - authority map;
 - read order;
-- high-signal repository-wide invariants;
-- working agreements;
-- real validation commands when discoverable;
+- high-signal invariants;
+- validation expectations;
 - documentation synchronization rules;
-- definition of done.
+- routing to `.agents/rules/` and `.agents/references/` when relevant;
+- guidance for Issues/PRs as the work plane.
 
-Do not place complete architecture, feature history, issue status, or long task plans in `AGENTS.md`.
+Do not place complete architecture, task plans, or project history in `AGENTS.md`.
 
-Do not leave fictional commands. If validation commands cannot be determined, clearly mark them unresolved rather than guessing.
+### `CONTEXT.md`
 
-### 6. Generate or align `CONTEXT.md`
+Generate a bounded current-state projection from repository reality and verified overview information.
 
-Use `templates/CONTEXT.md` as the structural reference when available.
+Include current product boundary, implementation state, active direction, important transitions, meaningful limitations, and canonical references.
 
-Populate only current information supported by `PROJECT-OVERVIEW.md` and repository inspection:
+Do not turn it into an issue backlog or historical diary.
 
-- current product boundary;
-- current implemented state;
-- active direction;
-- active transitions;
-- important current limitations;
-- canonical references.
+## Durable Documentation
 
-`CONTEXT.md` is a bounded current-state projection. Do not copy the complete Project Overview, architecture documentation, or issue history into it.
+Create project-specific documentation only when supported by `PROJECT-OVERVIEW.md`, existing code, existing documentation, or explicit decisions.
 
-### 7. Create initial durable docs only when supported
+Route information by meaning:
 
-The canonical folders should always exist, but project-specific documents inside them should be created only when the input contains enough substance.
+- stable orientation → `docs/01-overview/`
+- current architecture → `docs/02-architecture/`
+- product/domain knowledge → `docs/03-product/`
+- normative implementation rules → `docs/04-standards/`
+- required behavior → `docs/05-specs/`
+- significant decision rationale → `docs/06-decisions/`
+- normal procedures → `docs/07-guides/`
+- abnormal recovery procedures → `docs/08-runbooks/`
+- non-authoritative retained notes → `docs/99-notes/`
 
-Examples:
+## Project-Local Agent Configuration
 
-Create `docs/architecture/overview.md` when current architecture or a sufficiently concrete architecture direction is known.
+Use `.agents/` only for configuration that helps agents work inside the project:
 
-Create a Standard when a durable normative rule is explicit.
+- `.agents/rules/` — detailed or scoped agent-only rules;
+- `.agents/references/` — non-normative supporting material.
 
-Create a Specification when durable required behavior is explicit and important enough to survive one task.
+Do not use `.agents/` for task plans, progress, handoffs, PR reviews, or verification evidence. Keep those in Issues and Pull Requests.
 
-Create an ADR only when an actual significant decision, alternatives, and consequences are known.
+If a rule also applies to human developers or defines software behavior, place it in `docs/04-standards/` instead of `.agents/rules/`.
 
-Do not manufacture ADRs, Standards, or Specifications from guesses.
+## Toolkit Skills
 
-### 8. Preserve task-local boundaries
-
-Do not create Plans, Handoffs, Reviews, or Evidence during bootstrap unless there is actual task-local content to store.
-
-Their directories and local READMEs may exist empty of task artifacts.
-
-Never store durable architecture or product rules under `.agents/`.
-
-### 9. Validate the result
-
-Before finishing, verify:
-
-- `PROJECT-OVERVIEW.md` still exists and remains the project foundation;
-- root `AGENTS.md` describes the target repository, not Agentic Repo Kit itself;
-- root `CONTEXT.md` describes the target repository's current state;
-- every canonical folder exists with its local README;
-- no generated file refers to obsolete `.template/` paths;
-- `.agents/tmp/README.md` is trackable while other scratch files are ignored;
-- reusable templates are not copied into the consumer repository unless intentionally requested;
-- no open question was silently converted into a decision;
-- no obvious duplicate authority was introduced.
-
-## Reusable Template Mapping
-
-When the Agentic Repo Kit template library is available, use:
+`bootstrap-agentic-repo` is a skill provided by Agentic Repo Kit itself and lives in the toolkit repository under:
 
 ```text
-templates/PROJECT-OVERVIEW.md
-templates/AGENTS.md
-templates/CONTEXT.md
-templates/architecture.md
-templates/standard.md
-templates/adr.md
-templates/spec.md
-templates/guide.md
-templates/runbook.md
-templates/plan.md
-templates/handoff.md
-templates/review.md
-templates/evidence.md
+skills/bootstrap-agentic-repo/SKILL.md
 ```
 
-Use these as structural guides, not as permission to fabricate missing content.
+Do not copy the toolkit `skills/` directory into the consumer repository by default.
 
-## Mutation Safety
+## Existing Repository Safety
 
-For an existing repository:
+When bootstrapping an existing project:
 
-- never delete project documentation just because it does not match this structure;
-- first classify its information and identify its current authority;
-- migrate or link information intentionally;
-- preserve history where it has durable value;
-- surface conflicting sources of truth instead of arbitrarily choosing one;
-- avoid unrelated source-code changes during repository bootstrap.
+- do not overwrite useful documentation blindly;
+- do not delete history just to fit the new layout;
+- classify existing material before moving or consolidating it;
+- preserve source code and build configuration;
+- report ambiguous ownership or conflicting truth;
+- prefer incremental normalization when migration risk is non-trivial.
 
-If a safe automatic merge is not possible, create the non-conflicting structure and report the unresolved migration decision.
+## Idempotency
+
+Running this workflow again should converge rather than duplicate structure.
+
+On repeated runs:
+
+- reuse existing canonical directories;
+- update root guidance only when repository reality changed;
+- do not create duplicate architecture/specification/decision documents;
+- preserve explicit user choices about global vs project-local skills;
+- report unresolved conflicts.
 
 ## Completion Report
 
-At the end, report four groups:
-
-### Created
-
-Files and folders newly created.
-
-### Updated
-
-Existing files intentionally aligned with the model.
-
-### Inferred from repository reality
-
-Facts used that were supported by existing implementation or configuration rather than written explicitly in `PROJECT-OVERVIEW.md`.
-
-### Unresolved
-
-Missing decisions, conflicts, or placeholders that require human/project input.
-
-Keep the report concise and do not claim the repository is fully standardized when unresolved authority conflicts remain.
+Report created, updated, preserved, derived, open questions, and conflicts.

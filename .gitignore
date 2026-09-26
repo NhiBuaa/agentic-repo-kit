@@ -1,7 +1,3 @@
-# Agent scratch space
-.agents/tmp/*
-!.agents/tmp/README.md
-
 # Common local files
 .env
 .env.*

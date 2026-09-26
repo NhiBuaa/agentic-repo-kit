@@ -1,49 +1,53 @@
 # Documentation Map
 
-This directory contains durable repository knowledge.
+`docs/` is the durable knowledge plane for the project.
 
-All canonical documentation areas are created up front and kept visible with local `README.md` contracts. Project-specific documents inside them are added only when real content exists.
+The numbered categories provide a predictable discovery order for humans and coding agents. The numbers organize navigation; they do not define authority precedence.
 
-## Architecture
+## `01-overview/`
 
-`architecture/`
+Stable project orientation and high-level system context.
 
-Describes how the current system works: runtime structure, component boundaries, data flow, ownership, and subsystem relationships.
+## `02-architecture/`
 
-## Standards
+How the current system works: components, boundaries, ownership, runtime structure, data flow, and failure behavior.
 
-`standards/`
+## `03-product/`
 
-Contains durable normative rules that implementations must obey.
+Durable product and domain knowledge: users, domain concepts, user flows, terminology, and product rules that are broader than one specification.
 
-## ADRs
+## `04-standards/`
 
-`adr/`
+Normative implementation rules that human developers and coding agents must follow.
 
-Preserves rationale and trade-offs for significant architectural decisions.
+Agent-only working rules belong under `.agents/rules/`, not here.
 
-## Specifications
+## `05-specs/`
 
-`specs/`
+Durable required behavior for capabilities whose contracts should survive individual tasks.
 
-Defines durable required behavior whose contract should survive individual tasks.
+## `06-decisions/`
 
-## Guides
+Rationale and trade-offs for significant decisions. This is the ADR/decision-history area.
 
-`guides/`
+## `07-guides/`
 
-Explains normal development or operational procedures.
+Normal development or operational procedures.
 
-## Runbooks
+## `08-runbooks/`
 
-`runbooks/`
+Recovery and incident procedures for abnormal operational states.
 
-Explains recovery and incident procedures for abnormal operational states.
+## `99-notes/`
+
+Non-authoritative retained notes that are useful but do not belong to a stronger canonical category.
+
+Do not use this as a dumping ground for task progress or stale scratch work.
+
+## Work State
+
+Task scope, planning, progress, handoffs, review discussion, CI, and verification belong in the repository Issue/PR system rather than `docs/`.
 
 ## Authority Rule
 
-Each durable fact should have one canonical owner.
-
-Other documents may reference or summarize canonical information, but must not independently maintain conflicting authoritative copies.
-
-Folder existence does not imply project-specific content must be invented. The local README keeps the structure discoverable until a real artifact is needed.
+Each durable fact should have one canonical owner. Other artifacts may reference or summarize it, but should not maintain competing authoritative copies.

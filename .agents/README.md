@@ -1,60 +1,43 @@
-# Agent Work Artifacts
+# Project Agent Configuration
 
-`.agents/` contains task-local artifacts produced during agent-assisted engineering work.
+`.agents/` contains project-local configuration that helps coding agents work consistently in this repository.
 
-It is not the canonical product knowledge base.
+It is not a task tracker and must not duplicate Issue or Pull Request state.
 
 ## Structure
 
 ```text
 .agents/
 ├── README.md
-├── plans/
+├── rules/
 │   └── README.md
-├── handoffs/
-│   └── README.md
-├── reviews/
-│   └── README.md
-├── evidence/
-│   └── README.md
-└── tmp/
+└── references/
     └── README.md
 ```
 
-Each subdirectory contains a local contract explaining when to use it, what authority it has, and how long artifacts should live.
+## Rules
 
-## Authority
+`.agents/rules/` contains detailed or scoped rules that apply specifically to agent behavior.
 
-Task-local artifacts help execute work but do not override:
+Use it for instructions such as Git safety, agent editing discipline, or scoped behavior that would make the root `AGENTS.md` too large.
 
-- `PROJECT-OVERVIEW.md`;
-- `AGENTS.md`;
-- current Architecture;
-- Standards;
-- accepted Specifications;
-- accepted ADRs.
+If a rule must also be obeyed by human developers or by the software itself, it belongs in `docs/04-standards/` instead.
 
-## Promotion Rule
+## References
 
-```text
-scratch / investigation
-        ↓
-finding
-        ↓
-accepted durable truth
-        ↓
-promote to the correct docs/ artifact
-```
+`.agents/references/` contains non-normative supporting material for agents: examples, patterns, lookup notes, or curated references.
 
-Do not promote raw scratch, conversation dumps, or hidden reasoning transcripts.
+References do not override `AGENTS.md`, Standards, Specifications, ADRs, source code, or tests.
 
-## Cleanup Rule
+## What Does Not Belong Here
 
-When a task finishes:
+Do not use `.agents/` for:
 
-- remove disposable scratch;
-- delete or archive obsolete handoffs;
-- delete plans that no longer provide value;
-- retain reviews or evidence only when they remain useful.
+- task plans;
+- progress logs;
+- handoffs;
+- PR reviews;
+- verification evidence;
+- project-local copies of global personal skills.
 
-Reusable task-artifact starters live under `templates/`.
+Use Issues and Pull Requests for work state.
