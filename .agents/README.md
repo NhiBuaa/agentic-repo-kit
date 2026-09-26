@@ -1,80 +1,60 @@
 # Agent Work Artifacts
 
-`.agents/` contains artifacts produced during agent-assisted engineering work.
+`.agents/` contains task-local artifacts produced during agent-assisted engineering work.
 
 It is not the canonical product knowledge base.
 
-## Optional Structure
-
-Create subdirectories only when they are needed:
+## Structure
 
 ```text
 .agents/
 ├── README.md
 ├── plans/
+│   └── README.md
 ├── handoffs/
+│   └── README.md
 ├── reviews/
+│   └── README.md
 ├── evidence/
+│   └── README.md
 └── tmp/
+    └── README.md
 ```
 
-`tmp/` is scratch space and should remain Git-ignored.
+Each subdirectory contains a local contract explaining when to use it, what authority it has, and how long artifacts should live.
 
-## Plans
+## Authority
 
-Implementation approaches for individual tasks.
+Task-local artifacts help execute work but do not override:
 
-Authority: task-local only.
-
-Plans may become stale, may be rewritten, and may be deleted. A plan must never override an accepted Specification, Standard, ADR, or current Architecture.
-
-Suggested name:
-
-```text
-issue-123-short-title.md
-```
-
-## Handoffs
-
-Bounded continuation state for another agent or session.
-
-Handoffs accelerate continuation but never replace canonical repository documentation or verification of repository reality.
-
-## Reviews
-
-Code, architecture, security, or design review findings.
-
-A review finding is not automatically an accepted decision.
-
-If a finding becomes durable truth, intentionally promote it into the appropriate durable artifact.
-
-## Evidence
-
-Task-specific verification and acceptance evidence worth retaining.
-
-Prefer existing tests and CI results when they already provide sufficient durable evidence.
+- `PROJECT-OVERVIEW.md`;
+- `AGENTS.md`;
+- current Architecture;
+- Standards;
+- accepted Specifications;
+- accepted ADRs.
 
 ## Promotion Rule
 
 ```text
-investigation
-    ↓
+scratch / investigation
+        ↓
 finding
-    ↓
-accepted decision
-    ↓
-canonical durable documentation
+        ↓
+accepted durable truth
+        ↓
+promote to the correct docs/ artifact
 ```
 
-Do not promote raw scratch, conversation dumps, or reasoning transcripts.
+Do not promote raw scratch, conversation dumps, or hidden reasoning transcripts.
 
 ## Cleanup Rule
 
 When a task finishes:
 
-- remove temporary artifacts;
+- remove disposable scratch;
 - delete or archive obsolete handoffs;
 - delete plans that no longer provide value;
-- retain evidence only when it has durable verification value.
+- retain reviews or evidence only when they remain useful.
 
-Starter artifacts live under `.template/artifacts/`.
+Reusable task-artifact starters live under `templates/`.
