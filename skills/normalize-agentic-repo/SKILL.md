@@ -1,283 +1,171 @@
-# Skill: Normalize Agentic Repository
+---
+name: normalize-agentic-repo
+description: Use when an existing repository with meaningful code, documentation, configuration, or history needs to be aligned to the Agentic Repo Kit model.
+---
 
-## Purpose
+# Normalize Agentic Repository
 
-Normalize an existing software repository into the Agentic Repo Kit model without discarding useful knowledge, inventing missing decisions, or creating competing sources of truth.
+## Overview
 
-This skill is specifically for repositories that already contain meaningful code, documentation, configuration, history, or agent-specific structure.
+Normalize an existing repository without discarding useful knowledge, inventing missing decisions, or creating competing sources of truth.
 
-It does not establish the project foundation from scratch and does not initialize an empty repository.
+**Core principle:** an existing repository is a migration problem, not a template-fill problem. Understand and classify before changing structure.
 
 ## Preconditions
 
-Before normalization:
+Use this skill only when:
 
 - the repository already contains meaningful project material;
 - a root `PROJECT-OVERVIEW.md` exists;
-- that overview is trustworthy enough to serve as the project foundation.
+- that overview is trustworthy enough to serve as project foundation.
 
-If `PROJECT-OVERVIEW.md` is missing, stale, contradictory, or not clearly authoritative, stop and use `establish-project-overview` first.
+If the overview is missing, stale, contradictory, or not clearly authoritative, use `establish-project-overview` first.
 
-## Normalization Principle
+Do not use this skill to initialize an empty repository.
 
-Existing repositories are migrations, not template fills.
+## Classification
 
-The workflow must first understand what already exists, classify it, detect ownership problems, and propose a normalization plan before materially changing repository structure.
+Use this vocabulary for important artifacts:
 
-Do not make the repository look canonical by deleting or rewriting evidence that has not yet been understood.
+| Class | Meaning |
+|---|---|
+| `KEEP` | Correct location and ownership already |
+| `MIGRATE` | Useful material should move without semantic consolidation |
+| `CONSOLIDATE` | Useful overlapping material should be deliberately merged |
+| `DEPRECATE` | No longer an appropriate live owner; preserve useful content before retiring |
+| `CONFLICT` | Sources disagree and no safe winner is established |
+| `UNRESOLVED` | Correct treatment is not yet clear enough to act |
 
-## Phase 1 — Inspect Repository Reality
+`DEPRECATE` is not permission to delete blindly.
 
-Before proposing changes:
+## Workflow
 
-1. inspect the existing repository tree;
-2. read root instructions and current-context files;
-3. read `PROJECT-OVERVIEW.md`;
-4. identify existing architecture, product, standards, specifications, decisions, guides, runbooks, notes, and generated/reference documentation;
-5. inspect existing `.agents/` or equivalent project-local agent material;
-6. identify repository Issues and Pull Requests as the work plane when available;
-7. inspect source, tests, configuration, and build/deployment files when needed to verify documentation claims.
+### 1. Inspect Repository Reality
 
-Do not mutate files during this phase.
+Before material mutation, inspect enough to understand repository knowledge ownership:
 
-## Phase 2 — Build A Knowledge Inventory
+- root instructions, `PROJECT-OVERVIEW.md`, and current-context files;
+- existing architecture, product, standards, specifications, decisions, guides, runbooks, notes, and generated/reference docs;
+- `.agents/` or equivalent agent-local material;
+- Issues and Pull Requests when available as the work plane;
+- source, tests, configuration, and build/deployment files when needed to verify claims.
 
-Inventory existing artifacts that materially participate in project knowledge or agent behavior.
+### 2. Build A Knowledge Inventory
 
-For each important artifact, determine:
+For each important knowledge/agent artifact, determine:
 
-- what information it contains;
-- whether that information is durable project knowledge, current state, work state, agent-only guidance, supporting reference material, generated material, or obsolete/historical material;
-- whether another artifact already owns the same truth;
-- whether the artifact appears current, stale, conflicting, or ambiguous.
+- current role;
+- information type;
+- apparent owner;
+- whether another artifact owns the same truth;
+- whether it is current, stale, conflicting, ambiguous, generated, or historical;
+- proposed classification.
 
-Do not inventory every source file merely for completeness. Focus on artifacts that affect repository knowledge ownership and normalization.
+Focus on artifacts relevant to ownership and normalization; do not inventory every source file for completeness.
 
-## Phase 3 — Classify Artifacts
+### 3. Detect Ownership Problems
 
-Use this small classification vocabulary:
+Look for:
 
-- `KEEP` — already in an appropriate place with appropriate ownership;
-- `MIGRATE` — useful material should move to a clearer canonical location without semantic consolidation;
-- `CONSOLIDATE` — useful material overlaps another owner and should be merged deliberately;
-- `DEPRECATE` — material is no longer an appropriate live owner and should be retired only after useful content is preserved;
-- `CONFLICT` — sources disagree and a safe winner cannot be chosen automatically;
-- `UNRESOLVED` — correct treatment is not yet clear enough to act.
+- duplicate canonical owners;
+- root files carrying detailed durable knowledge that belongs elsewhere;
+- task plans, progress, handoffs, review, CI, or verification state stored as durable docs;
+- agent-only files containing rules that actually apply to humans/software too;
+- current-state files that have become history;
+- notes acting as authority;
+- docs that conflict with source or tests.
 
-Do not use `DEPRECATE` as a shortcut for deletion.
+Do not silently resolve a conflict without enough evidence.
 
-## Phase 4 — Detect Authority Conflicts And Duplication
+### 4. Produce The Normalization Proposal
 
-Identify cases where:
+Before changing repository structure, present this shape:
 
-- the same durable fact has multiple apparent canonical owners;
-- root files repeat detailed durable documentation;
-- task plans, progress, handoffs, reviews, CI results, or verification evidence are stored as durable project knowledge;
-- agent-only files contain product, architecture, or software standards that should apply to humans too;
-- current-state files have become project history;
-- notes have become de facto authority;
-- existing documentation conflicts with source or tests.
+```markdown
+## Repository Snapshot
+...
 
-Report conflicts instead of silently resolving them when evidence is insufficient.
+## Knowledge Inventory
+| Artifact | Current role | Classification | Proposed owner/location | Risk |
+|---|---|---|---|---|
+| ... | ... | KEEP/MIGRATE/CONSOLIDATE/DEPRECATE/CONFLICT/UNRESOLVED | ... | ... |
 
-## Phase 5 — Produce A Normalization Plan
+## Authority Conflicts
+- ...
 
-Before mutation, present a plan that includes:
+## Proposed Changes
+- ...
 
-- proposed canonical structure changes;
-- important artifact classifications;
-- files to keep, migrate, consolidate, deprecate, or leave unresolved;
-- authority conflicts and duplicates discovered;
-- information that would be lost if a proposed consolidation were done incorrectly;
-- destructive or meaningfully consolidating operations that need explicit approval;
-- open questions that block safe normalization.
+## Requires Explicit Approval
+- ...
 
-Prefer incremental normalization when migration risk is non-trivial.
+## Unresolved
+- ...
 
-## Approval Gate
-
-Do not proceed from planning to material repository mutation until the user has approved the proposed normalization plan.
-
-Explicit approval is required before operations such as:
-
-- deleting or retiring meaningful documentation;
-- renaming or moving canonical owners;
-- consolidating multiple documents into one;
-- replacing an existing root authority file;
-- resolving an authority conflict that requires a project decision.
-
-If the user has already explicitly approved the exact plan in the current task, that approval satisfies this gate.
-
-## Canonical Consumer Structure
-
-After approved normalization, the repository should converge toward this discoverable model:
-
-```text
-README.md
-PROJECT-OVERVIEW.md
-AGENTS.md
-CONTEXT.md
-
-docs/
-├── README.md
-├── 01-overview/README.md
-├── 02-architecture/README.md
-├── 03-product/README.md
-├── 04-standards/README.md
-├── 05-specs/README.md
-├── 06-decisions/README.md
-├── 07-guides/README.md
-├── 08-runbooks/README.md
-└── 99-notes/README.md
-
-.agents/
-├── README.md
-├── rules/README.md
-└── references/README.md
+## Acceptance Status
+- ...
 ```
 
-Do not create `.agents/commands/`, `.agents/hooks/`, or `.agents/skills/` by default.
+The proposal must make potential knowledge loss and destructive/consolidating operations visible.
 
-Folder README files may be added to make the canonical categories discoverable, but project-specific documents inside those folders should exist only when supported by real project information.
+**STOP after the proposal. Do not materially mutate the repository until the proposed normalization plan is approved.**
 
-## Root File Normalization
+### 5. Apply The Approved Plan
 
-### `AGENTS.md`
+After approval, apply only the approved normalization changes.
 
-Keep repository-wide agent guidance concise and high signal.
+Prefer incremental migration when risk is non-trivial. Preserve useful content before deprecating a prior owner. Avoid unrelated refactors.
 
-It may contain:
+If the user already approved the exact proposed plan in the current task, that approval satisfies the gate.
 
-- repository mission;
-- authority map;
-- read order;
-- high-signal invariants;
-- validation expectations;
-- documentation synchronization rules;
-- routing to `.agents/rules/` and `.agents/references/`;
-- guidance for Issues/PRs as the work plane.
+### 6. Verify Convergence
 
-Do not turn it into a complete architecture manual, task plan, or project history.
+After mutation:
 
-### `CONTEXT.md`
+- verify canonical paths and ownership;
+- verify no useful knowledge was lost;
+- verify conflicts remain explicit when unresolved;
+- verify work state still belongs to Issues/PRs;
+- run the normalization reasoning again and confirm an unchanged repository would produce no meaningful structural churn.
 
-Normalize it into a bounded current-state projection.
+## Canonical Routing Quick Reference
 
-Keep current product boundary, implementation state, active direction, important transitions, meaningful limitations, and canonical references.
+| Information | Canonical owner |
+|---|---|
+| Project foundation | `PROJECT-OVERVIEW.md` |
+| Repository-wide agent entrypoint/routing | `AGENTS.md` |
+| Bounded current project state | `CONTEXT.md` |
+| Distinct stable orientation | `docs/01-overview/` |
+| Current architecture | `docs/02-architecture/` |
+| Product/domain knowledge | `docs/03-product/` |
+| Normative human/software implementation rules | `docs/04-standards/` |
+| Required behavior/contracts | `docs/05-specs/` |
+| Significant decision rationale | `docs/06-decisions/` |
+| Normal procedures | `docs/07-guides/` |
+| Abnormal recovery procedures | `docs/08-runbooks/` |
+| Useful non-authoritative retained notes | `docs/99-notes/` |
+| Agent-only detailed rules | `.agents/rules/` |
+| Non-normative agent supporting material | `.agents/references/` |
+| Task scope/plans/progress | Issues |
+| Implementation/review/CI/verification | Pull Requests |
 
-Move durable knowledge to its canonical documentation owner when appropriate, and do not preserve historical accumulation merely because it already exists.
-
-## Durable Documentation Routing
-
-Route durable project knowledge by meaning:
-
-- distinct stable orientation beyond the root foundation → `docs/01-overview/`
-- current architecture → `docs/02-architecture/`
-- product/domain knowledge → `docs/03-product/`
-- normative implementation rules → `docs/04-standards/`
-- required behavior → `docs/05-specs/`
-- significant decision rationale → `docs/06-decisions/`
-- normal procedures → `docs/07-guides/`
-- abnormal recovery procedures → `docs/08-runbooks/`
-- useful non-authoritative retained notes → `docs/99-notes/`
-
-### `PROJECT-OVERVIEW.md` vs `docs/01-overview/`
-
-`PROJECT-OVERVIEW.md` remains the canonical project foundation. It owns project intent, scope, major constraints, architecture direction, current state, and explicit open questions at foundation level.
-
-Use `docs/01-overview/` only for distinct stable orientation such as glossary, repository map, domain map, system landscape, or conceptual navigation.
-
-Do not create overview documents that merely mirror or paraphrase the root overview.
-
-### `docs/99-notes/`
-
-`docs/99-notes/` is the canonical location for useful non-authoritative retained notes.
-
-Do not use it as a dumping ground for material that is difficult to classify. Do not move task plans, progress, handoffs, reviews, or verification evidence there.
-
-If a retained note contains durable authoritative knowledge, promote that knowledge to the appropriate stronger owner and reduce the competing note.
-
-## Project-Local Agent Configuration
-
-Use `.agents/` only for project-local agent-specific support:
-
-- `.agents/rules/` — detailed or scoped agent-only rules;
-- `.agents/references/` — non-normative supporting material.
-
-Do not use `.agents/` for task plans, progress, handoffs, PR reviews, or verification evidence.
-
-If an existing agent rule also applies to human developers or defines software behavior, migrate the durable rule to `docs/04-standards/` and keep only agent-specific routing when needed.
-
-## Work Plane
-
-Issues own task scope, acceptance criteria, implementation planning, progress, and handoff state.
-
-Pull Requests own implementation discussion, review, CI, and verification.
-
-Do not recreate those states as repository markdown during normalization.
-
-## Existing Repository Safety
-
-During approved mutation:
-
-- do not overwrite useful documentation blindly;
-- do not delete history just to fit the new layout;
-- preserve useful content before deprecating a prior owner;
-- preserve source code and build configuration unless the approved task explicitly includes changing them;
-- avoid unrelated refactors;
-- keep ambiguous ownership visible until resolved;
-- prefer the smallest change that creates clear ownership.
-
-## Idempotency
-
-Running normalization again on an unchanged repository should converge rather than create new churn.
-
-On repeated runs:
-
-- reuse existing canonical directories;
-- do not recreate already migrated documents;
-- do not create duplicate architecture, specification, or decision documents;
-- do not create `docs/01-overview/` documents that repeat `PROJECT-OVERVIEW.md`;
-- do not create `docs/99-notes/` files merely because the directory exists;
-- do not move files back and forth between equivalent categories;
-- preserve explicit project choices that remain valid;
-- report unresolved conflicts consistently.
+`docs/01-overview/` must not mirror `PROJECT-OVERVIEW.md`. `docs/99-notes/` must not become a catch-all migration target. Do not create `.agents/commands/`, `.agents/hooks/`, or `.agents/skills/` by default.
 
 ## Acceptance Checklist
 
-Before reporting normalization complete, verify all applicable criteria:
+Before reporting normalization complete, verify:
 
-- [ ] A trustworthy root `PROJECT-OVERVIEW.md` existed before normalization began.
+- [ ] A trustworthy root `PROJECT-OVERVIEW.md` existed before normalization.
 - [ ] Repository reality was inspected before material mutation.
-- [ ] Important existing knowledge and agent artifacts were inventoried before migration decisions were made.
-- [ ] Important migrations and consolidations have an explicit classification.
-- [ ] Existing useful knowledge was preserved, intentionally migrated, or deliberately consolidated rather than discarded blindly.
-- [ ] No unresolved product, architecture, infrastructure, or workflow decision was invented or silently resolved.
-- [ ] No durable fact was given a competing canonical owner.
-- [ ] No project-specific document was created merely to fill the canonical skeleton.
-- [ ] Durable project knowledge was routed to the correct documentation category by meaning.
-- [ ] `PROJECT-OVERVIEW.md` remains the project foundation and `docs/01-overview/` does not mirror it.
-- [ ] `docs/99-notes/` remains non-authoritative and is not used as a catch-all migration target.
-- [ ] `.agents/` contains only justified project-local agent rules and references by default.
-- [ ] Task plans, progress, handoffs, reviews, CI state, and verification evidence remain in Issues and Pull Requests rather than durable docs.
-- [ ] Authority conflicts and ambiguous ownership were reported instead of silently resolved.
-- [ ] Unclear migrations remained unresolved until enough evidence or user direction existed.
-- [ ] A normalization plan was presented before material migration.
-- [ ] Required user approval was obtained before destructive or meaningfully consolidating changes.
-- [ ] Normalization used incremental changes where migration risk was non-trivial.
-- [ ] Re-running normalization on unchanged repository state would converge instead of creating duplicate files or structural drift.
+- [ ] Important artifacts were inventoried and classified before migration decisions.
+- [ ] Existing useful knowledge was preserved, intentionally migrated, consolidated, or explicitly left unresolved.
+- [ ] No unresolved decision was invented or silently resolved.
+- [ ] No durable fact has competing canonical owners after normalization.
+- [ ] Project-specific docs were not created merely to fill the skeleton.
+- [ ] Durable knowledge was routed by meaning, not merely by old folder name.
+- [ ] Authority conflicts and ambiguous migrations remain explicit until resolved.
+- [ ] The normalization proposal was reviewed before destructive or meaningfully consolidating changes.
+- [ ] Issues/PRs remain the work plane.
+- [ ] Re-running on unchanged repository state would converge rather than create duplicate files or structural drift.
 
-If any applicable criterion fails, do not report normalization as fully complete. Report the failed criterion, affected artifact, and unresolved next step.
-
-## Completion Report
-
-Report:
-
-- kept artifacts;
-- migrated artifacts;
-- consolidated artifacts;
-- deprecated artifacts;
-- unresolved items;
-- authority conflicts;
-- open questions;
-- acceptance criteria that could not be satisfied.
+If an applicable criterion fails, report the failed criterion and unresolved next step instead of claiming normalization is fully complete.
