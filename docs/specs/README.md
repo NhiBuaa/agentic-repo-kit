@@ -20,4 +20,4 @@ Recommended validity states:
 
 Do not mirror Issue/PR progress such as `implementing`, `80% complete`, or `blocked` inside specification status.
 
-Starter: `.template/artifacts/spec.md`
+Starter template: `templates/spec.md`
