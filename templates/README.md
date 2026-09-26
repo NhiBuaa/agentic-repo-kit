@@ -21,4 +21,12 @@ These files are scaffolding inputs, not live authority for Agentic Repo Kit itse
 
 Task plans, handoffs, review logs, and verification summaries are intentionally not templated as repository files. Use the repository Issue/PR system for work state.
 
-The bootstrap skill lives at `agent/skills/bootstrap-agentic-repo/SKILL.md`.
+Repository-local `.agents/` folders are scaffolded with small local `README.md` contracts rather than content templates because commands, hooks, rules, and references are project-specific.
+
+The Agentic Repo Kit bootstrap skill lives at:
+
+```text
+skills/bootstrap-agentic-repo/SKILL.md
+```
+
+It is a toolkit skill, not a consumer-project `.agents/skills/` artifact.
