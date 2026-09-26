@@ -60,11 +60,17 @@ skills/               = skills shipped by Agentic Repo Kit itself
 
 Every category keeps a `README.md` so the structure remains visible before project-specific content exists.
 
+`PROJECT-OVERVIEW.md` owns the project foundation. `docs/01-overview/` may expand stable reader orientation when distinct material is useful, but it must not maintain a paraphrased copy of the root overview.
+
+`docs/99-notes/` is the canonical location for useful non-authoritative retained notes. The location is part of the canonical skeleton; project-specific notes inside it are optional.
+
 ## Major Invariants
 
 - `AGENTS.md` does not become a full architecture manual.
 - `CONTEXT.md` does not become project history.
 - `docs/` does not contain task progress.
+- `docs/01-overview/` expands orientation only when it adds distinct value; it does not duplicate `PROJECT-OVERVIEW.md`.
+- `docs/99-notes/` contains optional non-authoritative retained notes, not scratch work or task state.
 - `.agents/` does not become a second work tracker.
 - `.agents/rules/` contains agent-only behavior; human/software standards belong in `docs/04-standards/`.
 - `.agents/references/` is non-normative.
@@ -91,8 +97,9 @@ promote durable findings into docs when needed
 
 The current redesign keeps `.agents/` but narrows its purpose to project-local agent rules and references, while the toolkit bootstrap skill remains under root `skills/`.
 
+The documentation model now explicitly separates root project foundation from expanded overview material and treats `99-notes` as a canonical location with optional contents.
+
 ## Open Questions
 
-- Should `docs/99-notes/` remain canonical or optional?
 - Which tool-specific adapters should eventually ship as examples?
 - Should bootstrap remain skill-only or later gain a CLI?

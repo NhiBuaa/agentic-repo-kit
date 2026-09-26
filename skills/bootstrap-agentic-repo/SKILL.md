@@ -68,7 +68,7 @@ Do not create `.agents/commands/`, `.agents/hooks/`, or `.agents/skills/` by def
 - hooks can duplicate workflow gates if they are used as orchestration;
 - personal/global skills remain outside the consumer repository unless the user explicitly wants project-local skills.
 
-Folder README files should exist even when no project-specific content is available yet. They keep the intended structure visible in Git and explain the local contract.
+Folder README files should exist even when no project-specific content is available yet. They keep the intended structure visible in Git and explain the local contract. Project-specific documents inside those folders are optional and should exist only when supported by real project information.
 
 ## Root File Generation
 
@@ -103,7 +103,7 @@ Create project-specific documentation only when supported by `PROJECT-OVERVIEW.m
 
 Route information by meaning:
 
-- stable orientation → `docs/01-overview/`
+- expanded stable orientation distinct from the root project foundation → `docs/01-overview/`
 - current architecture → `docs/02-architecture/`
 - product/domain knowledge → `docs/03-product/`
 - normative implementation rules → `docs/04-standards/`
@@ -111,7 +111,23 @@ Route information by meaning:
 - significant decision rationale → `docs/06-decisions/`
 - normal procedures → `docs/07-guides/`
 - abnormal recovery procedures → `docs/08-runbooks/`
-- non-authoritative retained notes → `docs/99-notes/`
+- useful non-authoritative retained notes → `docs/99-notes/`
+
+### `PROJECT-OVERVIEW.md` vs `docs/01-overview/`
+
+`PROJECT-OVERVIEW.md` is the canonical project foundation. It owns project intent, scope, major constraints, architecture direction, current state, and explicit open questions.
+
+Use `docs/01-overview/` only when there is distinct stable orientation worth retaining, such as a glossary, repository map, domain map, system landscape, or conceptual navigation material.
+
+Do not create overview documents merely to paraphrase or mirror `PROJECT-OVERVIEW.md`. If no distinct orientation material exists, keep only `docs/01-overview/README.md`.
+
+### `docs/99-notes/`
+
+`docs/99-notes/` is the canonical location for useful non-authoritative retained notes. The folder and its `README.md` are part of the skeleton; actual note files are optional.
+
+Do not create notes merely to populate the directory. Do not use it for scratch work, task progress, handoffs, review logs, or verification evidence.
+
+If a note becomes durable authoritative project knowledge, promote it into the appropriate stronger documentation category and remove or reduce the competing note.
 
 ## Project-Local Agent Configuration
 
@@ -154,6 +170,8 @@ On repeated runs:
 - reuse existing canonical directories;
 - update root guidance only when repository reality changed;
 - do not create duplicate architecture/specification/decision documents;
+- do not create `01-overview` documents that merely repeat `PROJECT-OVERVIEW.md`;
+- do not create `99-notes` files just because the directory exists;
 - preserve explicit user choices about global vs project-local skills;
 - report unresolved conflicts.
 

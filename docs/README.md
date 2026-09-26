@@ -6,7 +6,11 @@ The numbered categories provide a predictable discovery order for humans and cod
 
 ## `01-overview/`
 
-Stable project orientation and high-level system context.
+Expanded stable orientation that helps contributors navigate the project beyond the root foundation.
+
+Good fits include a glossary, repository map, system landscape, domain map, or high-level conceptual diagram.
+
+`PROJECT-OVERVIEW.md` remains the canonical owner of project intent, scope, major constraints, architecture direction, and explicit open questions. Do not mirror or paraphrase that file into `01-overview/` merely to fill the directory. If no distinct orientation material is needed, the local `README.md` is enough.
 
 ## `02-architecture/`
 
@@ -40,9 +44,11 @@ Recovery and incident procedures for abnormal operational states.
 
 ## `99-notes/`
 
-Non-authoritative retained notes that are useful but do not belong to a stronger canonical category.
+The canonical location for useful non-authoritative retained notes that do not belong to a stronger documentation category.
 
-Do not use this as a dumping ground for task progress or stale scratch work.
+The folder and its `README.md` are part of the canonical skeleton; project-specific notes are optional. Do not create notes merely to populate the directory, and do not use it as a dumping ground for scratch work, task progress, or stale temporary material.
+
+If a note becomes durable project truth, promote it into the appropriate authoritative category and remove or reduce the competing note.
 
 ## Work State
 
