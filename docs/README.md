@@ -1,53 +1,53 @@
 # Documentation Map
 
-`docs/` contains durable project knowledge.
+`docs/` is the durable knowledge plane for the project.
 
-The numbered directories provide a predictable discovery order for humans and coding agents. The numbers organize reading; they do not make one document type more authoritative than another.
+The numbered categories provide a predictable discovery order for humans and coding agents. The numbers organize navigation; they do not define authority precedence.
 
-## Reading Order
+## `01-overview/`
 
-### `01-overview/`
+Stable project orientation and high-level system context.
 
-Stable high-level maps, terminology, and orientation material.
+## `02-architecture/`
 
-Do not copy the root `PROJECT-OVERVIEW.md` into this folder. The root file captures project foundation and bootstrap input; this folder contains durable overview material that becomes useful as the project grows.
+How the current system works: components, boundaries, ownership, runtime structure, data flow, and failure behavior.
 
-### `02-architecture/`
+## `03-product/`
 
-How the current system works: component boundaries, data flow, ownership, integrations, and failure behavior.
+Durable product and domain knowledge: users, domain concepts, user flows, terminology, and product rules that are broader than one specification.
 
-### `03-product/`
+## `04-standards/`
 
-Durable product/domain knowledge such as actors, use cases, domain concepts, user flows, and product behavior explanations.
+Normative implementation rules that human developers and coding agents must follow.
 
-### `04-standards/`
+Agent-only working rules belong under `.agents/rules/`, not here.
 
-Normative implementation rules that code must obey.
+## `05-specs/`
 
-### `05-specs/`
+Durable required behavior for capabilities whose contracts should survive individual tasks.
 
-Durable required behavior for capabilities and contracts.
+## `06-decisions/`
 
-### `06-decisions/`
+Rationale and trade-offs for significant decisions. This is the ADR/decision-history area.
 
-Significant architectural or product-engineering decisions and their rationale, usually as ADRs.
+## `07-guides/`
 
-### `07-guides/`
+Normal development or operational procedures.
 
-Normal procedures for development, maintenance, deployment, or common contributor tasks.
+## `08-runbooks/`
 
-### `08-runbooks/`
+Recovery and incident procedures for abnormal operational states.
 
-Procedures for abnormal operational states, recovery, and incidents.
+## `99-notes/`
 
-### `99-notes/`
+Non-authoritative retained notes that are useful but do not belong to a stronger canonical category.
 
-Non-authoritative notes that are useful to retain but do not yet belong to another durable category. Use this sparingly. Task progress belongs in Issues, not here.
+Do not use this as a dumping ground for task progress or stale scratch work.
+
+## Work State
+
+Task scope, planning, progress, handoffs, review discussion, CI, and verification belong in the repository Issue/PR system rather than `docs/`.
 
 ## Authority Rule
 
-Each durable fact should have one canonical owner. Other files may link to or summarize it, but should not independently maintain a conflicting copy.
-
-## Work Tracking
-
-Do not use `docs/` for implementation planning, progress updates, handoffs, code-review logs, or CI evidence. Use the repository Issue/PR system for those concerns.
+Each durable fact should have one canonical owner. Other artifacts may reference or summarize it, but should not maintain competing authoritative copies.
