@@ -175,6 +175,24 @@ On repeated runs:
 - preserve explicit user choices about global vs project-local skills;
 - report unresolved conflicts.
 
+## Acceptance Checklist
+
+Before reporting the bootstrap complete, verify all applicable criteria:
+
+- [ ] No unresolved product, architecture, infrastructure, or workflow decision was invented or silently resolved.
+- [ ] No durable fact has been given a competing canonical owner or duplicated as authoritative truth.
+- [ ] Durable project knowledge is routed to the correct documentation category by meaning.
+- [ ] No project-specific document was created merely to fill the canonical skeleton.
+- [ ] `PROJECT-OVERVIEW.md` remains the project foundation and `docs/01-overview/` does not mirror or paraphrase it.
+- [ ] `docs/99-notes/` contains only useful non-authoritative retained notes; no notes were created merely to populate the directory.
+- [ ] Issues and Pull Requests remain the work plane for task scope, planning, progress, handoffs, review, CI, and verification.
+- [ ] `.agents/` remains limited to project-local agent rules and references by default; project-specific rule/reference files exist only when justified by repository reality.
+- [ ] Existing useful documentation was preserved, consolidated, or migrated intentionally rather than discarded blindly.
+- [ ] Re-running the bootstrap would converge on the same repository model instead of creating duplicate files or competing structure.
+- [ ] Authority conflicts, ambiguous ownership, and unresolved questions are reported explicitly instead of hidden or guessed away.
+
+If any applicable criterion fails, do not report the bootstrap as fully complete. Report the failure, the affected artifact, and what remains unresolved.
+
 ## Completion Report
 
-Report created, updated, preserved, derived, open questions, and conflicts.
+Report created, updated, preserved, derived, open questions, conflicts, and any acceptance criteria that could not be satisfied.
