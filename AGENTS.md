@@ -51,7 +51,7 @@ skills           → Agentic Repo Kit toolkit capabilities
 - `.agents/references/` is supporting material, not authority.
 - Do not add `.agents/commands/`, `.agents/hooks/`, or `.agents/skills/` by default.
 - Personal/global skills stay outside the repository unless explicitly requested.
-- Changes to the canonical repository model should update README, templates, and the bootstrap skill together.
+- Changes to the canonical repository model should update README, templates, and all affected toolkit skills together.
 
 ## Change Discipline
 
@@ -63,8 +63,8 @@ skills           → Agentic Repo Kit toolkit capabilities
 
 ## Validation
 
-For structural changes, verify documented paths exist, obsolete paths are no longer referenced, root live files remain distinct from reusable templates, and the bootstrap skill describes the same output structure.
+For structural changes, verify documented paths exist, obsolete paths are no longer referenced, root live files remain distinct from reusable templates, and all affected toolkit skills describe the same repository model.
 
 ## Definition of Done
 
-A structural change is complete when the repository model, documentation map, templates, and bootstrap workflow agree with one another without duplicate authority.
+A structural change is complete when the repository model, documentation map, templates, and affected toolkit workflows agree with one another without duplicate authority.

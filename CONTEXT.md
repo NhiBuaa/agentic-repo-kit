@@ -15,6 +15,11 @@ Agentic Repo Kit currently defines:
 - reusable source templates under `templates/`;
 - toolkit-provided skills under root `skills/`.
 
+The current toolkit skills are:
+
+- `establish-project-overview` — create or reconcile a trustworthy project foundation through evidence plus adaptive clarification;
+- `normalize-agentic-repo` — normalize an existing repository after that foundation is established.
+
 ## Current Structural Direction
 
 The current design keeps Issues and Pull Requests as the work plane while retaining `.agents/` for project-local agent configuration.
@@ -37,12 +42,25 @@ Default `.agents/` content is intentionally small:
 
 ## Active Direction
 
-The repository is in design-review mode. The priority is validating the simplified structure before adding more automation or OSS machinery.
+The repository is in design-review and dogfooding mode.
+
+The immediate priority is validating the existing-repository flow:
+
+```text
+establish-project-overview
+        ↓
+PROJECT-OVERVIEW.md
+        ↓
+normalize-agentic-repo
+```
+
+A complex existing repository will be used as the first pilot before a dedicated fresh-repository initialization skill is designed.
 
 ## Known Limitations
 
-- bootstrap is currently delivered as a skill, not a CLI;
-- the structure has not yet been stress-tested across several real project types;
+- fresh-repository initialization is not yet shipped as a dedicated skill;
+- the toolkit is currently delivered as skills rather than a CLI or validator;
+- the existing-repository workflow has not yet been stress-tested across several real project types;
 - cross-tool adapter conventions remain intentionally undecided.
 
 ## Canonical References
@@ -50,6 +68,7 @@ The repository is in design-review mode. The priority is validating the simplifi
 - Project foundation: `PROJECT-OVERVIEW.md`
 - Documentation map: `docs/README.md`
 - Project-local agent config: `.agents/README.md`
-- Bootstrap workflow: `skills/bootstrap-agentic-repo/SKILL.md`
+- Project overview workflow: `skills/establish-project-overview/SKILL.md`
+- Existing repository normalization: `skills/normalize-agentic-repo/SKILL.md`
 - Reusable templates: `templates/README.md`
 - Work status: repository Issues and Pull Requests

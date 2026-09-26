@@ -6,9 +6,11 @@ Software repositories increasingly use coding agents, but project knowledge, age
 
 ## Product
 
-Agentic Repo Kit is a vendor-neutral repository structure and bootstrap workflow for software projects developed by humans and coding agents.
+Agentic Repo Kit is a vendor-neutral repository structure and toolkit workflow for software projects developed by humans and coding agents.
 
-A user should be able to analyze a project, capture the foundation in `PROJECT-OVERVIEW.md`, run the bootstrap skill, and receive a predictable repository structure with clear local instructions.
+For existing repositories, the current workflow first establishes a trustworthy `PROJECT-OVERVIEW.md`, then normalizes repository knowledge and agent configuration around that foundation without inventing missing decisions or recreating work tracking inside the repository.
+
+A dedicated fresh-repository initialization workflow is planned after the existing-repository path has been validated through dogfooding.
 
 ## Scope
 
@@ -17,9 +19,11 @@ A user should be able to analyze a project, capture the foundation in `PROJECT-O
 - canonical root project-context files;
 - ordered durable documentation categories;
 - project-local agent rules and references under `.agents/`;
-- reusable templates and bootstrap workflow;
+- reusable templates;
+- a skill for establishing or reconciling `PROJECT-OVERVIEW.md`;
+- a skill for normalizing existing repositories;
 - Issues/PRs as the work plane;
-- optional future tool-specific adapters.
+- optional future tool-specific adapters and fresh-repository initialization.
 
 ### Out of Scope
 
@@ -27,7 +31,8 @@ A user should be able to analyze a project, capture the foundation in `PROJECT-O
 - storing agent chat history or hidden reasoning;
 - copying personal/global skills into every project;
 - making agent-specific files canonical owners of product architecture;
-- creating commands or hooks by default when workflow planning already covers orchestration.
+- creating commands or hooks by default when workflow planning already covers orchestration;
+- silently inventing product or architecture decisions to complete repository structure.
 
 ## Architecture Direction
 
@@ -40,6 +45,20 @@ docs/                = durable project knowledge
 .agents/references/   = non-normative supporting material
 Issues / PRs          = work state
 skills/               = skills shipped by Agentic Repo Kit itself
+```
+
+Current toolkit flow for existing repositories:
+
+```text
+available user context + repository reality
+        ↓
+establish-project-overview
+        ↓
+PROJECT-OVERVIEW.md
+        ↓
+normalize-agentic-repo
+        ↓
+normalized existing repository
 ```
 
 ## Documentation Direction
@@ -76,13 +95,15 @@ Every category keeps a `README.md` so the structure remains visible before proje
 - `.agents/references/` is non-normative.
 - `commands/`, `hooks/`, and project-local `skills/` are not default `.agents/` primitives.
 - Issues/PRs remain the work plane.
+- missing or conflicting project decisions are surfaced rather than invented.
+- existing repository normalization is planned and reviewed before material migration.
 
 ## Development Workflow
 
 ```text
 Issue
   ↓
-relevant project knowledge / rules / references / skill
+relevant project knowledge / rules / references / toolkit skill
   ↓
 implementation
   ↓
@@ -95,11 +116,16 @@ promote durable findings into docs when needed
 
 ## Current State
 
-The current redesign keeps `.agents/` but narrows its purpose to project-local agent rules and references, while the toolkit bootstrap skill remains under root `skills/`.
+The repository currently ships two focused toolkit skills:
 
-The documentation model now explicitly separates root project foundation from expanded overview material and treats `99-notes` as a canonical location with optional contents.
+- `establish-project-overview` for creating or reconciling the project foundation through repository evidence plus adaptive user clarification;
+- `normalize-agentic-repo` for safely normalizing an existing repository after that foundation is trustworthy.
+
+The prior all-in-one `bootstrap-agentic-repo` skill has been retired to avoid mixing fresh initialization, project-foundation establishment, and existing-repository migration into one workflow.
+
+The next validation target is dogfooding the establish → normalize path on a complex existing repository before designing a dedicated fresh-repository initialization skill.
 
 ## Open Questions
 
 - Which tool-specific adapters should eventually ship as examples?
-- Should bootstrap remain skill-only or later gain a CLI?
+- Should the toolkit remain skill-only or later gain a CLI/validator layer?
