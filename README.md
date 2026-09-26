@@ -2,17 +2,23 @@
 
 A lightweight, vendor-neutral repository structure for software projects developed by humans and coding agents.
 
-Agentic Repo Kit is built around one simple flow:
+Agentic Repo Kit is built around a project foundation plus focused repository workflows.
+
+For an existing repository, the current flow is:
 
 ```text
-Analyze the project
+available user context + repository reality
+        ↓
+establish-project-overview
         ↓
 PROJECT-OVERVIEW.md
         ↓
-bootstrap-agentic-repo
+normalize-agentic-repo
         ↓
-ready-to-use agentic repository
+normalized agentic repository
 ```
+
+Fresh-repository initialization is intentionally not shipped as a separate skill yet. The current priority is proving the existing-repository workflow before adding that path.
 
 ## Mental Model
 
@@ -87,15 +93,21 @@ Projects may add any of these later when a concrete need justifies them.
 
 ## Skills Shipped by Agentic Repo Kit
 
-The toolkit repository itself contains:
+The toolkit repository currently contains:
 
 ```text
 skills/
-└── bootstrap-agentic-repo/
+├── establish-project-overview/
+│   └── SKILL.md
+└── normalize-agentic-repo/
     └── SKILL.md
 ```
 
-This is a skill of Agentic Repo Kit, not part of the default consumer repository structure.
+`establish-project-overview` establishes or reconciles the project foundation.
+
+`normalize-agentic-repo` safely normalizes an existing repository after that foundation is trustworthy.
+
+These are Agentic Repo Kit toolkit skills, not part of the default consumer repository structure.
 
 ## Why `docs/` Is Numbered
 
@@ -117,12 +129,14 @@ The numbers organize discovery, not authority priority.
 
 `docs/99-notes/` is the canonical home for useful non-authoritative retained notes. The folder is part of the skeleton, while project-specific note files are optional and should not be created merely to fill it.
 
-## Quick Start
+## Existing Repository Quick Start
 
-1. Start from `templates/PROJECT-OVERVIEW.md` and describe the project.
-2. Use `skills/bootstrap-agentic-repo/SKILL.md`.
-3. Let the skill inspect existing repository reality and create/normalize the canonical structure.
-4. Track work in Issues and Pull Requests; promote durable findings into `docs/` when needed.
+1. Use `skills/establish-project-overview/SKILL.md` if the root project overview is missing, stale, incomplete, or contradictory.
+2. Review and approve the resulting `PROJECT-OVERVIEW.md` foundation.
+3. Use `skills/normalize-agentic-repo/SKILL.md` to inspect the existing repository and propose a normalization plan.
+4. Review that plan before material migration.
+5. Apply the approved normalization and validate it against the skill acceptance checklist.
+6. Track work in Issues and Pull Requests; promote durable findings into `docs/` when needed.
 
 ## Templates
 
@@ -130,4 +144,4 @@ Reusable source templates live under `templates/`. They are scaffolding inputs, 
 
 ## Project Status
 
-This repository is still under design review. The structure is intentionally being simplified before broader OSS packaging or automation is added.
+This repository is still under design review. The current focus is dogfooding `establish-project-overview` and `normalize-agentic-repo` on a complex existing repository before adding a dedicated fresh-repository initialization skill, CLI, or broader OSS automation.

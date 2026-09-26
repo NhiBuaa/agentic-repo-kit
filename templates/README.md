@@ -1,6 +1,6 @@
 # Reusable Templates
 
-`templates/` contains source templates used when bootstrapping or extending another repository.
+`templates/` contains source templates used when establishing, normalizing, or extending another repository.
 
 These files are scaffolding inputs, not live authority for Agentic Repo Kit itself.
 
@@ -23,4 +23,4 @@ The default consumer repository also receives `.agents/` folder manuals for `rul
 
 Task plans, handoffs, review logs, and verification summaries are intentionally not templated as repository files. Use the repository Issue/PR system for work state.
 
-The Agentic Repo Kit bootstrap skill lives at `skills/bootstrap-agentic-repo/SKILL.md` in this toolkit repository and is not copied into consumer repositories by default.
+Agentic Repo Kit currently ships `skills/establish-project-overview/SKILL.md` and `skills/normalize-agentic-repo/SKILL.md` in this toolkit repository. Toolkit skills are not copied into consumer repositories by default.

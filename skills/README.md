@@ -4,11 +4,22 @@
 
 These are toolkit capabilities, not project-local agent configuration.
 
-Current skill:
+Current skills:
 
 ```text
-bootstrap-agentic-repo/
+establish-project-overview/
+└── SKILL.md
+
+normalize-agentic-repo/
 └── SKILL.md
 ```
 
-Consumer projects do not need to copy this directory into their repository. The skill is used to bootstrap or normalize those projects.
+## Selection Rule
+
+Use `establish-project-overview` when the root `PROJECT-OVERVIEW.md` is missing, stale, incomplete, contradictory, or not clearly authoritative.
+
+Use `normalize-agentic-repo` when a meaningful existing repository already has a trustworthy root `PROJECT-OVERVIEW.md` and needs to be normalized into the Agentic Repo Kit model.
+
+A dedicated fresh-repository initialization skill is intentionally not shipped yet. The current priority is validating the existing-repository path first.
+
+Consumer projects do not need to copy this directory into their repository. These skills are invoked from the toolkit to establish project foundation and normalize repository structure.
