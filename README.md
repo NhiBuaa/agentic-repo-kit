@@ -113,6 +113,10 @@ The numbers give humans and agents a predictable discovery order:
 
 The numbers organize discovery, not authority priority.
 
+`PROJECT-OVERVIEW.md` remains the project foundation. `docs/01-overview/` exists only for distinct expanded orientation such as maps, glossaries, or conceptual navigation; it should not mirror the root overview.
+
+`docs/99-notes/` is the canonical home for useful non-authoritative retained notes. The folder is part of the skeleton, while project-specific note files are optional and should not be created merely to fill it.
+
 ## Quick Start
 
 1. Start from `templates/PROJECT-OVERVIEW.md` and describe the project.

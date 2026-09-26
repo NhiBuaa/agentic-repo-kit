@@ -1,5 +1,7 @@
 # Project Overview
 
+This root file is the canonical project foundation. Use `docs/01-overview/` only for distinct expanded orientation; do not maintain a paraphrased copy of this file there.
+
 ## Problem
 
 What problem does this project solve?
