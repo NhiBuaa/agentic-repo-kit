@@ -28,4 +28,4 @@ Do not use architecture documents as:
 
 Historical rationale belongs in ADRs when that artifact class is used.
 
-Starter: `.template/artifacts/architecture.md`
+Starter template: `templates/architecture.md`
