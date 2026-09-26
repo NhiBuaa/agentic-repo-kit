@@ -14,7 +14,7 @@ bootstrap-agentic-repo
 ready-to-use agentic repository
 ```
 
-The goal is not to create more documentation. The goal is to make project knowledge easy to find, agent behavior predictable, and work tracking stay in the tools already designed for it.
+The goal is not to create more documentation. The goal is to make project knowledge easy to find, agent behavior predictable, repository-local automation discoverable, and work tracking stay in the tools already designed for it.
 
 ## Mental Model
 
@@ -31,8 +31,8 @@ CONTEXT.md
 docs/
 = durable project knowledge
 
-agent/
-= reusable agent capabilities and supporting references
+.agents/
+= repository-local agent infrastructure
 
 Issues
 = planned / active / completed work
@@ -41,9 +41,9 @@ Pull Requests
 = implementation, review, and verification
 ```
 
-A project should not maintain a second issue tracker inside the repository.
+A project should not maintain a second issue tracker inside `.agents/`.
 
-## Canonical Structure
+## Canonical Consumer Structure
 
 ```text
 project/
@@ -73,42 +73,74 @@ project/
 │   └── 99-notes/
 │       └── README.md
 │
-├── agent/
+├── .agents/
 │   ├── README.md
-│   ├── skills/
+│   ├── commands/
 │   │   └── README.md
-│   └── references/
+│   ├── hooks/
+│   │   └── README.md
+│   ├── references/
+│   │   └── README.md
+│   └── rules/
 │       └── README.md
 │
 └── ... source code
 ```
 
-Every canonical folder contains a small `README.md`, even when the folder has no project-specific content yet. This keeps the structure visible in Git and explains what belongs there.
+Every canonical folder contains a small `README.md`, even when it has no project-specific content yet. This keeps the structure visible in Git and explains what belongs there.
 
 ## Why `docs/` Is Numbered
 
-The numbered layout gives humans and agents a predictable reading order instead of relying on alphabetical folder names:
+The numbered layout gives humans and agents a predictable discovery order instead of relying on alphabetical folder names:
 
-1. understand the project;
-2. understand the architecture;
-3. understand the product/domain;
-4. read implementation rules;
-5. read required behavior;
-6. inspect decision history;
-7. use normal procedures;
-8. use operational recovery procedures;
-9. consult non-authoritative notes only when needed.
+1. project orientation;
+2. architecture;
+3. product/domain knowledge;
+4. implementation standards;
+5. required behavior;
+6. decision history;
+7. normal procedures;
+8. operational recovery procedures;
+9. non-authoritative notes.
 
-The numbers organize discovery; they do not create an authority hierarchy. Authority still comes from the artifact type.
+The numbers organize discovery; they do not create an authority hierarchy.
 
-## Why There Is No `.agents/` Work Log
+## What `.agents/` Is For
+
+`.agents/` is **agent infrastructure**, not a work log.
+
+```text
+.agents/
+├── commands/     explicit repository-local workflow entrypoints
+├── hooks/        event-triggered automation and guardrails
+├── references/   non-authoritative support material
+└── rules/        scoped agent-working rules
+```
+
+### Commands
+
+Commands make repeatable repository workflows easy to invoke intentionally. They may orchestrate scripts, checks, skills, or documentation workflows, but they do not own project truth.
+
+### Hooks
+
+Hooks automate behavior around agent or repository events: safety checks, validation, synchronization, or policy enforcement. Tool-specific hook configuration may live in an adapter, while shared intent remains repository-local where practical.
+
+### Rules
+
+Rules contain scoped instructions for **how agents work**. Durable implementation standards that also apply to human developers belong in `docs/04-standards/` instead.
+
+### References
+
+References contain examples, patterns, checklists, and supporting material. They are useful context, not canonical product or architecture authority.
+
+## Why `.agents/` Does Not Contain Task State
 
 Task state already has a natural home:
 
 - Issues own problem statements, scope, acceptance criteria, implementation planning, progress, and handoff updates.
 - Pull Requests own code discussion, review findings, CI results, and verification.
 
-Agentic Repo Kit therefore does not create repository copies such as:
+Agentic Repo Kit therefore does not scaffold:
 
 ```text
 .agents/plans/
@@ -117,32 +149,30 @@ Agentic Repo Kit therefore does not create repository copies such as:
 .agents/evidence/
 ```
 
-Durable knowledge discovered during work should be promoted into the appropriate `docs/` artifact instead of being preserved as task-state markdown.
+Durable findings discovered during work should be promoted into the appropriate `docs/` category.
 
-## `agent/` Is Capability Infrastructure
+## Skills Belong to the Toolkit
 
-`agent/` is not a task workspace.
-
-It contains reusable material that helps coding agents perform work:
+The `bootstrap-agentic-repo` skill is a capability of **Agentic Repo Kit itself**, so it lives in this repository at:
 
 ```text
-agent/
-├── skills/       reusable workflows
-└── references/   useful patterns, examples, and supporting material
+skills/bootstrap-agentic-repo/SKILL.md
 ```
 
-Canonical product rules do not live there. Repository-wide agent behavior belongs in `AGENTS.md`; durable implementation rules belong in `docs/04-standards/`.
+It is not scaffolded into `.agents/skills/` in consumer projects.
+
+Users may keep personal or organization skills globally using their preferred agent environment. Agentic Repo Kit does not force a repository-local skills directory.
 
 ## Tool-Specific Adapters
 
-Vendor-specific directories are optional adapters, for example:
+Vendor-specific directories such as:
 
 ```text
 .claude/
 .github/
 ```
 
-They may contain tool-specific commands, hooks, or loader configuration, but should reference canonical repository knowledge rather than create competing copies of it.
+are optional adapters. They may bridge tool-specific commands, hooks, loaders, or settings to the canonical repository model, but they should not create competing copies of project truth.
 
 ## Quick Start
 
@@ -154,23 +184,23 @@ Start from:
 templates/PROJECT-OVERVIEW.md
 ```
 
-Create a project-level `PROJECT-OVERVIEW.md` containing the problem, product scope, architecture direction, constraints, invariants, workflow, current state, and open questions.
+Create `PROJECT-OVERVIEW.md` with the problem, scope, architecture direction, constraints, invariants, workflow, current state, and open questions.
 
 ### 2. Bootstrap the repository
 
-Use:
+Use the Agentic Repo Kit system skill:
 
 ```text
-agent/skills/bootstrap-agentic-repo/SKILL.md
+skills/bootstrap-agentic-repo/SKILL.md
 ```
 
-Ask your coding agent to read `PROJECT-OVERVIEW.md` and bootstrap the repository using Agentic Repo Kit.
+Ask your coding agent to read `PROJECT-OVERVIEW.md` and bootstrap the target repository using Agentic Repo Kit.
 
-The bootstrap workflow must inspect existing repository reality and must not invent missing architectural or product decisions.
+The bootstrap workflow must inspect repository reality and must not invent missing architectural or product decisions.
 
 ### 3. Work normally
 
-Use Issues and Pull Requests for work state. Keep durable knowledge under `docs/`. Add reusable agent workflows or references under `agent/` only when they provide lasting value.
+Use Issues and Pull Requests for work state. Keep durable knowledge under `docs/`. Use `.agents/` only for repository-local agent infrastructure that provides lasting value.
 
 ## Templates
 
@@ -180,4 +210,4 @@ They are scaffolding inputs, not live project authority. Root files in this repo
 
 ## Project Status
 
-This repository is still under design review. The structure is intentionally being simplified before adding automation, validation tooling, or broader OSS packaging.
+This repository is still under design review. The structure is intentionally being reviewed before adding broader automation, validation tooling, or OSS packaging.
