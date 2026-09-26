@@ -2,55 +2,53 @@
 
 ## Mission
 
-Summarize what this repository exists to build or maintain.
+<!-- Concisely describe what this repository exists to build or maintain. -->
 
 ## Authority Map
 
-Use repository information according to the following ownership model:
-
-- `PROJECT-OVERVIEW.md` — project foundation and bootstrap input.
-- `AGENTS.md` — repository-wide agent working agreements.
+- `PROJECT-OVERVIEW.md` — project foundation and explicit open questions.
 - `CONTEXT.md` — current project-state projection.
-- `docs/architecture/` — current system architecture.
-- `docs/standards/` — normative implementation rules.
-- `docs/adr/` — significant decision rationale.
-- `docs/specs/` — durable required behavior.
-- Issue / PR tracker — work status and execution tracking.
-- `.agents/` — task-local plans, handoffs, reviews, evidence, and scratch work.
+- `docs/` — durable project knowledge.
+- `agent/skills/` — reusable agent workflows.
+- `agent/references/` — non-normative supporting material.
+- Issues — task scope, planning, progress, and handoff state.
+- Pull Requests — implementation discussion, review, CI, and verification.
+- source code and tests — implementation reality.
 
-Do not treat task-local artifacts as durable project authority.
+Do not duplicate Issue/PR state in repository markdown files.
 
 ## Read Order
 
 For meaningful work:
 
 1. Read this file.
-2. Read `CONTEXT.md`.
+2. Read `PROJECT-OVERVIEW.md` and `CONTEXT.md` when the task requires project-level context.
 3. Read the relevant Issue or task.
-4. Read relevant Specifications.
-5. Read only the Architecture, Standards, and ADRs relevant to the change.
+4. Read only the relevant numbered `docs/` areas.
+5. Read an applicable skill/reference when useful.
 6. Inspect implementation and tests.
-
-Use `PROJECT-OVERVIEW.md` when project intent, scope, constraints, or unresolved foundational questions matter to the task.
 
 ## Critical Invariants
 
-List only high-signal repository-wide invariants here. Link to Standards for detailed subsystem rules.
+<!-- Keep only high-signal repository-wide invariants here. -->
+
+- Preserve security and authorization boundaries.
+- Do not expose secrets or credentials.
+- Do not silently change public contracts.
+- Do not invent missing product or architecture decisions.
 
 ## Working Agreements
 
 - Understand existing implementation before editing.
 - Prefer the smallest independently verifiable change.
 - Avoid unrelated refactors.
-- Do not treat Plans, Handoffs, Reviews, or Evidence as requirements.
-- Do not invent unresolved project decisions.
-- Preserve backward compatibility unless the task explicitly changes it.
+- Preserve unresolved questions instead of guessing.
+- Promote durable findings into the correct `docs/` category when needed.
 
 ## Validation
 
-Replace this section with repository-specific validation commands.
-
 ```sh
+# Replace with project-specific commands.
 <test-command>
 <lint-command>
 <build-command>
@@ -58,20 +56,16 @@ Replace this section with repository-specific validation commands.
 
 ## Documentation Synchronization
 
-After a meaningful change, update only the artifact classes whose owned truth changed:
+After a meaningful change, ask whether architecture, product knowledge, standards, specifications, decisions, guides, runbooks, or current context changed.
 
-- Architecture → `docs/architecture/`
-- Normative rule → `docs/standards/`
-- Significant decision → `docs/adr/`
-- Required behavior → `docs/specs/`
-- Current project state → `CONTEXT.md`
+Update only the canonical owner of the affected information.
 
-Do not duplicate authoritative facts across multiple files.
+## Agent Capability Rules
 
-## Governance Changes
-
-Changes to high-authority governance artifacts must be intentional and reviewable. Do not rewrite rules merely to make an implementation appear compliant.
+- `agent/skills/` stores reusable workflows, not task state.
+- `agent/references/` stores non-normative support material.
+- tool-specific directories are adapters only and must not create competing truth.
 
 ## Definition of Done
 
-A task is complete when requested behavior is implemented, relevant verification passes, important invariants remain satisfied, durable documentation is synchronized where necessary, and disposable task artifacts are cleaned up.
+A task is complete when requested behavior is implemented, relevant validation passes, durable documentation is synchronized where necessary, and the Issue/PR reflects the actual work state.

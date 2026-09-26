@@ -1,31 +1,24 @@
 # Reusable Templates
 
-This directory contains source templates used to bootstrap other software repositories.
+`templates/` contains source templates used when bootstrapping or extending another repository.
 
-These files are **not** the live governance or context of Agentic Repo Kit itself. Root files such as `AGENTS.md`, `CONTEXT.md`, and `PROJECT-OVERVIEW.md` describe this repository; files under `templates/` are reusable scaffolding for consumer projects.
+These files are scaffolding inputs, not live authority for Agentic Repo Kit itself.
 
-## Bootstrap Core
+## Root Templates
 
-A new project starts from:
-
-- `PROJECT-OVERVIEW.md` — human/agent project analysis input;
-- `AGENTS.md` — generated repository-specific agent guidance;
-- `CONTEXT.md` — generated current-state projection.
+- `PROJECT-OVERVIEW.md`
+- `AGENTS.md`
+- `CONTEXT.md`
 
 ## Durable Documentation Templates
 
 - `architecture.md`
 - `standard.md`
-- `adr.md`
 - `spec.md`
+- `adr.md`
 - `guide.md`
 - `runbook.md`
 
-## Agent Work Templates
+Task plans, handoffs, review logs, and verification summaries are intentionally not templated as repository files. Use the repository Issue/PR system for work state.
 
-- `plan.md`
-- `handoff.md`
-- `review.md`
-- `evidence.md`
-
-The bootstrap skill may adapt these templates to the information actually supported by a project's `PROJECT-OVERVIEW.md` and repository state. It must not invent unresolved decisions merely to fill sections.
+The bootstrap skill lives at `agent/skills/bootstrap-agentic-repo/SKILL.md`.

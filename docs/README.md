@@ -1,49 +1,53 @@
 # Documentation Map
 
-This directory contains durable repository knowledge.
+`docs/` contains durable project knowledge.
 
-All canonical documentation areas are created up front and kept visible with local `README.md` contracts. Project-specific documents inside them are added only when real content exists.
+The numbered directories provide a predictable discovery order for humans and coding agents. The numbers organize reading; they do not make one document type more authoritative than another.
 
-## Architecture
+## Reading Order
 
-`architecture/`
+### `01-overview/`
 
-Describes how the current system works: runtime structure, component boundaries, data flow, ownership, and subsystem relationships.
+Stable high-level maps, terminology, and orientation material.
 
-## Standards
+Do not copy the root `PROJECT-OVERVIEW.md` into this folder. The root file captures project foundation and bootstrap input; this folder contains durable overview material that becomes useful as the project grows.
 
-`standards/`
+### `02-architecture/`
 
-Contains durable normative rules that implementations must obey.
+How the current system works: component boundaries, data flow, ownership, integrations, and failure behavior.
 
-## ADRs
+### `03-product/`
 
-`adr/`
+Durable product/domain knowledge such as actors, use cases, domain concepts, user flows, and product behavior explanations.
 
-Preserves rationale and trade-offs for significant architectural decisions.
+### `04-standards/`
 
-## Specifications
+Normative implementation rules that code must obey.
 
-`specs/`
+### `05-specs/`
 
-Defines durable required behavior whose contract should survive individual tasks.
+Durable required behavior for capabilities and contracts.
 
-## Guides
+### `06-decisions/`
 
-`guides/`
+Significant architectural or product-engineering decisions and their rationale, usually as ADRs.
 
-Explains normal development or operational procedures.
+### `07-guides/`
 
-## Runbooks
+Normal procedures for development, maintenance, deployment, or common contributor tasks.
 
-`runbooks/`
+### `08-runbooks/`
 
-Explains recovery and incident procedures for abnormal operational states.
+Procedures for abnormal operational states, recovery, and incidents.
+
+### `99-notes/`
+
+Non-authoritative notes that are useful to retain but do not yet belong to another durable category. Use this sparingly. Task progress belongs in Issues, not here.
 
 ## Authority Rule
 
-Each durable fact should have one canonical owner.
+Each durable fact should have one canonical owner. Other files may link to or summarize it, but should not independently maintain a conflicting copy.
 
-Other documents may reference or summarize canonical information, but must not independently maintain conflicting authoritative copies.
+## Work Tracking
 
-Folder existence does not imply project-specific content must be invented. The local README keeps the structure discoverable until a real artifact is needed.
+Do not use `docs/` for implementation planning, progress updates, handoffs, code-review logs, or CI evidence. Use the repository Issue/PR system for those concerns.

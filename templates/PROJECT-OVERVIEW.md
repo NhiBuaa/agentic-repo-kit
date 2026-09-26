@@ -6,7 +6,7 @@ What problem does this project solve?
 
 ## Product
 
-Who is this for, and what are the primary use cases?
+Who is it for and what are the primary use cases?
 
 ## Scope
 
@@ -20,43 +20,37 @@ Who is this for, and what are the primary use cases?
 
 ## Architecture Direction
 
-Describe the initial technical direction only where it has actually been decided.
+Describe known direction for frontend, backend, data, infrastructure, integrations, or other relevant layers.
 
-Examples:
-
-- frontend;
-- backend;
-- data stores;
-- infrastructure;
-- external integrations.
+Do not turn unresolved choices into decisions.
 
 ## Core Concepts
 
-List the important domain concepts, entities, or system boundaries discovered during project analysis.
+List important domain entities, terms, or concepts.
 
 ## Important Constraints
 
-- security;
-- performance;
-- compatibility;
-- cost;
-- deployment;
-- regulatory or organizational constraints.
+- security:
+- performance:
+- compatibility:
+- cost:
+- deployment:
+- other:
 
 ## Major Invariants
 
-List rules that should remain true across implementation choices.
+- ...
 
 ## Development Workflow
 
-Describe relevant source control, issue tracking, PR, testing, release, or deployment expectations.
+Describe how work is tracked and delivered.
+
+For GitHub projects, prefer Issues for task scope/planning/progress and Pull Requests for implementation/review/verification.
 
 ## Current State
 
 What already exists today?
 
-What is not implemented yet?
-
 ## Open Questions
 
-List unresolved decisions explicitly instead of guessing answers during bootstrap.
+List unresolved product, architecture, infrastructure, or workflow questions explicitly.

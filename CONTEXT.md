@@ -7,75 +7,51 @@ last_verified: 2026-09-26
 
 ## Current Product Boundary
 
-Agentic Repo Kit currently provides three things:
+Agentic Repo Kit is a reusable repository convention for software projects developed by humans and coding agents.
 
-1. a repository information model and canonical folder structure;
-2. reusable templates under `templates/`;
-3. a bootstrap skill under `skills/bootstrap-agentic-repo/` that applies the model from `PROJECT-OVERVIEW.md`.
+Its current scope is intentionally narrow:
 
-The project does not yet provide a standalone CLI, package manager integration, automated repository validator, or migration tool.
+- a project foundation file (`PROJECT-OVERVIEW.md`);
+- repository-wide agent guidance (`AGENTS.md`);
+- bounded current-state context (`CONTEXT.md`);
+- ordered durable documentation under `docs/`;
+- reusable agent skills and references under `agent/`;
+- reusable source templates under `templates/`.
 
-## Current State
+## Current Structural Direction
 
-The v0.2 redesign is implemented around a simpler bootstrap flow:
+The current design simplifies the earlier model in two ways:
 
-```text
-Analyze project
-    ↓
-PROJECT-OVERVIEW.md
-    ↓
-bootstrap-agentic-repo
-    ↓
-ready-to-use repository structure
-```
+1. task state belongs in Issues and Pull Requests instead of repository-owned `.agents/plans`, handoffs, reviews, or evidence;
+2. agent-specific repository content is limited to reusable capabilities (`agent/skills`) and supporting references (`agent/references`).
 
-The repository now self-hosts the model:
+The documentation tree uses numbered categories to give humans and agents a predictable discovery order while preserving semantic authority by document type.
 
-- root `PROJECT-OVERVIEW.md`, `AGENTS.md`, and `CONTEXT.md` describe Agentic Repo Kit itself;
-- reusable consumer files live under `templates/`;
-- all canonical `docs/` and `.agents/` subdirectories exist with local `README.md` contracts;
-- `.agents/tmp/` keeps its README tracked while scratch contents remain ignored;
-- reusable automation lives under `skills/`;
-- legacy `.template/` content has been retired.
+## Work Plane
+
+- Issues own task scope, acceptance criteria, implementation planning, progress, and handoff updates.
+- Pull Requests own implementation discussion, review, CI, and verification.
+- durable findings are promoted into `docs/` when they become project knowledge.
+
+## Tool Adapters
+
+Tool-specific folders such as `.claude/` or `.github/` are optional adapters. They must not become independent owners of project architecture or rules.
 
 ## Active Direction
 
-The next priority is validation rather than adding more structure.
-
-The model should be exercised against different repository shapes, such as:
-
-- a small library or CLI;
-- a full-stack web application;
-- an AI / RAG project;
-- a larger multi-component system.
-
-The goal is to find places where bootstrap behavior is too heavy, ambiguous, incomplete, or difficult to maintain before treating the surface as stable.
-
-## Important Transitions
-
-The project has transitioned from the v0.1 demand-created-folder model to a v0.2 visible-skeleton model.
-
-Canonical folders now exist up front with README contracts, while project-specific artifacts inside those folders are still created only when real content exists.
-
-The project has also transitioned from `.template/` to `templates/`. `.template/` is no longer part of the model.
+The repository is in design-review mode. The priority is validating whether the simplified structure is understandable and useful before adding more automation or OSS machinery.
 
 ## Known Limitations
 
-- The bootstrap process is currently expressed as an agent skill rather than an executable CLI.
-- No automated conformance test verifies repository structure or stale references yet.
-- Distribution and installation conventions for multiple coding-agent ecosystems are not finalized.
-- The current templates have not yet been stress-tested across enough real project types to call the model stable.
-- No OSS license has been selected yet.
+- the bootstrap workflow is currently documented as a skill rather than implemented as a standalone CLI;
+- cross-tool installation/discovery conventions are not yet packaged;
+- the structure has not yet been stress-tested against several real project types.
 
 ## Canonical References
 
 - Project foundation: `PROJECT-OVERVIEW.md`
-- Public usage and positioning: `README.md`
 - Documentation map: `docs/README.md`
-- Architecture: `docs/architecture/`
-- Standards: `docs/standards/`
-- ADRs: `docs/adr/`
-- Specifications: `docs/specs/`
-- Reusable templates: `templates/`
-- Skills: `skills/`
-- Task-local agent work: `.agents/`
+- Agent capability model: `agent/README.md`
+- Bootstrap workflow: `agent/skills/bootstrap-agentic-repo/SKILL.md`
+- Reusable templates: `templates/README.md`
+- Work status: repository Issues and Pull Requests

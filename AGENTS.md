@@ -1,98 +1,88 @@
-# Repository Guidance
+# Agentic Repo Kit — Repository Guidance
 
 ## Mission
 
-Agentic Repo Kit is a vendor-neutral repository operating system for software projects developed by humans and coding agents.
+Maintain Agentic Repo Kit as a small, vendor-neutral repository convention for human + coding-agent development.
 
-This repository defines the standard, reusable templates, and skills used to bootstrap that operating model into other projects.
+Favor clear ownership, low duplication, predictable discovery, and simple adoption over documentation volume or agent-specific complexity.
 
 ## Authority Map
 
-Use repository information according to the following ownership model:
+- `PROJECT-OVERVIEW.md` — product intent, scope, design direction, constraints, and unresolved questions for this project.
+- `CONTEXT.md` — current project-state projection.
+- `docs/` — durable project knowledge.
+- `agent/skills/` — reusable agent workflows.
+- `agent/references/` — supporting examples and non-normative reference material.
+- Issues — work scope, implementation planning, progress, and handoff state.
+- Pull Requests — implementation discussion, review, CI, and verification.
+- source code and tests — implementation reality.
 
-- `PROJECT-OVERVIEW.md` — foundation, scope, constraints, design direction, and open questions for Agentic Repo Kit itself.
-- `AGENTS.md` — repository-wide instructions for agents working on this repository.
-- `CONTEXT.md` — bounded current-state projection for this repository.
-- `docs/` — durable documentation and canonical folder contracts.
-- `templates/` — reusable files intended for consumer projects; these are not live governance for this repository.
-- `skills/` — reusable automation for applying Agentic Repo Kit conventions.
-- Issue / PR tracker — execution status as project work is tracked there.
-- `.agents/` — task-local plans, handoffs, reviews, evidence, and scratch work.
-
-Do not confuse root live files with files under `templates/`.
+Do not recreate Issue/PR state inside repository markdown files.
 
 ## Read Order
 
-For meaningful work on Agentic Repo Kit:
+For onboarding or broad repository changes:
 
 1. Read this file.
-2. Read `CONTEXT.md`.
-3. Read the relevant Issue or task when one exists.
-4. Read `PROJECT-OVERVIEW.md` when project scope, foundational intent, or open questions matter.
-5. Read only the documentation, template, or skill files relevant to the change.
-6. Verify the resulting repository structure and references.
+2. Read `PROJECT-OVERVIEW.md`.
+3. Read `CONTEXT.md`.
+4. Read the relevant Issue or task.
+5. Read only the relevant numbered `docs/` areas.
+6. Read an applicable skill or reference when the task calls for one.
+7. Inspect implementation and tests.
 
-Do not load every template or folder manual for unrelated changes.
+For small changes, use the minimum context required.
 
-## Critical Invariants
+## Repository Model
 
-- Remain vendor-neutral; no coding-agent vendor may become the canonical source of project truth.
-- Root `AGENTS.md`, `CONTEXT.md`, and `PROJECT-OVERVIEW.md` describe Agentic Repo Kit itself. Reusable consumer versions belong under `templates/`.
-- Keep one canonical owner for each important information class and prefer references over duplicated authority.
-- Canonical folders remain visible with local `README.md` contracts even when no project-specific artifact exists inside them yet.
-- The bootstrap skill must not silently convert open questions or missing information into project decisions.
-- `docs/` owns durable knowledge; `.agents/` owns task-local agent work.
-- Do not reintroduce the legacy `.template/` structure.
+Keep these boundaries intact:
 
-## Working Agreements
+```text
+PROJECT-OVERVIEW → project foundation
+AGENTS           → agent working rules
+CONTEXT          → current project state
+docs             → durable project knowledge
+agent            → reusable agent capabilities
+Issues / PRs     → work state
+```
 
-- Prefer simple conventions that a developer can understand without memorizing a large framework.
-- Keep templates concise and remove fields that do not serve a clear purpose.
-- Keep skills deterministic, idempotent where practical, and explicit about unresolved information.
-- Avoid adding new artifact classes unless an existing class cannot own the information cleanly.
-- Do not perform unrelated refactors while changing repository conventions.
-- When changing a canonical convention, update affected templates, folder manuals, skills, and README guidance as needed so they do not drift.
+`agent/` must not become a second knowledge base or task tracker.
+
+## Documentation Rules
+
+- Keep one canonical owner for each durable fact.
+- Prefer references over duplicated explanations.
+- Keep numbered `docs/` folders as stable discovery categories.
+- Use `docs/04-standards/` for normative implementation rules.
+- Use `docs/06-decisions/` for significant decision rationale.
+- Use `docs/99-notes/` only for non-authoritative material that does not belong elsewhere.
+- Promote durable findings from Issues/PRs into the correct documentation category when necessary.
+
+## Agent Capability Rules
+
+- Skills should encode reusable workflows, not project truth.
+- References may provide examples, patterns, or supporting material, but must not silently become normative rules.
+- Tool-specific configuration such as `.claude/` or `.github/` is an adapter layer only.
+- Do not duplicate canonical rules across vendor-specific adapters.
+
+## Change Discipline
+
+- Inspect existing repository reality before editing.
+- Avoid unrelated refactors.
+- Do not invent missing product or architecture decisions.
+- Preserve unresolved questions as unresolved questions.
+- Changes to the canonical repository model should update the root README, bootstrap skill, and affected templates together.
 
 ## Validation
 
-There is no executable product test suite yet.
+For structural changes:
 
-For repository-structure or documentation changes, verify at minimum:
-
-- no obsolete `.template/` paths remain;
-- root live files are not written as consumer placeholders;
-- template references resolve to `templates/`;
-- canonical folders retain their local `README.md` contracts;
-- `skills/bootstrap-agentic-repo/SKILL.md` remains consistent with the documented target structure;
-- no new duplicate authority is introduced.
-
-If executable tooling is added later, add its real validation commands here.
-
-## Documentation Synchronization
-
-After a meaningful change, update only the artifact classes whose owned truth changed:
-
-- project foundation → `PROJECT-OVERVIEW.md`;
-- current repository state → `CONTEXT.md`;
-- durable repository model → `docs/`;
-- consumer starter content → `templates/`;
-- automation behavior → `skills/`;
-- public usage flow → `README.md`.
-
-Do not keep independent copies of the same authoritative rule in multiple locations.
-
-## Governance Changes
-
-Changes to this file, the authority model, canonical structure, or bootstrap behavior are governance changes and must be intentional and reviewable.
-
-An agent must not rewrite governing rules merely to make an implementation appear compliant.
+- verify all documented paths exist;
+- verify removed paths are no longer referenced;
+- verify templates and the bootstrap skill describe the same output structure;
+- verify root live files remain distinct from reusable templates;
+- verify no task-state artifact is reintroduced without an explicit reason.
 
 ## Definition of Done
 
-A task is complete when:
-
-- the requested repository-model change is implemented;
-- related templates, skills, and local manuals remain consistent;
-- obsolete paths or duplicated authority introduced by the change are removed;
-- the public README still describes the actual user flow;
-- `CONTEXT.md` is synchronized when current project state materially changes.
+A structural change is complete when the repository model, documentation map, templates, and bootstrap workflow agree with one another and no duplicate authority remains.
