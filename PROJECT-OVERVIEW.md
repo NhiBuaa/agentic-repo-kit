@@ -2,9 +2,9 @@
 
 ## Problem
 
-Software repositories increasingly use coding agents, but project knowledge, agent instructions, temporary task state, and tool-specific configuration often become mixed together. This creates duplicated truth, stale context, and tool lock-in.
+Software repositories increasingly use coding agents, but project knowledge, agent instructions, repository-local automation, temporary task state, and tool-specific configuration often become mixed together. This creates duplicated truth, stale context, and tool lock-in.
 
-Agentic Repo Kit explores a smaller repository convention that keeps project knowledge discoverable without recreating systems already provided by the repository host.
+Agentic Repo Kit explores a smaller repository convention that keeps these concerns separate without recreating systems already provided by the repository host.
 
 ## Product
 
@@ -14,9 +14,10 @@ A user should be able to:
 
 1. analyze a project;
 2. capture the foundation in `PROJECT-OVERVIEW.md`;
-3. run a bootstrap skill;
+3. run a bootstrap skill supplied by Agentic Repo Kit;
 4. receive a predictable repository structure with clear local instructions;
-5. continue normal development using Issues and Pull Requests for work state.
+5. optionally add repository-local agent commands, hooks, rules, and references;
+6. continue normal development using Issues and Pull Requests for work state.
 
 ## Scope
 
@@ -24,29 +25,31 @@ A user should be able to:
 
 - canonical root files for project foundation, agent guidance, and current context;
 - ordered durable documentation categories;
-- reusable agent skills and references;
+- repository-local agent infrastructure under `.agents/`;
+- Agentic Repo Kit system skills under root `skills/`;
 - bootstrap templates and workflow;
-- clear boundaries between project truth, agent capabilities, and work tracking;
+- clear boundaries between project truth, agent infrastructure, system skills, and work tracking;
 - optional vendor-specific adapter guidance.
 
 ### Out of Scope
 
 - replacing GitHub Issues, Pull Requests, or equivalent work trackers;
 - storing agent chat history or hidden reasoning;
-- forcing every project to create project-specific content for every documentation category;
+- maintaining repository-owned task plans, handoffs, review logs, or verification archives by default;
+- forcing repository-local copies of a user's personal/global skills;
 - making tool-specific directories canonical owners of project truth;
 - building a general project-management system.
 
 ## Architecture Direction
 
-The repository model is:
+The consumer repository model is:
 
 ```text
 PROJECT-OVERVIEW.md
 = project foundation and design input
 
 AGENTS.md
-= repository-wide agent behavior
+= repository-wide agent entry guidance
 
 CONTEXT.md
 = current project-state projection
@@ -54,11 +57,17 @@ CONTEXT.md
 docs/
 = durable project knowledge in a predictable reading order
 
-agent/skills/
-= reusable agent workflows
+.agents/commands/
+= repository-local explicit workflow entrypoints
 
-agent/references/
-= useful non-normative supporting material
+.agents/hooks/
+= event-triggered agent automation and guardrails
+
+.agents/rules/
+= scoped agent-working rules
+
+.agents/references/
+= non-authoritative supporting material
 
 Issues
 = task scope, planning, progress, and handoff state
@@ -66,6 +75,15 @@ Issues
 Pull Requests
 = implementation, review, CI, and verification
 ```
+
+The Agentic Repo Kit repository itself additionally contains:
+
+```text
+skills/
+= reusable system skills shipped by Agentic Repo Kit
+```
+
+The `bootstrap-agentic-repo` skill lives there and is not scaffolded into `.agents/skills/` in consumer repositories by default.
 
 Tool-specific folders such as `.claude/` or `.github/` are adapters only.
 
@@ -93,13 +111,17 @@ Every category keeps a `README.md` so the folder exists before project-specific 
 
 A durable fact has one canonical owner. Other artifacts reference it rather than maintain competing copies.
 
-### Work state is external to durable docs
+### Work state belongs in the work tracker
 
-Issues and Pull Requests already model work. Repository documentation should not mirror their state by default.
+Issues and Pull Requests already model work. Repository documentation and `.agents/` should not mirror that state by default.
 
-### Agent capabilities are not project truth
+### `.agents/` is infrastructure, not history
 
-Reusable skills and references help agents act, but architecture and normative project rules remain in the project knowledge plane.
+`.agents/` exists for reusable repository-local commands, hooks, scoped agent rules, and supporting references. It does not exist to record everything an agent planned or did.
+
+### Skills have a separate ownership boundary
+
+The toolkit's own reusable skills live under root `skills/`. Personal or organization skills may remain global in the user's chosen agent environment and are not forced into consumer repositories.
 
 ### Bootstrap should not invent decisions
 
@@ -112,14 +134,17 @@ Missing information remains an explicit open question.
 - allow empty canonical categories to remain visible through local README files;
 - avoid duplicate work tracking;
 - preserve compatibility with ordinary human development workflows;
-- keep vendor-specific integrations optional.
+- keep vendor-specific integrations optional;
+- distinguish agent-only rules from durable implementation standards.
 
 ## Major Invariants
 
 - `AGENTS.md` does not become a full architecture manual.
 - `CONTEXT.md` does not become project history.
 - `docs/` does not contain task progress.
-- `agent/` does not contain task plans, handoffs, review logs, or verification history by default.
+- `.agents/` does not contain task plans, handoffs, review logs, or verification history by default.
+- `.agents/rules/` does not replace `docs/04-standards/` for rules that apply to human implementations.
+- user/global skills are not copied into `.agents/skills/` by default.
 - Issues/PRs remain the work plane.
 - tool adapters do not own durable project truth.
 
@@ -132,7 +157,7 @@ A normal change should flow roughly as:
 ```text
 Issue
   ↓
-relevant project knowledge / skill
+relevant docs + .agents infrastructure + applicable system/global skill
   ↓
 implementation
   ↓
@@ -145,11 +170,11 @@ promote durable findings into docs when needed
 
 ## Current State
 
-The project has a reusable template set and a bootstrap skill. The current redesign removes the repository-owned `.agents/` work plane in favor of Issues/PRs, introduces `agent/` for reusable capabilities, and orders the documentation tree for predictable discovery.
+The project has a reusable template set and a root `bootstrap-agentic-repo` system skill. The current draft redesign keeps `.agents/` as repository-local agent infrastructure, adds commands/hooks/rules/references, leaves user skills global by default, and uses Issues/PRs rather than `.agents/` task-state directories.
 
 ## Open Questions
 
 - Should `docs/99-notes/` remain in the long-term canonical structure or stay optional?
+- What file formats should repository-local commands and hooks standardize on while remaining vendor-neutral?
 - Which tool-specific adapters should Agentic Repo Kit eventually ship as examples?
 - Should bootstrap remain skill-only or later gain a CLI?
-- How should skills be packaged for different coding-agent ecosystems without duplicating their canonical content?
