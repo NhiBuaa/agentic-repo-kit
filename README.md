@@ -24,7 +24,7 @@ Fresh-repository initialization is intentionally not shipped as a separate skill
 
 Start with the guide that matches your work:
 
-1. **[Playbook 1 — Start a project from zero](docs/07-guides/project-start-playbook.md)**: initialize repo → core value → use case diagram → navigation/user flows (if UI) → system architecture → technology → database design → MVP-first phased plan.
+1. **[Playbook 1 — Start a project from zero](docs/07-guides/project-start-playbook.md)**: initialize repo → core value → use case diagram → navigation/user flows (if UI) → system architecture → auth/security model → technology → database design → MVP-first phased plan.
 2. **[Playbook 2 — Develop a feature](docs/07-guides/feature-development-playbook.md)**: understand architecture/code → feature requirements → impact → technical workflow + UI detail (if any) → implement/test → PR review.
 
 These are **human-facing, step-by-step guides**. The developer understands and approves the decisions; agents assist within the scope given. No new skills or automation are included in this PR.
