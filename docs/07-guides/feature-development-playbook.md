@@ -8,7 +8,7 @@ Nếu bắt đầu với một ý tưởng chưa có dự án, xem [Playbook 1 �
 
 ### 1. Tìm hiểu chức năng hiện tại
 
-- **Bạn làm:** Tìm màn hình/API, code, database và test liên quan. Xem hiện tại hệ thống xử lý thế nào.
+- **Bạn làm:** Tìm màn hình/API, code và test liên quan; nếu tính năng dùng database, đọc **ERD và Relational Schema hiện tại** để hiểu dữ liệu.
 - **Agent giúp:** Dẫn bạn đến đúng file và giải thích đường đi của dữ liệu.
 - **Xong khi:** Bạn nói được chức năng hiện đang hoạt động ra sao, phần nào chịu trách nhiệm.
 
@@ -35,10 +35,11 @@ Workflow và vài ghi chú về kết quả mong đợi chính là **requirement
 ### 4. Chốt cách thực hiện
 
 - **Bạn làm:** Dựa vào Workflow, xác định sẽ sửa code ở đâu, dữ liệu/API thay đổi gì và xử lý lỗi thế nào.
-- **Agent giúp:** Đề xuất cách làm đơn giản nhất và giải thích điểm còn chưa rõ.
-- **Xong khi:** Bạn hiểu cách sửa và cách kiểm tra nó.
+- **Nếu thay đổi database:** **Bắt buộc cập nhật cả ERD (thực thể/quan hệ) và Relational Schema (bảng/cột/PK/FK)** trước khi code. Nếu không thay đổi database, chỉ xem hai sơ đồ hiện có, không vẽ lại.
+- **Agent giúp:** Đề xuất cách làm và kiểm tra hai sơ đồ có khớp với code, yêu cầu không.
+- **Xong khi:** Bạn hiểu cách sửa, mô hình dữ liệu (nếu thay đổi) và cách kiểm tra kết quả.
 
-**Không cần thêm sơ đồ** nếu Workflow và ghi chú kỹ thuật đã rõ. Chỉ dùng ERD, Sequence hoặc State Diagram khi thực sự khó hiểu dữ liệu, thứ tự gọi hoặc trạng thái.
+**Sequence/State Diagram chỉ bổ sung khi thật sự cần**, không bắt buộc.
 
 Nếu thay công nghệ/kiến trúc lớn, phải xét thêm tương thích dữ liệu cũ, cách chuyển đổi và cách quay lại trước khi code.
 
