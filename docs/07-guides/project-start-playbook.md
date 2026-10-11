@@ -1,10 +1,10 @@
 # Playbook 1 — Bắt đầu dự án từ con số 0
 
-**Dành cho developer:** tạo repo trước, rồi thiết kế nền tảng: **giá trị cốt lõi → Use Case Diagram → UI/UX tổng quan (nếu có giao diện) → System Architecture → công nghệ → database → phases (MVP trước)**. Requirements, Workflow kiến trúc và thiết kế UI chi tiết theo từng tính năng thuộc **[Playbook 2](feature-development-playbook.md)**.
+**Dành cho developer:** tạo repo trước, rồi thiết kế nền tảng: **giá trị cốt lõi → Use Case Diagram → UI/UX tổng quan (nếu có) → System Architecture → Security tổng quan → công nghệ → database → phases (MVP trước)**. Requirements, kiểm tra quyền, Workflow kiến trúc và thiết kế UI chi tiết theo từng tính năng thuộc **[Playbook 2](feature-development-playbook.md)**.
 
 **Cách làm xuyên suốt:** Sau mỗi bước, khi bạn cho phép, agent ghi **bản nháp vào đúng nơi trong repo** và đưa diff/PR để developer **đọc → sửa → duyệt**. Chỉ dùng quyết định đã được duyệt làm cơ sở cho bước tiếp theo. Không tạo file trống hay sao chép cùng nội dung nhiều nơi.
 
-## 8 bước thực hiện
+## 9 bước thực hiện
 
 ### 1. Khởi tạo repository
 
@@ -28,7 +28,7 @@
 - **Agent giúp:** Phát hiện actor hoặc use case bị thiếu; giữ sơ đồ dễ đọc.
 - **Xong khi:** Có **Use Case Diagram được bạn duyệt**, thể hiện rõ ai sử dụng chức năng nào.
 
-*Ví dụ:* Actor **Người dùng** liên kết với các use case **Upload PDF**, **Đặt câu hỏi**, **Xem trích dẫn**, **Quản lý hội thoại**. Việc chọn chức năng nào thuộc MVP sẽ chốt ở Bước 8.
+*Ví dụ:* Actor **Người dùng** liên kết với các use case **Upload PDF**, **Đặt câu hỏi**, **Xem trích dẫn**, **Quản lý hội thoại**. Việc chọn chức năng nào thuộc MVP sẽ chốt ở Bước 9.
 
 ### 4. Thiết kế UI/UX tổng quan (với ứng dụng có giao diện)
 
@@ -50,17 +50,27 @@
 
 **Chưa cần vẽ Workflow của từng chức năng tại đây.**
 
-### 6. Chọn công nghệ
+### 6. Xác định Authentication, Authorization & Security
 
-- **Bạn làm:** Dựa trên các use case, dữ liệu cần xử lý và System Architecture, chọn công nghệ cho frontend, backend, **loại database (SQL/NoSQL)** và các phần cần thiết; ghi ngắn gọn lý do.
+- **Bạn làm:** Từ Use Case và System Architecture, chốt **người dùng được nhận diện bằng cách nào** (đăng nhập/không đăng nhập), **vai trò và quyền ở mức tổng quan**, **ai sở hữu dữ liệu** và các **ranh giới tin cậy** giữa client, backend, dịch vụ ngoài. Xác định secrets sẽ được lưu ở đâu, **không đưa secrets vào repo**.
+- **Agent giúp:** Chỉ ra trường hợp truy cập trái phép, dữ liệu giữa người dùng bị lộ hoặc ranh giới tin cậy chưa rõ.
+- **Xong khi:** Bạn trả lời được **ai được xem/sửa/xóa dữ liệu nào và bộ phận nào chịu trách nhiệm kiểm tra quyền**.
+
+**Authentication** xác định *người dùng là ai*; **Authorization** quyết định *người đó được làm gì*. Ví dụ: người dùng đã đăng nhập vẫn **không được xem PDF của người khác**; backend phải kiểm tra quyền sở hữu, không chỉ ẩn nút trên giao diện.
+
+Chỉ chốt **mô hình tổng quan** ở đây; cách xác thực từng request, kiểm tra quyền cho từng API và test trường hợp trái phép thuộc [Playbook 2](feature-development-playbook.md). Nếu sản phẩm không có tài khoản, ghi rõ dữ liệu nào công khai và phần nào cần bảo vệ.
+
+### 7. Chọn công nghệ
+
+- **Bạn làm:** Dựa trên use case, dữ liệu cần xử lý, System Architecture và mô hình Security vừa chốt, chọn công nghệ cho frontend, backend, **loại database (SQL/NoSQL)** và các phần cần thiết; ghi ngắn gọn lý do.
 - **Agent giúp:** So sánh phương án theo dữ liệu, cách truy vấn và độ phức tạp thực tế.
 - **Xong khi:** Bạn biết dùng công nghệ gì và vì sao, đặc biệt là loại database.
 
 *Ví dụ:* Next.js + FastAPI; chọn PostgreSQL nếu cần dữ liệu quan hệ hoặc MongoDB nếu mô hình document phù hợp. Không thêm công nghệ chỉ để cho đủ stack.
 
-### 7. Thiết kế database theo công nghệ đã chọn
+### 8. Thiết kế database theo công nghệ đã chọn
 
-- **Bạn làm:** Dựa trên Use Case Diagram, kiến trúc và **loại database ở Bước 6**, thiết kế dữ liệu cần cho MVP và các quan hệ cốt lõi trước khi code:
+- **Bạn làm:** Dựa trên Use Case Diagram, kiến trúc và **loại database ở Bước 7**, thiết kế dữ liệu cần cho MVP và các quan hệ cốt lõi trước khi code:
   - **SQL (PostgreSQL, MySQL...):** Bắt buộc có **ERD + Relational Schema** (bảng, cột, PK, FK).
   - **NoSQL dạng document (MongoDB...):** Thiết kế **collections, cấu trúc documents, embedded/reference và indexes cần thiết**. Không ép vẽ Relational Schema.
 - **Agent giúp:** Đề xuất cấu trúc và rà soát nó có đáp ứng cách đọc/ghi dữ liệu không.
@@ -68,7 +78,7 @@
 
 Nếu không dùng database, ghi rõ không áp dụng. Các sơ đồ khác chỉ bổ sung khi thực sự cần.
 
-### 8. Lập kế hoạch theo phases triển khai
+### 9. Lập kế hoạch theo phases triển khai
 
 - **Bạn làm:** Lấy **giá trị cốt lõi ở Bước 2** làm mục tiêu cho **MVP**: bản đầu tiên mà người dùng thực sự hoàn thành được việc chính. Chia công việc thành **Phase 1 (MVP)** rồi các phase mở rộng, theo thứ tự phụ thuộc. Mỗi phase cần ghi rõ **mục tiêu, chức năng, demo phải chạy được và các trường hợp cần test**. Tạo GitHub Issues; developer review, chỉnh sửa và duyệt kế hoạch trước khi code.
 - **Agent giúp:** Gợi ý phạm vi MVP nhỏ nhất nhưng đủ giá trị, thứ tự phụ thuộc và cách demo/test từng phase.
@@ -84,6 +94,6 @@ Sau khi kế hoạch được duyệt, bắt đầu Issue đầu tiên của **P
 
 ## Trước khi chuyển sang code, tự hỏi
 
-**Tôi đã chốt giá trị cốt lõi, Use Case Diagram và User Flow chính (nếu có UI) chưa? Kiến trúc, công nghệ, database đã rõ chưa? Phase MVP có demo/test chứng minh được giá trị đó chưa?**
+**Tôi đã chốt giá trị cốt lõi, Use Case Diagram và User Flow chính (nếu có UI) chưa? Kiến trúc, quyền truy cập/dữ liệu, công nghệ và database đã rõ chưa? Phase MVP có demo/test chứng minh được giá trị đó chưa?**
 
 Nếu chưa trả lời được câu liên quan trực tiếp đến phần sắp code, quay lại bước tương ứng. **Developer quyết định; agent hỗ trợ.**
