@@ -1,6 +1,6 @@
 # Playbook 2 — Phát triển một tính năng
 
-**Dành cho developer:** triển khai **từng tính năng**, kể cả tính năng đầu tiên. Dựa trên System Architecture và database đã duyệt để vẽ Workflow kiến trúc của tính năng. Agent chỉ sửa repo khi được phép; bạn xem diff, chỉnh sửa và duyệt thiết kế trước khi code. Không thiết kế lại cả dự án.
+**Dành cho developer:** triển khai **từng tính năng**, kể cả tính năng đầu tiên. Dựa trên kiến trúc, database và User Flow tổng quan (nếu có UI) để thiết kế đúng phần cần làm. Agent chỉ sửa repo khi được phép; bạn xem diff, chỉnh sửa và duyệt trước khi code. Không thiết kế lại cả dự án.
 
 Nếu bắt đầu với một ý tưởng chưa có dự án, xem [Playbook 1 — Bắt đầu từ con số 0](project-start-playbook.md).
 
@@ -16,7 +16,7 @@ Nếu bắt đầu với một ý tưởng chưa có dự án, xem [Playbook 1 �
 
 ### 2. Ghi rõ yêu cầu của tính năng
 
-- **Bạn làm:** Với tính năng đang triển khai, ghi rõ **đầu vào/dữ liệu cần xử lý, kết quả mong đợi, quy tắc, lỗi và quyền truy cập liên quan**.
+- **Bạn làm:** Với tính năng đang triển khai, ghi rõ **đầu vào/dữ liệu cần xử lý, kết quả mong đợi, quy tắc, lỗi và quyền truy cập liên quan**. Nếu có UI, ghi rõ thao tác người dùng.
 - **Agent giúp:** Gợi ý trường hợp còn thiếu và cách kiểm thử.
 - **Xong khi:** Có thể xác định tính năng đã làm đúng hay chưa.
 
@@ -40,6 +40,8 @@ Nếu bắt đầu với một ý tưởng chưa có dự án, xem [Playbook 1 �
 
 *Ví dụ — Archive Conversation:* Frontend → API → kiểm tra quyền → Backend cập nhật trạng thái trong Database → API trả kết quả → Frontend cập nhật danh sách.
 
+**Nếu có UI:** Dựa trên User Flow tổng quan, thiết kế **wireframe/màn hình cần sửa** và các **UI states** liên quan (ví dụ: Loading, Success, Failed, Empty). Làm **prototype để thử luồng khi tương tác chưa rõ**; không bắt buộc cho mọi tính năng. Developer duyệt trước khi code.
+
 **Nếu thay đổi cấu trúc database:** Cập nhật **ERD + Relational Schema** với SQL; hoặc **collection/document schema và indexes liên quan** với MongoDB. Không thay đổi dữ liệu thì không vẽ lại. Với tính năng đầu tiên, dùng thiết kế đã duyệt ở Playbook 1.
 
 **Sequence/State Diagram chỉ bổ sung nếu thật sự cần.** Thay công nghệ/kiến trúc lớn thì xem thêm cách chuyển dữ liệu cũ và rollback.
@@ -62,6 +64,6 @@ Nếu kiến trúc hoặc cách dùng đã thay đổi, cập nhật **đúng t�
 
 ## Trước khi giao agent code, tự hỏi
 
-**Tôi hiểu kiến trúc và code liên quan chưa? Yêu cầu đúng là gì? Workflow kiến trúc của tính năng chạy ra sao? Kiểm tra thế nào?**
+**Tôi hiểu kiến trúc và code liên quan chưa? Yêu cầu đúng là gì? Workflow kỹ thuật và màn hình/trạng thái UI (nếu có) đã rõ chưa? Kiểm tra thế nào?**
 
 Nếu chưa rõ, yêu cầu agent **giải thích hoặc phân tích**, chưa yêu cầu code. Developer vẫn là người duyệt thiết kế và kết quả.
