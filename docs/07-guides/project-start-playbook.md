@@ -1,6 +1,6 @@
 # Playbook 1 — Bắt đầu dự án từ con số 0
 
-**Dành cho developer:** tự hiểu và quyết định trước khi giao agent hỗ trợ. **Use Case** cho biết hệ thống có chức năng gì; **Workflow kiến trúc** cho biết các thành phần hệ thống phối hợp xử lý thế nào. **ERD và Relational Schema bắt buộc khi thiết kế database.** Sơ đồ khác chỉ vẽ nếu cần.
+**Dành cho developer:** tự hiểu và quyết định trước khi giao agent hỗ trợ. Playbook này thiết kế **nền tảng chung của dự án**: Use Case → Requirements tổng quan → System Architecture → ERD + Relational Schema → kế hoạch. **Workflow kiến trúc từng chức năng thuộc [Playbook 2](feature-development-playbook.md)**, khi bắt đầu triển khai tính năng đó.
 
 ## 7 bước thực hiện
 
@@ -24,39 +24,35 @@
 
 **MVP:** Phiên bản chạy được đầu tiên với một số chức năng trong danh sách; các chức năng còn lại triển khai tiếp theo.
 
-### 3. Mô tả yêu cầu của chức năng
+### 3. Ghi yêu cầu tổng quan (Requirements)
 
-- **Bạn làm:** Với chức năng sắp triển khai, ghi ngắn gọn **người dùng cần gì → kết quả mong đợi → trường hợp lỗi/quyền quan trọng**.
-- **Agent giúp:** Phát hiện yêu cầu chưa rõ và gợi ý cách kiểm thử.
-- **Xong khi:** Bạn biết thế nào là chức năng chạy đúng.
+- **Bạn làm:** Ghi ngắn gọn từng chức năng phải đạt kết quả gì, các quy tắc hoặc lỗi quan trọng; chưa thiết kế luồng xử lý chi tiết.
+- **Agent giúp:** Phát hiện yêu cầu chưa rõ để bạn bổ sung.
+- **Xong khi:** Bạn có danh sách hành vi mong đợi làm cơ sở thiết kế hệ thống.
 
-*Ví dụ — Upload PDF:* Upload hợp lệ thì tài liệu xuất hiện; file sai định dạng thì báo lỗi; người khác không xem được tài liệu.
+*Ví dụ — Upload PDF:* File hợp lệ được lưu; file sai định dạng bị từ chối; chỉ chủ sở hữu được xem tài liệu.
 
-Đây là **Requirements (yêu cầu)**. Chỉ cần vài dòng rõ ràng, không bắt buộc có tài liệu riêng.
+Không cần tài liệu Requirements riêng nếu vài dòng trong tài liệu dự án đã đủ rõ.
 
-### 4. Vẽ Workflow kiến trúc hệ thống
+### 4. Thiết kế System Architecture
 
-- **Bạn làm:** Vẽ các thành phần chính như frontend, backend, database, storage, worker hoặc dịch vụ ngoài (nếu có), rồi nối mũi tên để thấy **thành phần nào gọi thành phần nào, dữ liệu đi đâu**.
-- **Agent giúp:** Gợi ý cách chia trách nhiệm và kiểm tra đường đi dữ liệu.
-- **Xong khi:** Bạn tự giải thích được toàn bộ hệ thống vận hành ở mức tổng quan.
+- **Bạn làm:** Vẽ sơ đồ kiến trúc tổng thể: các thành phần chính (frontend, backend, database, storage, dịch vụ ngoài nếu có), mỗi phần chịu trách nhiệm gì và kết nối thế nào.
+- **Agent giúp:** Đề xuất cách chia trách nhiệm, giải thích các kết nối và điểm chưa hợp lý.
+- **Xong khi:** Bạn giải thích được cấu trúc chung của hệ thống.
 
-*Ví dụ minh họa:* Frontend → Backend → Database; Backend → File Storage; Backend → AI Service.
+*Ví dụ:* Frontend ↔ Backend ↔ Database; Backend ↔ File Storage; Backend ↔ AI Service.
 
-**Đây là sơ đồ kiến trúc/luồng xử lý hệ thống, không phải sơ đồ người dùng bấm nút theo từng màn hình.**
+**Chưa cần vẽ Workflow của từng chức năng tại đây.**
 
-### 5. Vẽ Workflow từng chức năng và thiết kế dữ liệu
+### 5. Thiết kế database: ERD + Relational Schema
 
-- **Bạn làm:** Chọn chức năng sắp code, chỉ rõ **các thành phần trong Bước 4 phối hợp theo thứ tự nào**, dữ liệu đi qua đâu và lỗi được xử lý tại đâu.
-- **Agent giúp:** Rà soát luồng giữa các thành phần và giải thích phần kỹ thuật chưa rõ.
-- **Xong khi:** Bạn hiểu cách hệ thống sẽ thực hiện chức năng đó, trước khi code.
+- **Bạn làm:** Từ Use Case, Requirements và System Architecture đã phân tích, xác định dữ liệu cần lưu rồi vẽ **cả hai sơ đồ**:
+  - **ERD:** Các thực thể và quan hệ (ví dụ: User có nhiều Document).
+  - **Relational Schema:** Các bảng, cột, khóa chính (PK), khóa ngoại (FK).
+- **Agent giúp:** Đề xuất thực thể, quan hệ và bảng; bạn kiểm tra và chốt.
+- **Xong khi:** Bạn hiểu dữ liệu được tổ chức thế nào và hai sơ đồ khớp nhau.
 
-*Ví dụ — Upload PDF:* Frontend gửi file → Backend kiểm tra quyền/định dạng → File Storage lưu file → bộ xử lý đọc PDF → Database lưu kết quả/trạng thái.
-
-**Nếu dùng database, bắt buộc có cả hai sơ đồ:**
-- **ERD:** Các thực thể và quan hệ (ví dụ: User — Document).
-- **Relational Schema:** Bảng, cột, khóa chính (PK), khóa ngoại (FK).
-
-Nếu dự án không dùng database, ghi rõ không áp dụng. **Sequence/State Diagram và sơ đồ khác không bắt buộc.**
+Nếu dự án không dùng database quan hệ, ghi rõ không áp dụng; không vẽ bảng giả. Các sơ đồ khác chỉ bổ sung khi cần.
 
 ### 6. Chọn công nghệ và lập kế hoạch
 
@@ -68,16 +64,16 @@ Nếu dự án không dùng database, ghi rõ không áp dụng. **Sequence/Stat
 
 **Chuẩn bị repository:** README cách chạy/test, `PROJECT-OVERVIEW.md` mô tả dự án, `AGENTS.md` hướng dẫn agent; tài liệu thiết kế quan trọng lưu trong `docs/`. Không tạo file chỉ để đủ mẫu.
 
-### 7. Code, kiểm thử và review
+### 7. Chuẩn bị repo và bắt đầu triển khai
 
-- **Bạn làm:** Triển khai từng Issue trên branch, chạy ứng dụng, thử chức năng đúng/lỗi và đọc diff trước khi duyệt PR.
-- **Agent giúp:** Code, viết test, tìm lỗi, giải thích thay đổi. Chỉ sửa những gì bạn cho phép.
-- **Xong khi:** Bạn **tự chạy và kiểm tra được** luồng đã xây, hiểu code chính và kết quả test.
+- **Bạn làm:** Chuẩn bị repo, hướng dẫn chạy/test local và Issue đầu tiên. Sau đó dùng **[Playbook 2](feature-development-playbook.md)** để thiết kế Workflow kiến trúc và triển khai tính năng đầu tiên.
+- **Agent giúp:** Hỗ trợ thiết lập môi trường, giải thích công việc và code trong phạm vi bạn cho phép.
+- **Xong khi:** Repo sẵn sàng và bạn biết tính năng nào được triển khai đầu tiên.
 
-Hoàn thành luồng đầu tiên rồi tiếp tục các chức năng đã liệt kê ở Bước 2. Từ đây, với từng chức năng mới, dùng [Playbook 2 — Phát triển tính năng](feature-development-playbook.md).
+Các tính năng tiếp theo cũng dùng Playbook 2. **Không phải vẽ trước Workflow chi tiết của mọi chức năng ở Playbook 1.**
 
 ## Trước khi chuyển sang code, tự hỏi
 
-**Tôi biết cần xây gì? Kết quả nào là đúng? Các thành phần hệ thống phối hợp ra sao? Dữ liệu được lưu thế nào? Tôi kiểm tra bằng cách nào?**
+**Tôi biết cần xây gì? Kiến trúc chung gồm những phần nào? ERD và Relational Schema đã rõ chưa? Tính năng đầu tiên cần triển khai là gì?**
 
 Nếu chưa trả lời được câu liên quan trực tiếp đến phần sắp code, quay lại bước tương ứng. **Developer quyết định; agent hỗ trợ.**
