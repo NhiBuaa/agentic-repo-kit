@@ -8,7 +8,7 @@ Nếu bắt đầu với một ý tưởng chưa có dự án, xem [Playbook 1 �
 
 ### 1. Xem kiến trúc và code liên quan
 
-- **Bạn làm:** Đọc System Architecture, ERD, Relational Schema và code/test liên quan **nếu đã có**. Với tính năng đầu tiên, dựa trên thiết kế đã chốt ở Playbook 1.
+- **Bạn làm:** Đọc System Architecture, **thiết kế dữ liệu tương ứng với database đang dùng** và code/test liên quan nếu đã có. Với tính năng đầu tiên, dựa trên thiết kế đã chốt ở Playbook 1.
 - **Agent giúp:** Chỉ ra thành phần nào xử lý tính năng và giải thích code hiện tại.
 - **Xong khi:** Bạn biết tính năng sẽ nằm ở đâu, dữ liệu liên quan là gì.
 
@@ -40,7 +40,7 @@ Nếu bắt đầu với một ý tưởng chưa có dự án, xem [Playbook 1 �
 
 *Ví dụ — Archive Conversation:* Frontend → API → kiểm tra quyền → Backend cập nhật trạng thái trong Database → API trả kết quả → Frontend cập nhật danh sách.
 
-**Nếu tính năng thay đổi cấu trúc database:** cập nhật **cả ERD và Relational Schema** trước khi code. Nếu database không đổi, chỉ tham khảo thiết kế hiện có, không vẽ lại. Với tính năng đầu tiên, dùng hai sơ đồ đã thiết kế ở Playbook 1.
+**Nếu thay đổi cấu trúc database:** Cập nhật **ERD + Relational Schema** với SQL; hoặc **collection/document schema và indexes liên quan** với MongoDB. Không thay đổi dữ liệu thì không vẽ lại. Với tính năng đầu tiên, dùng thiết kế đã duyệt ở Playbook 1.
 
 **Sequence/State Diagram chỉ bổ sung nếu thật sự cần.** Thay công nghệ/kiến trúc lớn thì xem thêm cách chuyển dữ liệu cũ và rollback.
 
