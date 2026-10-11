@@ -65,6 +65,9 @@ A complex existing repository will be used as the first pilot before a dedicated
 
 ## Canonical References
 
+- Developer-led project-start playbook (proposed for review): `docs/07-guides/project-start-playbook.md`
+- Developer-led feature-development playbook (proposed for review): `docs/07-guides/feature-development-playbook.md`
+
 - Project foundation: `PROJECT-OVERVIEW.md`
 - Documentation map: `docs/README.md`
 - Project-local agent config: `.agents/README.md`
