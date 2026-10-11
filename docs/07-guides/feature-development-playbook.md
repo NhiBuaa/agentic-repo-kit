@@ -1,18 +1,18 @@
 # Playbook 2 — Phát triển một tính năng
 
-**Dành cho developer:** dùng khi thêm, sửa hoặc cải thiện chức năng trong dự án đã có. Đọc hiểu code và yêu cầu trước, rồi vẽ/cập nhật **Workflow kiến trúc** cho phần bị ảnh hưởng. **Không thiết kế lại cả dự án.** Agent chỉ hỗ trợ trong phạm vi bạn giao.
+**Dành cho developer:** dùng khi triển khai **từng tính năng**, kể cả tính năng đầu tiên của dự án mới. Dựa trên System Architecture và database đã thiết kế để vẽ **Workflow kiến trúc của tính năng đó**. Không thiết kế lại cả dự án; agent chỉ hỗ trợ trong phạm vi bạn giao.
 
 Nếu bắt đầu với một ý tưởng chưa có dự án, xem [Playbook 1 — Bắt đầu từ con số 0](project-start-playbook.md).
 
 ## 6 bước thực hiện
 
-### 1. Tìm hiểu chức năng hiện tại
+### 1. Xem kiến trúc và code liên quan
 
-- **Bạn làm:** Tìm màn hình/API, code và test liên quan; nếu tính năng dùng database, đọc **ERD và Relational Schema hiện tại** để hiểu dữ liệu.
-- **Agent giúp:** Dẫn bạn đến đúng file và giải thích đường đi của dữ liệu.
-- **Xong khi:** Bạn nói được chức năng hiện đang hoạt động ra sao, phần nào chịu trách nhiệm.
+- **Bạn làm:** Đọc System Architecture, ERD, Relational Schema và code/test liên quan **nếu đã có**. Với tính năng đầu tiên, dựa trên thiết kế đã chốt ở Playbook 1.
+- **Agent giúp:** Chỉ ra thành phần nào xử lý tính năng và giải thích code hiện tại.
+- **Xong khi:** Bạn biết tính năng sẽ nằm ở đâu, dữ liệu liên quan là gì.
 
-*Ví dụ:* Trước khi thêm Archive Conversation, hãy biết Conversation lưu ở bảng nào và API nào đang lấy danh sách.
+*Ví dụ:* Trước khi thêm Archive Conversation, xem nơi lưu Conversation và API lấy danh sách.
 
 ### 2. Ghi rõ yêu cầu của tính năng
 
@@ -40,7 +40,7 @@ Nếu bắt đầu với một ý tưởng chưa có dự án, xem [Playbook 1 �
 
 *Ví dụ — Archive Conversation:* Frontend → API → kiểm tra quyền → Backend cập nhật trạng thái trong Database → API trả kết quả → Frontend cập nhật danh sách.
 
-**Nếu tính năng thay đổi database:** bắt buộc cập nhật **cả ERD và Relational Schema** trước khi code. Nếu database không đổi, chỉ tham khảo hai sơ đồ đang có, không vẽ lại.
+**Nếu tính năng thay đổi cấu trúc database:** cập nhật **cả ERD và Relational Schema** trước khi code. Nếu database không đổi, chỉ tham khảo thiết kế hiện có, không vẽ lại. Với tính năng đầu tiên, dùng hai sơ đồ đã thiết kế ở Playbook 1.
 
 **Sequence/State Diagram chỉ bổ sung nếu thật sự cần.** Thay công nghệ/kiến trúc lớn thì xem thêm cách chuyển dữ liệu cũ và rollback.
 
@@ -62,6 +62,6 @@ Nếu kiến trúc hoặc cách dùng đã thay đổi, cập nhật **đúng t�
 
 ## Trước khi giao agent code, tự hỏi
 
-**Tôi hiểu code cũ chưa? Yêu cầu đúng là gì? Các thành phần nào cần phối hợp/sửa đổi? Kiểm tra thế nào?**
+**Tôi hiểu kiến trúc và code liên quan chưa? Yêu cầu đúng là gì? Workflow kiến trúc của tính năng chạy ra sao? Kiểm tra thế nào?**
 
 Nếu chưa rõ, yêu cầu agent **giải thích hoặc phân tích**, chưa yêu cầu code. Developer vẫn là người duyệt thiết kế và kết quả.
