@@ -1,8 +1,8 @@
 # Playbook 1 — Bắt đầu dự án từ con số 0
 
-**Dành cho developer:** tự hiểu và quyết định trước khi giao agent hỗ trợ. Playbook này thiết kế **nền tảng chung của dự án**: Use Case → Requirements tổng quan → System Architecture → ERD + Relational Schema → kế hoạch. **Workflow kiến trúc từng chức năng thuộc [Playbook 2](feature-development-playbook.md)**, khi bắt đầu triển khai tính năng đó.
+**Dành cho developer:** tự hiểu và quyết định trước khi giao agent hỗ trợ. Playbook này thiết kế **nền tảng chung của dự án**: Use Case → Requirements tổng quan → System Architecture → ERD + Relational Schema → chọn công nghệ → chia phases triển khai. **Workflow kiến trúc từng chức năng thuộc [Playbook 2](feature-development-playbook.md)**, khi bắt đầu triển khai tính năng đó.
 
-## 7 bước thực hiện
+## 8 bước thực hiện
 
 ### 1. Viết rõ ý tưởng
 
@@ -54,26 +54,32 @@ Không cần tài liệu Requirements riêng nếu vài dòng trong tài liệu 
 
 Nếu dự án không dùng database quan hệ, ghi rõ không áp dụng; không vẽ bảng giả. Các sơ đồ khác chỉ bổ sung khi cần.
 
-### 6. Chọn công nghệ và lập kế hoạch
+### 6. Chọn công nghệ
 
-- **Bạn làm:** Chọn công nghệ cần dùng và giải thích ngắn lý do. Chia chức năng theo thứ tự phụ thuộc, ghi công việc vào GitHub Issues.
-- **Agent giúp:** So sánh lựa chọn, đề xuất thứ tự công việc và những kiểm thử cần có.
-- **Xong khi:** Có kiến trúc cơ bản, môi trường local chạy được và biết Issue đầu tiên cần làm gì.
+- **Bạn làm:** Dựa trên kiến trúc và dữ liệu đã thiết kế, chọn công nghệ cho frontend, backend, database và phần cần thiết khác; ghi ngắn gọn lý do chọn.
+- **Agent giúp:** So sánh lựa chọn phù hợp với yêu cầu, độ phức tạp và khả năng triển khai.
+- **Xong khi:** Bạn biết sẽ dùng công nghệ gì cho từng phần và giải thích được vì sao.
 
-*Ví dụ:* Chọn một luồng đầu tiên **upload một PDF → hỏi → nhận câu trả lời có trích dẫn**. Đừng làm xong toàn bộ frontend rồi mới bắt đầu backend.
+*Ví dụ:* Next.js cho giao diện, FastAPI cho API, PostgreSQL để lưu dữ liệu. Chỉ thêm dịch vụ khi có nhu cầu rõ ràng.
 
-**Chuẩn bị repository:** README cách chạy/test, `PROJECT-OVERVIEW.md` mô tả dự án, `AGENTS.md` hướng dẫn agent; tài liệu thiết kế quan trọng lưu trong `docs/`. Không tạo file chỉ để đủ mẫu.
+### 7. Lập kế hoạch theo phases triển khai
 
-### 7. Chuẩn bị repo và bắt đầu triển khai
+- **Bạn làm:** Nhóm các chức năng thành **Phase 1, Phase 2, ...** theo thứ tự phụ thuộc. Mỗi phase ghi rõ **mục tiêu, các chức năng sẽ xây và kết quả có thể chạy/kiểm tra**. Sau đó tạo GitHub Issues cho công việc trong từng phase.
+- **Agent giúp:** Đề xuất thứ tự hợp lý, chỉ ra phụ thuộc và cách kiểm tra kết quả từng phase.
+- **Xong khi:** Bạn biết mỗi phase cần hoàn thành gì và nên bắt đầu từ Issue nào.
 
-- **Bạn làm:** Chuẩn bị repo, hướng dẫn chạy/test local và Issue đầu tiên. Sau đó dùng **[Playbook 2](feature-development-playbook.md)** để thiết kế Workflow kiến trúc và triển khai tính năng đầu tiên.
+*Ví dụ:* Phase 1 — Upload và quản lý PDF; Phase 2 — Hỏi đáp có trích dẫn; Phase 3 — Lịch sử hội thoại. Điều chỉnh thứ tự nếu có phụ thuộc kỹ thuật; tránh chia phase chỉ theo frontend/backend mà chưa có luồng chạy được.
+
+### 8. Chuẩn bị repo và bắt đầu triển khai
+
+- **Bạn làm:** Chuẩn bị repo, README hướng dẫn chạy/test local, `PROJECT-OVERVIEW.md` mô tả dự án và `AGENTS.md` hướng dẫn agent. Bắt đầu Issue đầu tiên của **Phase 1** bằng **[Playbook 2](feature-development-playbook.md)**.
 - **Agent giúp:** Hỗ trợ thiết lập môi trường, giải thích công việc và code trong phạm vi bạn cho phép.
-- **Xong khi:** Repo sẵn sàng và bạn biết tính năng nào được triển khai đầu tiên.
+- **Xong khi:** Repo sẵn sàng, bạn biết Issue đầu tiên của Phase 1 và cách bắt đầu triển khai.
 
 Các tính năng tiếp theo cũng dùng Playbook 2. **Không phải vẽ trước Workflow chi tiết của mọi chức năng ở Playbook 1.**
 
 ## Trước khi chuyển sang code, tự hỏi
 
-**Tôi biết cần xây gì? Kiến trúc chung gồm những phần nào? ERD và Relational Schema đã rõ chưa? Tính năng đầu tiên cần triển khai là gì?**
+**Tôi biết cần xây gì? Kiến trúc và database đã rõ chưa? Đã chọn công nghệ và chia phases hợp lý chưa? Tôi sẽ bắt đầu Issue nào?**
 
 Nếu chưa trả lời được câu liên quan trực tiếp đến phần sắp code, quay lại bước tương ứng. **Developer quyết định; agent hỗ trợ.**
