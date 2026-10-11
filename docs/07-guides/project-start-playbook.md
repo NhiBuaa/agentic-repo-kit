@@ -1,10 +1,10 @@
 # Playbook 1 — Bắt đầu dự án từ con số 0
 
-**Dành cho developer:** tạo repo trước, rồi dùng repo để lưu và duyệt các quyết định: ý tưởng → Use Case → Requirements → System Architecture → **chọn công nghệ** → **thiết kế database phù hợp** → phases. **Workflow từng tính năng thuộc [Playbook 2](feature-development-playbook.md)**.
+**Dành cho developer:** tạo repo trước, rồi thiết kế nền tảng dự án: **giá trị cốt lõi → Use Case Diagram → System Architecture → chọn công nghệ → thiết kế database → chia phases (MVP trước)**. Requirements chi tiết và Workflow kiến trúc của từng tính năng thuộc **[Playbook 2](feature-development-playbook.md)**.
 
 **Cách làm xuyên suốt:** Sau mỗi bước, khi bạn cho phép, agent ghi **bản nháp vào đúng nơi trong repo** và đưa diff/PR để developer **đọc → sửa → duyệt**. Chỉ dùng quyết định đã được duyệt làm cơ sở cho bước tiếp theo. Không tạo file trống hay sao chép cùng nội dung nhiều nơi.
 
-## 8 bước thực hiện
+## 7 bước thực hiện
 
 ### 1. Khởi tạo repository
 
@@ -14,39 +14,25 @@
 
 **Ghi ở đâu?** `PROJECT-OVERVIEW.md` cho mục tiêu và quyết định nền tảng; `docs/` cho thiết kế ổn định; GitHub Issues/PRs cho công việc, thay đổi và review. Chỉ tạo tài liệu khi có nội dung.
 
-### 2. Viết rõ ý tưởng
+### 2. Xác định ý tưởng và giá trị cốt lõi
 
-- **Bạn làm:** Viết 2–3 câu: xây sản phẩm gì, ai dùng, giải quyết vấn đề nào. Ghi vào `PROJECT-OVERVIEW.md` để review.
-- **Agent giúp:** Chỉ ra chỗ mô tả chưa rõ.
-- **Xong khi:** Bạn giải thích được mục đích dự án mà không cần nói về công nghệ.
+- **Bạn làm:** Viết ngắn gọn **ai sẽ dùng sản phẩm, họ gặp vấn đề gì, sản phẩm giải quyết được điều gì quan trọng nhất**. Ghi vào `PROJECT-OVERVIEW.md` để review.
+- **Agent giúp:** Hỏi lại khi vấn đề hoặc giá trị cốt lõi chưa rõ.
+- **Xong khi:** Bạn mô tả được **một kết quả chính** mà sản phẩm phải mang lại, không cần nói về công nghệ.
 
-*Ví dụ:* Xây ứng dụng để người dùng upload PDF, đặt câu hỏi và nhận câu trả lời kèm nguồn trích dẫn.
+*Ví dụ:* Người dùng có nhiều PDF và khó tìm thông tin. Giá trị cốt lõi: **hỏi nội dung PDF và nhận câu trả lời có trích dẫn để kiểm chứng**.
 
-### 3. Liệt kê chức năng — Use Case
+### 3. Vẽ Use Case Diagram
 
-- **Bạn làm:** Liệt kê các chức năng sẽ xây và ai được dùng; lưu vào `docs/03-product/` khi cần. Thứ tự triển khai sẽ chốt ở bước chia phases.
-- **Agent giúp:** Gợi ý chức năng có thể bị thiếu.
-- **Xong khi:** Bạn biết hệ thống cần có những chức năng gì.
+- **Bạn làm:** **Vẽ sơ đồ Use Case** với actor (ai sử dụng), ranh giới hệ thống và các chức năng actor có thể thực hiện. Bao gồm chức năng cần cho giá trị cốt lõi và các chức năng dự kiến mở rộng; lưu sơ đồ trong `docs/03-product/` để review.
+- **Agent giúp:** Phát hiện actor hoặc use case bị thiếu; giữ sơ đồ dễ đọc.
+- **Xong khi:** Có **Use Case Diagram được bạn duyệt**, thể hiện rõ ai sử dụng chức năng nào.
 
-*Ví dụ:* Đăng nhập → upload PDF → hỏi đáp → xem trích dẫn → xem lịch sử.
+*Ví dụ:* Actor **Người dùng** liên kết với các use case **Upload PDF**, **Đặt câu hỏi**, **Xem trích dẫn**, **Quản lý hội thoại**. Việc chọn chức năng nào thuộc MVP sẽ chốt ở Bước 7.
 
-**Use Case Diagram:** Có thể vẽ để thể hiện ai sử dụng chức năng nào. Nếu danh sách đã rõ, không cần vẽ.
+### 4. Thiết kế System Architecture
 
-**MVP:** Phiên bản chạy được đầu tiên với một số chức năng trong danh sách; các chức năng còn lại triển khai tiếp theo.
-
-### 4. Ghi yêu cầu tổng quan (Requirements)
-
-- **Bạn làm:** Ghi ngắn gọn chức năng phải đạt kết quả gì, quy tắc hoặc lỗi quan trọng; chưa thiết kế luồng xử lý chi tiết. Đưa bản nháp vào tài liệu phù hợp để review.
-- **Agent giúp:** Phát hiện yêu cầu chưa rõ để bạn bổ sung.
-- **Xong khi:** Bạn có danh sách hành vi mong đợi làm cơ sở thiết kế hệ thống.
-
-*Ví dụ — Upload PDF:* File hợp lệ được lưu; file sai định dạng bị từ chối; chỉ chủ sở hữu được xem tài liệu.
-
-Không cần tài liệu Requirements riêng nếu vài dòng trong tài liệu dự án đã đủ rõ.
-
-### 5. Thiết kế System Architecture
-
-- **Bạn làm:** Vẽ kiến trúc tổng thể: các thành phần (frontend, backend, database, storage, dịch vụ ngoài nếu có), trách nhiệm và kết nối. Đưa bản nháp vào `docs/02-architecture/` để review.
+- **Bạn làm:** Dựa trên giá trị cốt lõi và Use Case Diagram, vẽ các thành phần chính của hệ thống (frontend, backend, database, storage, dịch vụ ngoài nếu cần), trách nhiệm và kết nối. Đưa bản nháp vào `docs/02-architecture/` để review.
 - **Agent giúp:** Đề xuất cách chia trách nhiệm, giải thích các kết nối và điểm chưa hợp lý.
 - **Xong khi:** Bạn giải thích được cấu trúc chung của hệ thống.
 
@@ -54,17 +40,17 @@ Không cần tài liệu Requirements riêng nếu vài dòng trong tài liệu 
 
 **Chưa cần vẽ Workflow của từng chức năng tại đây.**
 
-### 6. Chọn công nghệ
+### 5. Chọn công nghệ
 
-- **Bạn làm:** Dựa trên Requirements và System Architecture, chọn công nghệ cho frontend, backend, **loại database (SQL/NoSQL)** và các phần cần thiết; ghi ngắn gọn lý do.
+- **Bạn làm:** Dựa trên các use case, dữ liệu cần xử lý và System Architecture, chọn công nghệ cho frontend, backend, **loại database (SQL/NoSQL)** và các phần cần thiết; ghi ngắn gọn lý do.
 - **Agent giúp:** So sánh phương án theo dữ liệu, cách truy vấn và độ phức tạp thực tế.
 - **Xong khi:** Bạn biết dùng công nghệ gì và vì sao, đặc biệt là loại database.
 
 *Ví dụ:* Next.js + FastAPI; chọn PostgreSQL nếu cần dữ liệu quan hệ hoặc MongoDB nếu mô hình document phù hợp. Không thêm công nghệ chỉ để cho đủ stack.
 
-### 7. Thiết kế database theo công nghệ đã chọn
+### 6. Thiết kế database theo công nghệ đã chọn
 
-- **Bạn làm:** Dựa trên yêu cầu, kiến trúc và **loại database ở Bước 6**, thiết kế dữ liệu trước khi code:
+- **Bạn làm:** Dựa trên Use Case Diagram, kiến trúc và **loại database ở Bước 5**, thiết kế dữ liệu cần cho MVP và các quan hệ cốt lõi trước khi code:
   - **SQL (PostgreSQL, MySQL...):** Bắt buộc có **ERD + Relational Schema** (bảng, cột, PK, FK).
   - **NoSQL dạng document (MongoDB...):** Thiết kế **collections, cấu trúc documents, embedded/reference và indexes cần thiết**. Không ép vẽ Relational Schema.
 - **Agent giúp:** Đề xuất cấu trúc và rà soát nó có đáp ứng cách đọc/ghi dữ liệu không.
@@ -72,18 +58,22 @@ Không cần tài liệu Requirements riêng nếu vài dòng trong tài liệu 
 
 Nếu không dùng database, ghi rõ không áp dụng. Các sơ đồ khác chỉ bổ sung khi thực sự cần.
 
-### 8. Lập kế hoạch theo phases triển khai
+### 7. Lập kế hoạch theo phases triển khai
 
-- **Bạn làm:** Nhóm chức năng thành **Phase 1, Phase 2, ...** theo thứ tự phụ thuộc. Mỗi phase ghi **mục tiêu, chức năng và kết quả chạy/kiểm tra được**. Tạo GitHub Issues cho công việc; developer review, chỉnh sửa và duyệt kế hoạch trước khi code.
-- **Agent giúp:** Đề xuất thứ tự hợp lý, chỉ ra phụ thuộc và cách kiểm tra kết quả từng phase.
-- **Xong khi:** Bạn biết mỗi phase cần hoàn thành gì và nên bắt đầu từ Issue nào.
+- **Bạn làm:** Lấy **giá trị cốt lõi ở Bước 2** làm mục tiêu cho **MVP**: bản đầu tiên mà người dùng thực sự hoàn thành được việc chính. Chia công việc thành **Phase 1 (MVP)** rồi các phase mở rộng, theo thứ tự phụ thuộc. Mỗi phase cần ghi rõ **mục tiêu, chức năng, demo phải chạy được và các trường hợp cần test**. Tạo GitHub Issues; developer review, chỉnh sửa và duyệt kế hoạch trước khi code.
+- **Agent giúp:** Gợi ý phạm vi MVP nhỏ nhất nhưng đủ giá trị, thứ tự phụ thuộc và cách demo/test từng phase.
+- **Xong khi:** Có kế hoạch theo phases; **mỗi phase có kết quả demo/test cụ thể**, và MVP chứng minh được giá trị cốt lõi.
 
-*Ví dụ:* Phase 1 — Upload và quản lý PDF; Phase 2 — Hỏi đáp có trích dẫn; Phase 3 — Lịch sử hội thoại. Điều chỉnh thứ tự nếu có phụ thuộc kỹ thuật; tránh chia phase chỉ theo frontend/backend mà chưa có luồng chạy được.
+*Ví dụ — Ứng dụng hỏi đáp PDF:*
+- **Phase 1 — MVP:** Upload PDF → đặt câu hỏi → nhận câu trả lời có trích dẫn. **Demo:** Upload một PDF và hỏi một câu có thể đối chiếu với nguồn. **Test:** File không hợp lệ bị từ chối; câu trả lời hiển thị được nguồn.
+- **Phase 2 — Mở rộng:** Quản lý tài liệu và lịch sử hội thoại. **Demo:** Xem lại tài liệu và cuộc trò chuyện đã lưu. **Test:** Dữ liệu lưu và tải lại đúng, người dùng không xem được dữ liệu của người khác.
 
-Sau khi kế hoạch được duyệt, bắt đầu Issue đầu tiên của **Phase 1** bằng **[Playbook 2 — Phát triển tính năng](feature-development-playbook.md)**. Các tính năng khác cũng dùng Playbook 2; không vẽ trước Workflow chi tiết của tất cả chức năng.
+**MVP không chỉ là phần mềm chạy được:** nó phải giải quyết **đúng vấn đề chính ở Bước 2**. Các tính năng khác tiếp tục ở phase sau.
+
+Sau khi kế hoạch được duyệt, bắt đầu Issue đầu tiên của **Phase 1** bằng **[Playbook 2 — Phát triển tính năng](feature-development-playbook.md)**. Workflow và Requirements chi tiết được thiết kế khi thực hiện từng tính năng, không làm trước cho toàn bộ hệ thống.
 
 ## Trước khi chuyển sang code, tự hỏi
 
-**Tôi đã duyệt kiến trúc, chọn công nghệ và thiết kế dữ liệu phù hợp với database chưa? Các phases đã rõ chưa? Tôi bắt đầu Issue nào?**
+**Tôi đã chốt giá trị cốt lõi và duyệt Use Case Diagram chưa? Kiến trúc, công nghệ, database đã rõ chưa? Phase MVP có demo/test chứng minh được giá trị đó chưa?**
 
 Nếu chưa trả lời được câu liên quan trực tiếp đến phần sắp code, quay lại bước tương ứng. **Developer quyết định; agent hỗ trợ.**
