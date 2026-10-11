@@ -1,6 +1,6 @@
 # Playbook 2 — Phát triển một tính năng
 
-**Dành cho developer:** dùng khi triển khai **từng tính năng**, kể cả tính năng đầu tiên của dự án mới. Dựa trên System Architecture và database đã thiết kế để vẽ **Workflow kiến trúc của tính năng đó**. Không thiết kế lại cả dự án; agent chỉ hỗ trợ trong phạm vi bạn giao.
+**Dành cho developer:** triển khai **từng tính năng**, kể cả tính năng đầu tiên. Dựa trên System Architecture và database đã duyệt để vẽ Workflow kiến trúc của tính năng. Agent chỉ sửa repo khi được phép; bạn xem diff, chỉnh sửa và duyệt thiết kế trước khi code. Không thiết kế lại cả dự án.
 
 Nếu bắt đầu với một ý tưởng chưa có dự án, xem [Playbook 1 — Bắt đầu từ con số 0](project-start-playbook.md).
 
@@ -36,7 +36,7 @@ Nếu bắt đầu với một ý tưởng chưa có dự án, xem [Playbook 1 �
 
 - **Bạn làm:** Thể hiện **frontend/API/backend/database/worker liên quan** và các bước chúng xử lý, gọi nhau, truyền dữ liệu; từ đó xác định code/API cần sửa.
 - **Agent giúp:** Giải thích luồng trong code hiện tại, đề xuất cách thay đổi đơn giản.
-- **Xong khi:** Bạn hiểu phần nào của hệ thống thay đổi và dữ liệu được xử lý ra sao.
+- **Xong khi:** Bạn hiểu phần nào thay đổi và dữ liệu được xử lý ra sao; Workflow/thiết kế liên quan đã được bạn review và duyệt.
 
 *Ví dụ — Archive Conversation:* Frontend → API → kiểm tra quyền → Backend cập nhật trạng thái trong Database → API trả kết quả → Frontend cập nhật danh sách.
 
@@ -46,7 +46,7 @@ Nếu bắt đầu với một ý tưởng chưa có dự án, xem [Playbook 1 �
 
 ### 5. Chia việc và triển khai
 
-- **Bạn làm:** Chia thành các bước nhỏ trong Issue; nêu cách test mỗi bước. Sau đó code trên branch riêng.
+- **Bạn làm:** Sau khi duyệt thiết kế, chia việc trong Issue, nêu cách test từng phần rồi code trên branch riêng. Review diff khi agent thay đổi code.
 - **Agent giúp:** Đề xuất kế hoạch, code và viết test đúng phạm vi được giao.
 - **Xong khi:** Tính năng chạy được, các trường hợp quan trọng đã được kiểm tra, không có thay đổi ngoài yêu cầu.
 
