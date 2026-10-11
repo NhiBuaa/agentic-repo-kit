@@ -1,6 +1,6 @@
 # Playbook 1 — Bắt đầu dự án từ con số 0
 
-**Dành cho developer:** tạo repo trước, rồi dùng repo để lưu và duyệt các quyết định: ý tưởng → Use Case → Requirements → System Architecture → ERD + Relational Schema → công nghệ → phases. **Workflow từng tính năng thuộc [Playbook 2](feature-development-playbook.md)**.
+**Dành cho developer:** tạo repo trước, rồi dùng repo để lưu và duyệt các quyết định: ý tưởng → Use Case → Requirements → System Architecture → **chọn công nghệ** → **thiết kế database phù hợp** → phases. **Workflow từng tính năng thuộc [Playbook 2](feature-development-playbook.md)**.
 
 **Cách làm xuyên suốt:** Sau mỗi bước, khi bạn cho phép, agent ghi **bản nháp vào đúng nơi trong repo** và đưa diff/PR để developer **đọc → sửa → duyệt**. Chỉ dùng quyết định đã được duyệt làm cơ sở cho bước tiếp theo. Không tạo file trống hay sao chép cùng nội dung nhiều nơi.
 
@@ -54,23 +54,23 @@ Không cần tài liệu Requirements riêng nếu vài dòng trong tài liệu 
 
 **Chưa cần vẽ Workflow của từng chức năng tại đây.**
 
-### 6. Thiết kế database: ERD + Relational Schema
+### 6. Chọn công nghệ
 
-- **Bạn làm:** Dựa trên Use Case, Requirements và System Architecture, xác định dữ liệu cần lưu rồi vẽ **cả hai sơ đồ** để review:
-  - **ERD:** Các thực thể và quan hệ (ví dụ: User có nhiều Document).
-  - **Relational Schema:** Các bảng, cột, khóa chính (PK), khóa ngoại (FK).
-- **Agent giúp:** Đề xuất thực thể, quan hệ và bảng; bạn kiểm tra và chốt.
-- **Xong khi:** Bạn hiểu dữ liệu được tổ chức thế nào và hai sơ đồ khớp nhau.
+- **Bạn làm:** Dựa trên Requirements và System Architecture, chọn công nghệ cho frontend, backend, **loại database (SQL/NoSQL)** và các phần cần thiết; ghi ngắn gọn lý do.
+- **Agent giúp:** So sánh phương án theo dữ liệu, cách truy vấn và độ phức tạp thực tế.
+- **Xong khi:** Bạn biết dùng công nghệ gì và vì sao, đặc biệt là loại database.
 
-Nếu dự án không dùng database quan hệ, ghi rõ không áp dụng; không vẽ bảng giả. Các sơ đồ khác chỉ bổ sung khi cần.
+*Ví dụ:* Next.js + FastAPI; chọn PostgreSQL nếu cần dữ liệu quan hệ hoặc MongoDB nếu mô hình document phù hợp. Không thêm công nghệ chỉ để cho đủ stack.
 
-### 7. Chọn công nghệ
+### 7. Thiết kế database theo công nghệ đã chọn
 
-- **Bạn làm:** Dựa trên kiến trúc và dữ liệu đã duyệt, chọn công nghệ cho frontend, backend, database và các phần cần thiết; ghi lựa chọn và lý do vào tài liệu dự án.
-- **Agent giúp:** So sánh lựa chọn phù hợp với yêu cầu, độ phức tạp và khả năng triển khai.
-- **Xong khi:** Bạn biết sẽ dùng công nghệ gì cho từng phần và giải thích được vì sao.
+- **Bạn làm:** Dựa trên yêu cầu, kiến trúc và **loại database ở Bước 6**, thiết kế dữ liệu trước khi code:
+  - **SQL (PostgreSQL, MySQL...):** Bắt buộc có **ERD + Relational Schema** (bảng, cột, PK, FK).
+  - **NoSQL dạng document (MongoDB...):** Thiết kế **collections, cấu trúc documents, embedded/reference và indexes cần thiết**. Không ép vẽ Relational Schema.
+- **Agent giúp:** Đề xuất cấu trúc và rà soát nó có đáp ứng cách đọc/ghi dữ liệu không.
+- **Xong khi:** Bạn hiểu dữ liệu lưu thế nào và đã review thiết kế trong `docs/02-architecture/`.
 
-*Ví dụ:* Next.js cho giao diện, FastAPI cho API, PostgreSQL để lưu dữ liệu. Chỉ thêm dịch vụ khi có nhu cầu rõ ràng.
+Nếu không dùng database, ghi rõ không áp dụng. Các sơ đồ khác chỉ bổ sung khi thực sự cần.
 
 ### 8. Lập kế hoạch theo phases triển khai
 
@@ -84,6 +84,6 @@ Sau khi kế hoạch được duyệt, bắt đầu Issue đầu tiên của **P
 
 ## Trước khi chuyển sang code, tự hỏi
 
-**Repo đã có các quyết định tôi review và duyệt chưa? Kiến trúc, database, công nghệ và phases đã rõ chưa? Tôi bắt đầu Issue nào?**
+**Tôi đã duyệt kiến trúc, chọn công nghệ và thiết kế dữ liệu phù hợp với database chưa? Các phases đã rõ chưa? Tôi bắt đầu Issue nào?**
 
 Nếu chưa trả lời được câu liên quan trực tiếp đến phần sắp code, quay lại bước tương ứng. **Developer quyết định; agent hỗ trợ.**
