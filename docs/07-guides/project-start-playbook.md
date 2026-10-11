@@ -1,6 +1,6 @@
 # Playbook 1 — Bắt đầu dự án từ con số 0
 
-**Dành cho developer:** làm theo từng bước, hiểu và chốt quyết định trước khi giao agent thực hiện. Agent giúp phân tích, giải thích, vẽ sơ đồ hoặc code; không tự quyết định thay bạn.
+**Dành cho developer:** tự hiểu và quyết định trước khi giao agent hỗ trợ. **Ưu tiên Use Case (cần làm gì) và Workflow (chạy qua những bước nào)** nếu chúng giúp bạn hình dung hệ thống. Không bắt buộc vẽ cả hai hay thêm sơ đồ khác.
 
 ## 7 bước thực hiện
 
@@ -12,32 +12,27 @@
 
 *Ví dụ:* Xây ứng dụng để người dùng upload PDF, đặt câu hỏi và nhận câu trả lời kèm nguồn trích dẫn.
 
-### 2. Liệt kê chức năng và người dùng
+### 2. Liệt kê chức năng — Use Case
 
-- **Bạn làm:** Liệt kê **tất cả chức năng dự định xây**, ai sử dụng từng chức năng, rồi sắp xếp **thứ tự triển khai**.
-- **Agent giúp:** Gợi ý chức năng hoặc tình huống bạn có thể đã bỏ sót.
-- **Xong khi:** Có danh sách chức năng và biết sẽ xây cái nào trước.
+- **Bạn làm:** Liệt kê các chức năng sẽ xây, ai được dùng và thứ tự triển khai.
+- **Agent giúp:** Gợi ý chức năng có thể bị thiếu.
+- **Xong khi:** Bạn biết hệ thống cần có những chức năng gì.
 
-*Ví dụ:* Đăng nhập → upload PDF → hỏi đáp → xem trích dẫn → quản lý lịch sử.
+*Ví dụ:* Đăng nhập → upload PDF → hỏi đáp → xem trích dẫn → xem lịch sử.
 
-**Use Case Diagram:** Vẽ nếu muốn nhìn trực quan *ai làm được chức năng nào*. Không bắt buộc nếu danh sách đã rõ.
+**Use Case Diagram:** Có thể vẽ để thể hiện ai sử dụng chức năng nào. Nếu danh sách đã rõ, không cần vẽ.
 
-**MVP là gì?** Là **phiên bản chạy được đầu tiên**, gồm một số chức năng trong danh sách. Các chức năng còn lại **vẫn sẽ làm**, chỉ được triển khai sau. Không cần chia thành “làm ngay / để sau / không làm”.
+**MVP:** Phiên bản chạy được đầu tiên với một số chức năng trong danh sách; các chức năng còn lại triển khai tiếp theo.
 
-### 3. Mô tả cách từng chức năng hoạt động (Requirements)
+### 3. Vẽ Workflow — Chức năng hoạt động như thế nào?
 
-**Tại sao cần bước này?** Để bạn và agent thống nhất **thế nào là làm đúng**, tránh code ra chức năng khác với ý bạn.
+- **Bạn làm:** Với mỗi chức năng sắp triển khai, mô tả **bắt đầu → các bước xử lý → kết quả**; thêm nhánh lỗi hoặc kiểm tra quyền nếu cần. Có thể vẽ Workflow Diagram hoặc viết các bước ngắn.
+- **Agent giúp:** Kiểm tra luồng có thiếu bước, nhánh lỗi hay trường hợp đặc biệt không.
+- **Xong khi:** Bạn nhìn luồng là biết chức năng phải chạy thế nào và kiểm tra đúng/sai ra sao.
 
-- **Bạn làm:** Với mỗi chức năng, ghi ngắn gọn: **người dùng làm gì → hệ thống phản hồi gì → lỗi thì sao**. Thêm quy tắc quan trọng về quyền hoặc dữ liệu nếu có.
-- **Agent giúp:** Biến mô tả thành ví dụ kiểm thử, hỏi những trường hợp chưa rõ.
-- **Xong khi:** Đọc mô tả là biết cách thử chức năng đúng hay sai.
+*Ví dụ — Upload PDF:* Chọn PDF → kiểm tra file → hợp lệ thì lưu và hiển thị; không hợp lệ thì báo lỗi, không lưu.
 
-*Ví dụ — Upload PDF:*
-- Người dùng chọn file PDF và bấm Upload → tài liệu xuất hiện trong danh sách.
-- Chọn file không hợp lệ → hiển thị lỗi, không tạo tài liệu.
-- Người dùng không được xem tài liệu của người khác.
-
-Đó chính là **requirements (yêu cầu chức năng)**; không cần viết tài liệu dài hoặc dùng từ ngữ phức tạp.
+**Requirements (yêu cầu)** chính là mô tả hành vi mong đợi như trên, cộng vài quy tắc cần thiết (ví dụ: không được xem tài liệu người khác). **Không phải tạo thêm một tài liệu riêng** nếu Workflow và ghi chú đã đủ rõ.
 
 ### 4. Phác thảo kiến trúc hệ thống
 
@@ -48,26 +43,17 @@
 *Ví dụ:* Người dùng → giao diện → backend → database; backend gọi AI model khi cần.
 
 
-### 5. Thiết kế dữ liệu và luồng quan trọng
+### 5. Làm rõ phần kỹ thuật cần thiết
 
-- **Bạn làm:** Xác định dữ liệu nào cần lưu, các đối tượng liên hệ thế nào và một chức năng quan trọng chạy theo thứ tự nào.
-- **Agent giúp:** Vẽ sơ đồ cần thiết, giải thích mỗi thành phần và phát hiện thiếu sót.
-- **Xong khi:** Bạn hiểu dữ liệu nằm đâu, một thao tác được xử lý ra sao và có lỗi thì thế nào.
+- **Bạn làm:** Xác định dữ liệu cần lưu, phần nào xử lý nghiệp vụ, API/giao tiếp nào cần có và các trường hợp lỗi quan trọng.
+- **Agent giúp:** Giải thích các lựa chọn và chỉ ra điểm chưa rõ trước khi code.
+- **Xong khi:** Bạn hiểu cách biến Workflow ở Bước 3 thành code.
 
-| Bạn cần làm rõ | Sơ đồ nên dùng |
-| --- | --- |
-| Các đối tượng dữ liệu liên hệ thế nào? | **ERD / Domain Model** |
-| Các thành phần gọi nhau theo thứ tự nào? | **Sequence Diagram** |
-| Upload/job có trạng thái xử lý, thất bại, thử lại? | **State Machine** |
-| Quy trình nghiệp vụ có nhiều nhánh? | **Activity Diagram** |
-| Module trong một service quá phức tạp? | **Component Diagram** |
-| Ứng dụng chạy trên máy/container nào? | **Deployment Diagram** |
-
-**Không phải vẽ tất cả.** Chỉ chọn sơ đồ giúp bạn hiểu một điều chưa rõ.
+**Chỉ bổ sung sơ đồ khi thật sự cần:** ERD nếu chưa hiểu quan hệ dữ liệu; Sequence nếu chưa rõ thứ tự gọi giữa nhiều phần; State Diagram nếu trạng thái phức tạp. Nếu Use Case + Workflow và vài ghi chú đã đủ, **không vẽ thêm**.
 
 ### 6. Chọn công nghệ và lập kế hoạch
 
-- **Bạn làm:** Chọn công nghệ phù hợp cho từng phần, nói được lý do. Chia danh sách chức năng thành các nhóm triển khai theo thứ tự phụ thuộc; tạo GitHub Issues tương ứng.
+- **Bạn làm:** Chọn công nghệ cần dùng và giải thích ngắn lý do. Chia chức năng theo thứ tự phụ thuộc, ghi công việc vào GitHub Issues.
 - **Agent giúp:** So sánh lựa chọn, đề xuất thứ tự công việc và những kiểm thử cần có.
 - **Xong khi:** Có kiến trúc cơ bản, môi trường local chạy được và biết Issue đầu tiên cần làm gì.
 
