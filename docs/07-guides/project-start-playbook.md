@@ -47,9 +47,6 @@
 
 *Ví dụ:* Người dùng → giao diện → backend → database; backend gọi AI model khi cần.
 
-**Sơ đồ kiến trúc tổng quan:** Dùng các hộp và mũi tên để thể hiện người dùng, giao diện, backend, database và dịch vụ bên ngoài (nếu có). Ghi rõ mỗi phần làm gì và kết nối với phần nào.
-
-Chỉ cần **một sơ đồ dễ hiểu**. Khi hệ thống phức tạp, bạn mới tách riêng sơ đồ các hệ thống bên ngoài và sơ đồ các thành phần bên trong.
 
 ### 5. Thiết kế dữ liệu và luồng quan trọng
 
