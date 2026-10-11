@@ -1,6 +1,6 @@
 # Playbook 2 — Phát triển một tính năng
 
-**Dành cho developer:** dùng khi dự án đã có code và bạn muốn thêm, sửa hoặc cải thiện một chức năng. **Không cần thiết kế lại cả dự án.** Bạn hiểu và kiểm tra công việc; agent chỉ hỗ trợ trong phạm vi được giao.
+**Dành cho developer:** dùng khi thêm, sửa hoặc cải thiện chức năng trong dự án đã có. Đọc hiểu code trước, mô tả Workflow thay đổi, rồi thiết kế kỹ thuật vừa đủ để triển khai. **Không thiết kế lại cả dự án.** Agent chỉ hỗ trợ trong phạm vi bạn giao.
 
 Nếu bắt đầu với một ý tưởng chưa có dự án, xem [Playbook 1 — Bắt đầu từ con số 0](project-start-playbook.md).
 
@@ -14,18 +14,15 @@ Nếu bắt đầu với một ý tưởng chưa có dự án, xem [Playbook 1 �
 
 *Ví dụ:* Trước khi thêm Archive Conversation, hãy biết Conversation lưu ở bảng nào và API nào đang lấy danh sách.
 
-### 2. Viết rõ thay đổi cần làm
+### 2. Mô tả Workflow của tính năng
 
-- **Bạn làm:** Ghi **người dùng thao tác gì → hệ thống phải làm gì → trường hợp lỗi ra sao**. Đây là yêu cầu (requirements) của tính năng.
-- **Agent giúp:** Hỏi trường hợp còn thiếu, gợi ý cách kiểm tra.
-- **Xong khi:** Có thể thử và kết luận chức năng đúng hay sai.
+- **Bạn làm:** Ghi hoặc vẽ **người dùng thao tác → các bước hệ thống xử lý → kết quả**, kèm nhánh lỗi/quyền nếu cần.
+- **Agent giúp:** Phát hiện bước còn thiếu và gợi ý cách kiểm tra.
+- **Xong khi:** Bạn nhìn vào Workflow là biết chức năng phải hoạt động thế nào.
 
-*Ví dụ — Archive Conversation:*
-- Bấm Archive → cuộc trò chuyện biến mất khỏi danh sách đang hoạt động.
-- Mở danh sách Archived → vẫn xem được cuộc trò chuyện.
-- Người không có quyền → không thể archive.
+*Ví dụ — Archive Conversation:* Bấm Archive → kiểm tra quyền → đánh dấu archived → ẩn khỏi danh sách đang hoạt động. Không có quyền → từ chối, không thay đổi dữ liệu.
 
-Ghi các điều này trong **GitHub Issue** để tránh hiểu khác nhau khi code.
+Workflow và vài ghi chú về kết quả mong đợi chính là **requirements** để code và test. Ghi ngắn gọn vào GitHub Issue; không cần spec riêng. Nếu phát sinh vai trò hoặc chức năng mới, cập nhật danh sách/Use Case của dự án **khi cần**.
 
 ### 3. Xem thay đổi ảnh hưởng những đâu
 
@@ -35,15 +32,15 @@ Ghi các điều này trong **GitHub Issue** để tránh hiểu khác nhau khi 
 
 *Ví dụ:* Archive có thể cần một cột trạng thái trong database, cập nhật API và lọc danh sách trên UI.
 
-### 4. Thiết kế cách thực hiện
+### 4. Chốt cách thực hiện
 
-- **Bạn làm:** Chốt sẽ sửa những thành phần nào, dữ liệu thay đổi ra sao, thao tác chạy theo thứ tự nào.
-- **Agent giúp:** Đề xuất cách làm đơn giản, ví dụ code/API hoặc **một sơ đồ nếu cần**.
-- **Xong khi:** Bạn hiểu cách làm và giải thích được vì sao chọn cách đó.
+- **Bạn làm:** Dựa vào Workflow, xác định sẽ sửa code ở đâu, dữ liệu/API thay đổi gì và xử lý lỗi thế nào.
+- **Agent giúp:** Đề xuất cách làm đơn giản nhất và giải thích điểm còn chưa rõ.
+- **Xong khi:** Bạn hiểu cách sửa và cách kiểm tra nó.
 
-Chỉ vẽ khi thật sự cần: **ERD** nếu dữ liệu đổi, **Sequence** nếu nhiều thành phần gọi nhau, **State Machine** nếu có trạng thái phức tạp. Thay đổi nhỏ không cần sơ đồ.
+**Không cần thêm sơ đồ** nếu Workflow và ghi chú kỹ thuật đã rõ. Chỉ dùng ERD, Sequence hoặc State Diagram khi thực sự khó hiểu dữ liệu, thứ tự gọi hoặc trạng thái.
 
-Nếu phải thay công nghệ/kiến trúc lớn, hãy kiểm tra thêm dữ liệu cũ, cách chuyển đổi, lỗi và cách quay về bản cũ **trước khi code**.
+Nếu thay công nghệ/kiến trúc lớn, phải xét thêm tương thích dữ liệu cũ, cách chuyển đổi và cách quay lại trước khi code.
 
 ### 5. Chia việc và triển khai
 
@@ -63,6 +60,6 @@ Nếu kiến trúc hoặc cách dùng đã thay đổi, cập nhật **đúng t�
 
 ## Trước khi giao agent code, tự hỏi
 
-**Tôi hiểu code cũ chưa? Tính năng mới phải làm gì? Sửa phần nào? Kiểm tra thế nào?**
+**Tôi hiểu code cũ chưa? Workflow mới chạy ra sao? Sửa phần nào? Kiểm tra thế nào?**
 
 Nếu chưa rõ, yêu cầu agent **giải thích hoặc phân tích**, chưa yêu cầu code. Developer vẫn là người duyệt thiết kế và kết quả.
