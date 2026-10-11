@@ -1,6 +1,6 @@
 # Playbook 1 — Bắt đầu dự án từ con số 0
 
-**Dành cho developer:** tự hiểu và quyết định trước khi giao agent hỗ trợ. Ưu tiên **Use Case** (cần làm gì) và **Workflow** (hoạt động thế nào); **ERD và Relational Schema là hai sơ đồ dữ liệu cần chuẩn bị**. Các sơ đồ khác chỉ dùng nếu cần.
+**Dành cho developer:** tự hiểu và quyết định trước khi giao agent hỗ trợ. **Use Case** cho biết hệ thống có chức năng gì; **Workflow kiến trúc** cho biết các thành phần hệ thống phối hợp xử lý thế nào. **ERD và Relational Schema bắt buộc khi thiết kế database.** Sơ đồ khác chỉ vẽ nếu cần.
 
 ## 7 bước thực hiện
 
@@ -24,34 +24,39 @@
 
 **MVP:** Phiên bản chạy được đầu tiên với một số chức năng trong danh sách; các chức năng còn lại triển khai tiếp theo.
 
-### 3. Vẽ Workflow — Chức năng hoạt động như thế nào?
+### 3. Mô tả yêu cầu của chức năng
 
-- **Bạn làm:** Với mỗi chức năng sắp triển khai, mô tả **bắt đầu → các bước xử lý → kết quả**; thêm nhánh lỗi hoặc kiểm tra quyền nếu cần. Có thể vẽ Workflow Diagram hoặc viết các bước ngắn.
-- **Agent giúp:** Kiểm tra luồng có thiếu bước, nhánh lỗi hay trường hợp đặc biệt không.
-- **Xong khi:** Bạn nhìn luồng là biết chức năng phải chạy thế nào và kiểm tra đúng/sai ra sao.
+- **Bạn làm:** Với chức năng sắp triển khai, ghi ngắn gọn **người dùng cần gì → kết quả mong đợi → trường hợp lỗi/quyền quan trọng**.
+- **Agent giúp:** Phát hiện yêu cầu chưa rõ và gợi ý cách kiểm thử.
+- **Xong khi:** Bạn biết thế nào là chức năng chạy đúng.
 
-*Ví dụ — Upload PDF:* Chọn PDF → kiểm tra file → hợp lệ thì lưu và hiển thị; không hợp lệ thì báo lỗi, không lưu.
+*Ví dụ — Upload PDF:* Upload hợp lệ thì tài liệu xuất hiện; file sai định dạng thì báo lỗi; người khác không xem được tài liệu.
 
-**Requirements (yêu cầu)** chính là mô tả hành vi mong đợi như trên, cộng vài quy tắc cần thiết (ví dụ: không được xem tài liệu người khác). **Không phải tạo thêm một tài liệu riêng** nếu Workflow và ghi chú đã đủ rõ.
+Đây là **Requirements (yêu cầu)**. Chỉ cần vài dòng rõ ràng, không bắt buộc có tài liệu riêng.
 
-### 4. Phác thảo kiến trúc hệ thống
+### 4. Vẽ Workflow kiến trúc hệ thống
 
-- **Bạn làm:** Xác định ứng dụng có những phần nào, mỗi phần phụ trách gì, chúng kết nối ra sao.
-- **Agent giúp:** Đề xuất sơ đồ vài hộp và mũi tên, giải thích cách dữ liệu đi qua hệ thống.
-- **Xong khi:** Bạn tự giải thích được đường đi từ thao tác người dùng đến kết quả.
+- **Bạn làm:** Vẽ các thành phần chính như frontend, backend, database, storage, worker hoặc dịch vụ ngoài (nếu có), rồi nối mũi tên để thấy **thành phần nào gọi thành phần nào, dữ liệu đi đâu**.
+- **Agent giúp:** Gợi ý cách chia trách nhiệm và kiểm tra đường đi dữ liệu.
+- **Xong khi:** Bạn tự giải thích được toàn bộ hệ thống vận hành ở mức tổng quan.
 
-*Ví dụ:* Người dùng → giao diện → backend → database; backend gọi AI model khi cần.
+*Ví dụ minh họa:* Frontend → Backend → Database; Backend → File Storage; Backend → AI Service.
 
+**Đây là sơ đồ kiến trúc/luồng xử lý hệ thống, không phải sơ đồ người dùng bấm nút theo từng màn hình.**
 
-### 5. Thiết kế database và phần kỹ thuật
+### 5. Vẽ Workflow từng chức năng và thiết kế dữ liệu
 
-- **Bạn làm:** **Bắt buộc chuẩn bị cả ERD và Relational Schema** trước khi triển khai database:
-  - **ERD:** Vẽ các thực thể và quan hệ (ví dụ: User có nhiều Document).
-  - **Relational Schema:** Chuyển thành các bảng, cột, **khóa chính (PK)** và **khóa ngoại (FK)** (ví dụ: `Documents(id, user_id)`).
-- **Agent giúp:** Gợi ý mô hình, kiểm tra quan hệ và các khóa; bạn duyệt trước khi code.
-- **Xong khi:** Bạn hiểu dữ liệu được tổ chức thế nào và có thể dựa vào hai sơ đồ để tạo database.
+- **Bạn làm:** Chọn chức năng sắp code, chỉ rõ **các thành phần trong Bước 4 phối hợp theo thứ tự nào**, dữ liệu đi qua đâu và lỗi được xử lý tại đâu.
+- **Agent giúp:** Rà soát luồng giữa các thành phần và giải thích phần kỹ thuật chưa rõ.
+- **Xong khi:** Bạn hiểu cách hệ thống sẽ thực hiện chức năng đó, trước khi code.
 
-Sau đó xác định ngắn gọn phần xử lý nghiệp vụ, API và lỗi quan trọng từ Workflow. **Sequence/State Diagram chỉ vẽ nếu thật sự cần.** Dự án không lưu dữ liệu thì ghi rõ hai sơ đồ không áp dụng, không vẽ dữ liệu giả.
+*Ví dụ — Upload PDF:* Frontend gửi file → Backend kiểm tra quyền/định dạng → File Storage lưu file → bộ xử lý đọc PDF → Database lưu kết quả/trạng thái.
+
+**Nếu dùng database, bắt buộc có cả hai sơ đồ:**
+- **ERD:** Các thực thể và quan hệ (ví dụ: User — Document).
+- **Relational Schema:** Bảng, cột, khóa chính (PK), khóa ngoại (FK).
+
+Nếu dự án không dùng database, ghi rõ không áp dụng. **Sequence/State Diagram và sơ đồ khác không bắt buộc.**
 
 ### 6. Chọn công nghệ và lập kế hoạch
 
@@ -73,6 +78,6 @@ Hoàn thành luồng đầu tiên rồi tiếp tục các chức năng đã li�
 
 ## Trước khi chuyển sang code, tự hỏi
 
-**Tôi biết mình đang xây gì? Chức năng phải hoạt động thế nào? Hệ thống sẽ xử lý ra sao? Tôi sẽ kiểm tra bằng cách nào?**
+**Tôi biết cần xây gì? Kết quả nào là đúng? Các thành phần hệ thống phối hợp ra sao? Dữ liệu được lưu thế nào? Tôi kiểm tra bằng cách nào?**
 
 Nếu chưa trả lời được câu liên quan trực tiếp đến phần sắp code, quay lại bước tương ứng. **Developer quyết định; agent hỗ trợ.**
