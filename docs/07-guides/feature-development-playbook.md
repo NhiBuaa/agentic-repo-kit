@@ -16,13 +16,13 @@ Nếu bắt đầu với một ý tưởng chưa có dự án, xem [Playbook 1 �
 
 ### 2. Ghi rõ yêu cầu của tính năng
 
-- **Bạn làm:** Nêu **chức năng phải làm gì, kết quả đúng là gì, lỗi/quyền cần xử lý ra sao**.
+- **Bạn làm:** Với tính năng đang triển khai, ghi rõ **đầu vào/dữ liệu cần xử lý, kết quả mong đợi, quy tắc, lỗi và quyền truy cập liên quan**.
 - **Agent giúp:** Gợi ý trường hợp còn thiếu và cách kiểm thử.
 - **Xong khi:** Có thể xác định tính năng đã làm đúng hay chưa.
 
 *Ví dụ — Archive Conversation:* Bấm Archive thì cuộc trò chuyện rời danh sách đang hoạt động nhưng vẫn xem được trong Archived; người không có quyền không được archive.
 
-Đây là **Requirements**. Ghi ngắn gọn vào GitHub Issue, không cần tài liệu riêng. Nếu thêm chức năng/vai trò mới, cập nhật danh sách Use Case của dự án khi cần.
+Đây là **Requirements chi tiết của tính năng**. Ghi vào GitHub Issue đủ rõ để test, không bắt buộc spec riêng. Nếu phát sinh actor/chức năng mới, cập nhật **Use Case Diagram** của dự án khi cần.
 
 ### 3. Xem thay đổi ảnh hưởng những đâu
 
