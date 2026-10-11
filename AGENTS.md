@@ -20,6 +20,15 @@ Favor clear ownership, low duplication, predictable discovery, and simple adopti
 
 Do not recreate Issue/PR state inside repository markdown files.
 
+## Developer-Led Playbooks
+
+When assisting a human developer, choose the relevant **human-facing** playbook:
+
+- **[Playbook 1 — Start from zero](docs/07-guides/project-start-playbook.md)** for new ideas, scope, architecture and the first end-to-end slice.
+- **[Playbook 2 — Develop a feature](docs/07-guides/feature-development-playbook.md)** for changes to an existing system: current behavior, impact, focused design, tests and review.
+
+The developer owns understanding, scope, decisions and verification. An agent may explain, challenge assumptions, draft diagrams or implement only within authorized scope. These are reading guides, **not** autonomous skills or write permissions. Do not restart project discovery for a normal feature.
+
 ## Read Order
 
 For meaningful work:
