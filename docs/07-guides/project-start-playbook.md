@@ -1,6 +1,6 @@
 # Playbook 1 — Bắt đầu dự án từ con số 0
 
-**Dành cho developer:** tự hiểu và quyết định trước khi giao agent hỗ trợ. **Ưu tiên Use Case (cần làm gì) và Workflow (chạy qua những bước nào)** nếu chúng giúp bạn hình dung hệ thống. Không bắt buộc vẽ cả hai hay thêm sơ đồ khác.
+**Dành cho developer:** tự hiểu và quyết định trước khi giao agent hỗ trợ. Ưu tiên **Use Case** (cần làm gì) và **Workflow** (hoạt động thế nào); **ERD và Relational Schema là hai sơ đồ dữ liệu cần chuẩn bị**. Các sơ đồ khác chỉ dùng nếu cần.
 
 ## 7 bước thực hiện
 
@@ -43,13 +43,15 @@
 *Ví dụ:* Người dùng → giao diện → backend → database; backend gọi AI model khi cần.
 
 
-### 5. Làm rõ phần kỹ thuật cần thiết
+### 5. Thiết kế database và phần kỹ thuật
 
-- **Bạn làm:** Xác định dữ liệu cần lưu, phần nào xử lý nghiệp vụ, API/giao tiếp nào cần có và các trường hợp lỗi quan trọng.
-- **Agent giúp:** Giải thích các lựa chọn và chỉ ra điểm chưa rõ trước khi code.
-- **Xong khi:** Bạn hiểu cách biến Workflow ở Bước 3 thành code.
+- **Bạn làm:** **Bắt buộc chuẩn bị cả ERD và Relational Schema** trước khi triển khai database:
+  - **ERD:** Vẽ các thực thể và quan hệ (ví dụ: User có nhiều Document).
+  - **Relational Schema:** Chuyển thành các bảng, cột, **khóa chính (PK)** và **khóa ngoại (FK)** (ví dụ: `Documents(id, user_id)`).
+- **Agent giúp:** Gợi ý mô hình, kiểm tra quan hệ và các khóa; bạn duyệt trước khi code.
+- **Xong khi:** Bạn hiểu dữ liệu được tổ chức thế nào và có thể dựa vào hai sơ đồ để tạo database.
 
-**Chỉ bổ sung sơ đồ khi thật sự cần:** ERD nếu chưa hiểu quan hệ dữ liệu; Sequence nếu chưa rõ thứ tự gọi giữa nhiều phần; State Diagram nếu trạng thái phức tạp. Nếu Use Case + Workflow và vài ghi chú đã đủ, **không vẽ thêm**.
+Sau đó xác định ngắn gọn phần xử lý nghiệp vụ, API và lỗi quan trọng từ Workflow. **Sequence/State Diagram chỉ vẽ nếu thật sự cần.** Dự án không lưu dữ liệu thì ghi rõ hai sơ đồ không áp dụng, không vẽ dữ liệu giả.
 
 ### 6. Chọn công nghệ và lập kế hoạch
 
