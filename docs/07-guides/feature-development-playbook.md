@@ -16,11 +16,11 @@ Nếu bắt đầu với một ý tưởng chưa có dự án, xem [Playbook 1 �
 
 ### 2. Ghi rõ yêu cầu của tính năng
 
-- **Bạn làm:** Với tính năng đang triển khai, ghi rõ **đầu vào/dữ liệu cần xử lý, kết quả mong đợi, quy tắc, lỗi và quyền truy cập liên quan**. Nếu có UI, ghi rõ thao tác người dùng.
+- **Bạn làm:** Với tính năng đang triển khai, ghi rõ **đầu vào/dữ liệu, kết quả, lỗi và quyền truy cập**: ai cần đăng nhập, vai trò nào được thao tác, có cần kiểm tra **chủ sở hữu dữ liệu** không. Nếu có UI, ghi rõ thao tác người dùng.
 - **Agent giúp:** Gợi ý trường hợp còn thiếu và cách kiểm thử.
 - **Xong khi:** Có thể xác định tính năng đã làm đúng hay chưa.
 
-*Ví dụ — Archive Conversation:* Bấm Archive thì cuộc trò chuyện rời danh sách đang hoạt động nhưng vẫn xem được trong Archived; người không có quyền không được archive.
+*Ví dụ — Archive Conversation:* Chủ sở hữu bấm Archive thì cuộc trò chuyện rời danh sách đang hoạt động nhưng vẫn xem được trong Archived; người dùng khác không được archive cuộc trò chuyện đó.
 
 Đây là **Requirements chi tiết của tính năng**. Ghi vào GitHub Issue đủ rõ để test, không bắt buộc spec riêng. Nếu phát sinh actor/chức năng mới, cập nhật **Use Case Diagram** của dự án khi cần.
 
@@ -34,7 +34,7 @@ Nếu bắt đầu với một ý tưởng chưa có dự án, xem [Playbook 1 �
 
 ### 4. Vẽ hoặc cập nhật Workflow kiến trúc của tính năng
 
-- **Bạn làm:** Thể hiện **frontend/API/backend/database/worker liên quan** và các bước chúng xử lý, gọi nhau, truyền dữ liệu; từ đó xác định code/API cần sửa.
+- **Bạn làm:** Thể hiện **frontend/API/backend/database/worker liên quan** và các bước xử lý, truyền dữ liệu; xác định **nơi xác thực danh tính, kiểm tra quyền/vai trò và chủ sở hữu ở backend** khi có truy cập được bảo vệ. Từ đó chốt code/API cần sửa.
 - **Agent giúp:** Giải thích luồng trong code hiện tại, đề xuất cách thay đổi đơn giản.
 - **Xong khi:** Bạn hiểu phần nào thay đổi và dữ liệu được xử lý ra sao; Workflow/thiết kế liên quan đã được bạn review và duyệt.
 
@@ -56,7 +56,7 @@ Nếu bắt đầu với một ý tưởng chưa có dự án, xem [Playbook 1 �
 
 ### 6. Kiểm tra kết quả và review PR
 
-- **Bạn làm:** Chạy ứng dụng, thử đúng/lỗi/quyền khi liên quan, đọc diff và kiểm tra chức năng cũ. Chỉ merge khi bạn hiểu thay đổi.
+- **Bạn làm:** Chạy ứng dụng, thử đúng/lỗi; với dữ liệu được bảo vệ, **test khi chưa đăng nhập, sai quyền hoặc truy cập dữ liệu người khác**. Đọc diff, kiểm tra chức năng cũ và chỉ merge khi bạn hiểu thay đổi.
 - **Agent giúp:** Tổng hợp những gì đã sửa, kết quả test và điểm chưa kiểm chứng.
 - **Xong khi:** PR rõ ràng, tests có kết quả thực, bạn tự xác nhận chức năng đạt yêu cầu.
 
