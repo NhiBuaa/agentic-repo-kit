@@ -50,6 +50,18 @@ For meaningful work:
 - If humans or the software must obey a rule too, prefer `docs/04-standards/`.
 - Do not create `.agents/commands/`, `.agents/hooks/`, or `.agents/skills/` unless the project has a concrete need for them.
 
+## Selective Issue/PR Closeout
+
+At normal task closeout, consider only reusable findings; no new lesson is a valid outcome.
+
+- Verify each candidate against code/tests or an accepted decision, and link its Issue/PR evidence or commit. Distinguish proposed, implemented, accepted, merged and deployed; one does not imply the others.
+- Update an existing owner, not a second copy: decisions in the relevant architecture record, software invariants in standards, operational pitfalls in the relevant guide/runbook, and agent-only routing in AGENTS or scoped rules. Prefer a regression check for executable behavior; do not create a skill, hook or knowledge store just to record a lesson.
+- Make small, safe corrections within the already approved scope without another approval checkpoint. Include them in the normal diff and completion report.
+- Propose out-of-scope policy, architecture or knowledge-authority changes for approval before applying them. Do not block unrelated approved completion on such a proposal. Closeout never grants publication, deployment, installation or permission changes.
+- Keep transient progress in the Issue/PR. Preserve historical evidence and untracked files; link rather than copy logs or conversations. Memory and old notes are retrieval aids, not overrides of verified implementation or accepted decisions.
+
+Report briefly: no reusable finding, updated owner + evidence, or an out-of-scope proposal awaiting approval.
+
 ## Validation
 
 ```sh
