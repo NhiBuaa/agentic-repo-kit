@@ -62,6 +62,8 @@ Nếu bắt đầu với một ý tưởng chưa có dự án, xem [Playbook 1 �
 
 Nếu kiến trúc hoặc cách dùng đã thay đổi, cập nhật **đúng tài liệu liên quan**; không tạo bản sao của Issue trong `docs/`.
 
+Khi closeout, chọn bài học thực sự tái sử dụng theo [Selective Issue/PR Closeout](../../AGENTS.md#selective-issuepr-closeout): không có bài học mới cũng hợp lệ. Agent được tự sửa nhỏ, an toàn trong phạm vi đã duyệt; thay đổi chính sách, kiến trúc hoặc nguồn tri thức ngoài phạm vi phải được đề xuất để duyệt, không chặn việc hoàn tất phần đã duyệt.
+
 ## Trước khi giao agent code, tự hỏi
 
 **Tôi hiểu kiến trúc và code liên quan chưa? Yêu cầu đúng là gì? Workflow kỹ thuật và màn hình/trạng thái UI (nếu có) đã rõ chưa? Kiểm tra thế nào?**
