@@ -25,4 +25,4 @@ The default consumer repository also receives `.agents/` folder manuals for `rul
 
 Task plans, handoffs, review logs, and verification summaries are intentionally not templated as repository files. Use the repository Issue/PR system for work state.
 
-Agentic Repo Kit currently ships `skills/establish-project-overview/SKILL.md` and `skills/normalize-agentic-repo/SKILL.md` in this toolkit repository. Toolkit skills are not copied into consumer repositories by default.
+Agentic Repo Kit currently ships `skills/init-agentic-repo/SKILL.md`, `skills/establish-project-overview/SKILL.md`, and `skills/normalize-agentic-repo/SKILL.md` in this toolkit repository. Toolkit skills are not copied into consumer repositories by default.

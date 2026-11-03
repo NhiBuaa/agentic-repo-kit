@@ -20,7 +20,7 @@ Use this skill when:
 - a new project needs its foundation captured before repository initialization;
 - an existing repository has enough evidence to reconstruct the foundation but still needs reconciliation.
 
-Do not use this skill to normalize repository structure or migrate documentation. If the root overview is already trustworthy and the task is to normalize an existing repository, use `normalize-agentic-repo`.
+Do not use this skill to normalize repository structure or migrate documentation. If the root overview is already trustworthy and the task is to normalize an existing repository, use `normalize-agentic-repo`. For initializing an empty or brand-new repository directly, use `init-agentic-repo`.
 
 ## Evidence States
 

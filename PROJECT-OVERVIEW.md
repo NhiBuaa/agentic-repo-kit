@@ -10,7 +10,7 @@ Agentic Repo Kit is a vendor-neutral repository structure and toolkit workflow f
 
 For existing repositories, the current workflow first establishes a trustworthy `PROJECT-OVERVIEW.md`, then normalizes repository knowledge and agent configuration around that foundation without inventing missing decisions or recreating work tracking inside the repository.
 
-A dedicated fresh-repository initialization workflow is planned after the existing-repository path has been validated through dogfooding.
+For fresh repositories, `init-agentic-repo` and `scripts/init-repo.ps1` scaffold the initial canonical directories, context files, and playbooks without inventing decisions.
 
 ## Scope
 
@@ -20,10 +20,11 @@ A dedicated fresh-repository initialization workflow is planned after the existi
 - ordered durable documentation categories;
 - project-local agent rules and references under `.agents/`;
 - reusable templates (including architecture, standards, UI/UX quality, DESIGN.md, specs, guides, runbooks);
+- a skill for scaffolding fresh repositories (`init-agentic-repo`) and helper script;
 - a skill for establishing or reconciling `PROJECT-OVERVIEW.md`;
 - a skill for normalizing existing repositories;
 - Issues/PRs as the work plane;
-- optional future tool-specific adapters and fresh-repository initialization.
+- optional future tool-specific adapters.
 
 ### Out of Scope
 
@@ -48,7 +49,12 @@ Issues / PRs          = work state
 skills/               = skills shipped by Agentic Repo Kit itself
 ```
 
-Current toolkit flow for existing repositories:
+Toolkit flows:
+
+1. Fresh repository initialization:
+empty directory / new repository → init-agentic-repo → scaffolded repository + Playbook 1
+
+2. Existing repository normalization:
 
 ```text
 available user context + repository reality
@@ -117,14 +123,16 @@ promote durable findings into docs when needed
 
 ## Current State
 
-The repository currently ships two focused toolkit skills:
+The repository currently ships three focused toolkit skills:
+
+- `init-agentic-repo` for scaffolding a fresh repository conforming to the kit model;
 
 - `establish-project-overview` for creating or reconciling the project foundation through repository evidence plus adaptive user clarification;
 - `normalize-agentic-repo` for safely normalizing an existing repository after that foundation is trustworthy.
 
 The prior all-in-one `bootstrap-agentic-repo` skill has been retired to avoid mixing fresh initialization, project-foundation establishment, and existing-repository migration into one workflow.
 
-The next validation target is dogfooding the establish → normalize path on a complex existing repository before designing a dedicated fresh-repository initialization skill.
+The next validation target is dogfooding both fresh-initialization and existing-repository normalization workflows across diverse real-world projects.
 
 ## Open Questions
 
