@@ -4,7 +4,17 @@ A lightweight, vendor-neutral repository structure for software projects develop
 
 Agentic Repo Kit is built around a project foundation plus focused repository workflows.
 
-For an existing repository, the current flow is:
+### 1. Fresh Repository Workflow (Start from Zero)
+
+```text
+empty directory / new repository
+        ↓
+init-agentic-repo
+        ↓
+scaffolded repository + Playbook 1
+```
+
+### 2. Existing Repository Normalization Flow
 
 ```text
 available user context + repository reality
@@ -18,8 +28,6 @@ normalize-agentic-repo
 normalized agentic repository
 ```
 
-Fresh-repository initialization is intentionally not shipped as a separate skill yet. The current priority is proving the existing-repository workflow before adding that path.
-
 ## Developer Playbooks (Draft for Review)
 
 Start with the guide that matches your work:
@@ -27,7 +35,7 @@ Start with the guide that matches your work:
 1. **[Playbook 1 — Start a project from zero](docs/07-guides/project-start-playbook.md)**: initialize repo → core value → use case diagram → navigation/user flows & UI direction / `DESIGN.md` (if UI) → system architecture → auth/security model → technology → database design → MVP-first phased plan.
 2. **[Playbook 2 — Develop a feature](docs/07-guides/feature-development-playbook.md)**: understand architecture/code → feature requirements → impact → technical workflow + UI detail/states (if any) → implement/test → render review & PR.
 
-These are **human-facing, step-by-step guides**. The developer understands and approves the decisions; agents assist within the scope given. No new skills or automation are included in this PR.
+These are **human-facing, step-by-step guides**. The developer understands and approves the decisions; agents assist within the scope given.
 
 ## Mental Model
 
@@ -108,11 +116,15 @@ The toolkit repository currently contains:
 
 ```text
 skills/
+├── init-agentic-repo/
+│   └── SKILL.md
 ├── establish-project-overview/
 │   └── SKILL.md
 └── normalize-agentic-repo/
     └── SKILL.md
 ```
+
+`init-agentic-repo` scaffolds a brand-new repository conforming to the kit model.
 
 `establish-project-overview` establishes or reconciles the project foundation.
 
@@ -140,8 +152,13 @@ The numbers organize discovery, not authority priority.
 
 `docs/99-notes/` is the canonical home for useful non-authoritative retained notes. The folder is part of the skeleton, while project-specific note files are optional and should not be created merely to fill it.
 
-## Existing Repository Quick Start
+## Quick Start Workflows
 
+### Starting a New Project from Scratch
+1. Run `skills/init-agentic-repo/SKILL.md` or `./scripts/init-repo.ps1 -ProjectName "<name>" [-WithUI]`.
+2. Follow `docs/07-guides/project-start-playbook.md` starting from Step 2 to define core value and architecture.
+
+### Normalizing an Existing Repository
 1. Use `skills/establish-project-overview/SKILL.md` if the root project overview is missing, stale, incomplete, or contradictory.
 2. Review and approve the resulting `PROJECT-OVERVIEW.md` foundation.
 3. Use `skills/normalize-agentic-repo/SKILL.md` to inspect the existing repository and propose a normalization plan.
@@ -155,4 +172,4 @@ Reusable source templates live under `templates/`, including foundations for roo
 
 ## Project Status
 
-This repository is still under design review. The current focus is dogfooding `establish-project-overview` and `normalize-agentic-repo` on a complex existing repository before adding a dedicated fresh-repository initialization skill, CLI, or broader OSS automation.
+This repository is actively maintained. Current capabilities include complete scaffolding for fresh repositories (`init-agentic-repo`), normalization workflows for existing codebases (`normalize-agentic-repo`), and comprehensive UI/UX standards (`DESIGN.md`, `ui-quality.md`).

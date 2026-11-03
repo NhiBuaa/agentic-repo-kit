@@ -20,10 +20,11 @@ A dedicated fresh-repository initialization workflow is planned after the existi
 - ordered durable documentation categories;
 - project-local agent rules and references under `.agents/`;
 - reusable templates (including architecture, standards, UI/UX quality, DESIGN.md, specs, guides, runbooks);
+- a skill for scaffolding fresh repositories (`init-agentic-repo`) and helper script;
 - a skill for establishing or reconciling `PROJECT-OVERVIEW.md`;
 - a skill for normalizing existing repositories;
 - Issues/PRs as the work plane;
-- optional future tool-specific adapters and fresh-repository initialization.
+- optional future tool-specific adapters.
 
 ### Out of Scope
 
@@ -48,7 +49,12 @@ Issues / PRs          = work state
 skills/               = skills shipped by Agentic Repo Kit itself
 ```
 
-Current toolkit flow for existing repositories:
+Toolkit flows:
+
+1. Fresh repository initialization:
+empty directory / new repository → init-agentic-repo → scaffolded repository + Playbook 1
+
+2. Existing repository normalization:
 
 ```text
 available user context + repository reality

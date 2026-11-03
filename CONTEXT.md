@@ -17,6 +17,7 @@ Agentic Repo Kit currently defines:
 
 The current toolkit skills are:
 
+- `init-agentic-repo` — scaffold a fresh repository conforming to the kit model;
 - `establish-project-overview` — create or reconcile a trustworthy project foundation through evidence plus adaptive clarification;
 - `normalize-agentic-repo` — normalize an existing repository after that foundation is established.
 
@@ -58,7 +59,7 @@ A complex existing repository will be used as the first pilot before a dedicated
 
 ## Known Limitations
 
-- fresh-repository initialization is not yet shipped as a dedicated skill;
+- cross-framework automated testing suite remains in progress;
 - the toolkit is currently delivered as skills rather than a CLI or validator;
 - the existing-repository workflow has not yet been stress-tested across several real project types;
 - cross-tool adapter conventions remain intentionally undecided.
