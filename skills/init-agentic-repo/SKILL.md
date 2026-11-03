@@ -54,9 +54,9 @@ Execute the deterministic scaffolding script or generate equivalent files:
 ```
 
 The scaffolding creates:
-- **15 Canonical Directories** with orienting `README.md` files:
-  - `docs/01-overview/` through `docs/08-runbooks/` and `docs/99-notes/`
-  - `.agents/rules/` and `.agents/references/`
+- **Canonical Documentation & Agent Directories (13 folders)** with orienting `README.md` files:
+  - `docs/` and `docs/01-overview/` through `docs/08-runbooks/` and `docs/99-notes/` (10 directories)
+  - `.agents/`, `.agents/rules/` and `.agents/references/` (3 directories)
 - **Developer Playbooks** in `docs/07-guides/`:
   - `project-start-playbook.md`
   - `feature-development-playbook.md`
@@ -102,6 +102,6 @@ Before reporting initialization complete, verify:
 - [ ] No unconfirmed architecture, database, or tech stack decisions were invented.
 - [ ] If UI: root `DESIGN.md` and `docs/04-standards/ui-quality.md` exist and match project intent.
 - [ ] If Non-UI: `DESIGN.md` and `ui-quality.md` are omitted; `AGENTS.md` is lean.
-- [ ] All 15 canonical directories and orienting `README.md` files exist.
+- [ ] All 13 canonical directories and orienting `README.md` files exist.
 - [ ] All internal markdown links resolve correctly.
 - [ ] Developer received a clear hand-off to Playbook 1 Step 2.

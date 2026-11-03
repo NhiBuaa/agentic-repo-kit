@@ -27,7 +27,7 @@
 [CmdletBinding()]
 param(
     [Parameter(Position = 0)]
-    [string]$TargetPath = ".",
+    [string]$TargetPath,
 
     [Parameter(Position = 1)]
     [string]$ProjectName,
@@ -41,6 +41,11 @@ param(
 
 Set-StrictMode -Version Latest
 $ErrorActionPreference = "Stop"
+
+if (-not $TargetPath) {
+    Write-Error "Please specify -TargetPath (e.g., ./scripts/init-repo.ps1 -TargetPath '../my-new-app' [-WithUI])."
+    exit 1
+}
 
 # Resolve absolute paths
 $resolvedTarget = (Resolve-Path -Path $TargetPath -ErrorAction SilentlyContinue)
@@ -63,6 +68,12 @@ if (-not $Description) {
 # Locate Agentic Repo Kit source root (where templates and docs live)
 $scriptDir = Split-Path -Parent $MyInvocation.MyCommand.Path
 $kitRoot = Split-Path -Parent $scriptDir
+
+# Guard against initializing the kit repository itself
+if ($resolvedTarget -eq $kitRoot) {
+    Write-Error "Cannot initialize the Agentic Repo Kit repository itself. Please provide a separate target path."
+    exit 1
+}
 
 # Verify kit source has templates
 if (-not (Test-Path (Join-Path $kitRoot "templates"))) {
@@ -179,7 +190,11 @@ Who is it for and what are the primary use cases? (To be refined in Playbook 1 S
 ## Architecture Direction
 
 Describe known direction for frontend, backend, data, infrastructure, integrations, or other relevant layers.
-(To be established in Playbook 1 Steps 5–8; do not invent premature decisions).
+[To be established in Playbook 1 Steps 5–8; do not invent premature decisions]
+
+## Database Design
+
+[To be established in Playbook 1 Step 8; do not invent premature decisions]
 
 ## Core Concepts
 
@@ -187,11 +202,11 @@ List important domain entities, terms, or concepts.
 
 ## Important Constraints
 
-- security:
-- performance:
-- compatibility:
-- cost:
-- deployment:
+- security: [To be established in Playbook 1 Step 6]
+- performance: [To be established]
+- compatibility: [To be established]
+- cost: [To be established]
+- deployment: [To be established]
 - other:
 
 ## Major Invariants
@@ -224,11 +239,6 @@ Set-Content -Path (Join-Path $resolvedTarget "AGENTS.md") -Value $customAgents -
 
 # 6. Instantiate CONTEXT.md
 $today = Get-Date -Format "yyyy-MM-dd"
-$uiNextStep = if ($WithUI) {
-    "Design primary User Flow and adjust root `DESIGN.md`;"
-} else {
-    "Design System Architecture in `docs/02-architecture/`;"
-}
 
 $contextRaw = @'
 ---
@@ -242,23 +252,15 @@ last_verified: {{TODAY}}
 
 - **Stage:** Project Foundation & Initial MVP Planning.
 - **Active Playbook:** [Playbook 1 — Bắt đầu dự án từ con số 0](docs/07-guides/project-start-playbook.md).
-- **Current Task:** Step 2 — Xác định ý tưởng và giá trị cốt lõi.
+- **Work Tracking:** Track task scope, acceptance criteria, and progress in Issues and Pull Requests.
 
 ## Boundary & Surface
 
 - **Project Name:** {{PROJECT_NAME}}
 - **Has UI Surface:** {{HAS_UI}}
-- **Work Tracking:** Issues and Pull Requests.
-
-## Next Steps
-
-1. Developer confirms core value proposition in `PROJECT-OVERVIEW.md`;
-2. Draw Use Case Diagram in `docs/03-product/`;
-3. {{UI_NEXT_STEP}}
-4. Establish technology choices and phased plan for MVP.
 '@
 
-$contextContent = $contextRaw.Replace("{{TODAY}}", $today).Replace("{{PROJECT_NAME}}", $ProjectName).Replace("{{HAS_UI}}", [string]([bool]$WithUI)).Replace("{{UI_NEXT_STEP}}", $uiNextStep)
+$contextContent = $contextRaw.Replace("{{TODAY}}", $today).Replace("{{PROJECT_NAME}}", $ProjectName).Replace("{{HAS_UI}}", [string]([bool]$WithUI))
 Set-Content -Path (Join-Path $resolvedTarget "CONTEXT.md") -Value $contextContent -Encoding utf8
 
 # 7. Instantiate README.md

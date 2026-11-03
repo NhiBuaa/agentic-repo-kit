@@ -9,7 +9,7 @@
 ### 1. Khởi tạo repository
 
 - **Bạn làm:** Tạo GitHub repo, đặt tên và viết README mô tả tạm 1–2 dòng; dùng branch/PR để review các thay đổi. Chưa cần chốt stack hay dựng toàn bộ source code.
-- **Agent giúp:** Dùng skill `init-agentic-repo` hoặc script `./scripts/init-repo.ps1` để tự động dựng sẵn 15 thư mục chuẩn (`docs/01-` đến `docs/99-`, `.agents/`), tạo sẵn `PROJECT-OVERVIEW.md`, `AGENTS.md`, `CONTEXT.md` và `DESIGN.md` (nếu dự án có UI).
+- **Agent giúp:** Dùng skill `init-agentic-repo` (hoặc script `scripts/init-repo.ps1` từ bộ công cụ Agentic Repo Kit) để tự động dựng sẵn các thư mục chuẩn (`docs/01-` đến `docs/99-`, `.agents/`), tạo sẵn `PROJECT-OVERVIEW.md`, `AGENTS.md`, `CONTEXT.md` và `DESIGN.md` (nếu dự án có UI).
 - **Xong khi:** Repo có đầy đủ khung xương chuẩn, sẵn sàng để lưu và review kết quả các bước tiếp theo.
 
 **Ghi ở đâu?** `PROJECT-OVERVIEW.md` cho mục tiêu và quyết định nền tảng; `docs/` cho thiết kế ổn định; GitHub Issues/PRs cho công việc, thay đổi và review. Chỉ tạo tài liệu khi có nội dung.
