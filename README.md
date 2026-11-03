@@ -166,10 +166,21 @@ The numbers organize discovery, not authority priority.
 5. Apply the approved normalization and validate it against the skill acceptance checklist.
 6. Track work in Issues and Pull Requests; promote durable findings into `docs/` when needed.
 
+### Validating Repository Integrity & Conformance
+Run the zero-dependency repository integrity validator:
+```powershell
+# Validate the kit repository or current project:
+./scripts/check-kit.ps1
+
+# Validate an external project directory:
+./scripts/check-kit.ps1 -TargetPath "C:/path/to/my-project" [-Strict] [-Json]
+```
+Checks 100% of internal links & GFM anchor slugs, 13 canonical docs/agent directories, frontmatters (CONTEXT.md, DESIGN.md, SKILL.md), and Single Source of Truth conformance.
+
 ## Templates
 
 Reusable source templates live under `templates/`, including foundations for root files (`PROJECT-OVERVIEW.md`, `AGENTS.md`, `CONTEXT.md`, `DESIGN.md`), architecture, engineering standards, UI/UX quality (`ui-quality.md`), specifications, decisions, guides, and runbooks. They are scaffolding inputs, not live authority for Agentic Repo Kit itself.
 
 ## Project Status
 
-This repository is actively maintained. Current capabilities include complete scaffolding for fresh repositories (`init-agentic-repo`), normalization workflows for existing codebases (`normalize-agentic-repo`), and comprehensive UI/UX standards (`DESIGN.md`, `ui-quality.md`).
+This repository is actively maintained. Current capabilities include complete scaffolding for fresh repositories (`init-agentic-repo`), automated integrity validation (`check-kit.ps1`), normalization workflows for existing codebases (`normalize-agentic-repo`), and comprehensive UI/UX standards (`DESIGN.md`, `ui-quality.md`).

@@ -73,6 +73,7 @@ A complex existing repository will be used as the pilot for existing-repo normal
 - Documentation map: `docs/README.md`
 - Project-local agent config: `.agents/README.md`
 - Fresh repository initialization: `skills/init-agentic-repo/SKILL.md`
+- Repository integrity validator: `scripts/check-kit.ps1`
 - Project overview workflow: `skills/establish-project-overview/SKILL.md`
 - Existing repository normalization: `skills/normalize-agentic-repo/SKILL.md`
 - Reusable templates: `templates/README.md`
