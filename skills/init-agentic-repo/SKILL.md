@@ -86,9 +86,10 @@ When populating initial files:
 ### 5. Verify & Hand-Off
 
 After scaffolding:
-1. Verify all 15 directories and their `README.md` files exist.
+1. Verify all 13 canonical directories and their `README.md` files exist.
 2. Verify all internal markdown links resolve without error.
-3. Hand-off clearly to the developer:
+3. Run `./scripts/check-kit.ps1 -TargetPath "<target-dir>"` to automatically verify repository integrity and conformance.
+4. Hand-off clearly to the developer:
    > *"Repository scaffolded successfully. You are now at **Playbook 1 — Bước 2: Xác định ý tưởng và giá trị cốt lõi**. Hãy mở `PROJECT-OVERVIEW.md` để rà soát mục tiêu MVP trước khi vẽ Use Case Diagram."*
 
 ---
@@ -104,4 +105,5 @@ Before reporting initialization complete, verify:
 - [ ] If Non-UI: `DESIGN.md` and `ui-quality.md` are omitted; `AGENTS.md` is lean.
 - [ ] All 13 canonical directories and orienting `README.md` files exist.
 - [ ] All internal markdown links resolve correctly.
+- [ ] Repository passes automated integrity verification (`./scripts/check-kit.ps1 -TargetPath "<target-dir>"`).
 - [ ] Developer received a clear hand-off to Playbook 1 Step 2.

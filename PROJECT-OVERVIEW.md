@@ -21,6 +21,7 @@ For fresh repositories, `init-agentic-repo` and `scripts/init-repo.ps1` scaffold
 - project-local agent rules and references under `.agents/`;
 - reusable templates (including architecture, standards, UI/UX quality, DESIGN.md, specs, guides, runbooks);
 - a skill for scaffolding fresh repositories (`init-agentic-repo`) and helper script;
+- an automated integrity validator script (`scripts/check-kit.ps1`) for link, skeleton, frontmatter, and SSoT checks;
 - a skill for establishing or reconciling `PROJECT-OVERVIEW.md`;
 - a skill for normalizing existing repositories;
 - Issues/PRs as the work plane;
@@ -137,4 +138,4 @@ The next validation target is dogfooding both fresh-initialization and existing-
 ## Open Questions
 
 - Which tool-specific adapters should eventually ship as examples?
-- Should the toolkit remain skill-only or later gain a CLI/validator layer?
+- Should the toolkit remain skill-and-script-based or later gain a compiled CLI binary package?

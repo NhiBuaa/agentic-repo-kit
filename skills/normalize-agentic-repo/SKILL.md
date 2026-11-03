@@ -168,5 +168,6 @@ Before reporting normalization complete, verify:
 - [ ] The normalization proposal was reviewed before destructive or meaningfully consolidating changes.
 - [ ] Issues/PRs remain the work plane.
 - [ ] Re-running on unchanged repository state would converge rather than create duplicate files or structural drift.
+- [ ] Normalized repository passes automated integrity check (`./scripts/check-kit.ps1 -TargetPath "<target-dir>"`).
 
 If an applicable criterion fails, report the failed criterion and unresolved next step instead of claiming normalization is fully complete.

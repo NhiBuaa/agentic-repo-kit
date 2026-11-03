@@ -60,7 +60,7 @@ A complex existing repository will be used as the pilot for existing-repo normal
 ## Known Limitations
 
 - cross-framework automated testing suite remains in progress;
-- the toolkit is currently delivered as skills rather than a CLI or validator;
+- the toolkit is currently delivered as skills and lightweight PowerShell scripts rather than a standalone compiled CLI or binary package;
 - the existing-repository workflow has not yet been stress-tested across several real project types;
 - cross-tool adapter conventions remain intentionally undecided.
 
@@ -73,6 +73,7 @@ A complex existing repository will be used as the pilot for existing-repo normal
 - Documentation map: `docs/README.md`
 - Project-local agent config: `.agents/README.md`
 - Fresh repository initialization: `skills/init-agentic-repo/SKILL.md`
+- Repository integrity validator: `scripts/check-kit.ps1`
 - Project overview workflow: `skills/establish-project-overview/SKILL.md`
 - Existing repository normalization: `skills/normalize-agentic-repo/SKILL.md`
 - Reusable templates: `templates/README.md`
