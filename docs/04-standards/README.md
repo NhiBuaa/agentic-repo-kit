@@ -8,6 +8,8 @@ A Standard answers:
 
 Use precise MUST / MUST NOT / SHOULD language when useful.
 
-Do not store temporary task decisions or examples here merely because an agent needs them. Non-normative examples belong under `agent/references/`.
+Do not store temporary task decisions or examples here merely because an agent needs them. Non-normative examples belong under `.agents/references/`.
 
-Starter: `templates/standard.md`
+Starters:
+- `templates/standard.md` — generic technical or subsystem standard.
+- `templates/ui-quality.md` — UI/UX quality, scannability, visual identity, motion, and verification standard.

@@ -19,7 +19,7 @@ A dedicated fresh-repository initialization workflow is planned after the existi
 - canonical root project-context files;
 - ordered durable documentation categories;
 - project-local agent rules and references under `.agents/`;
-- reusable templates;
+- reusable templates (including architecture, standards, UI/UX quality, DESIGN.md, specs, guides, runbooks);
 - a skill for establishing or reconciling `PROJECT-OVERVIEW.md`;
 - a skill for normalizing existing repositories;
 - Issues/PRs as the work plane;
@@ -40,6 +40,7 @@ A dedicated fresh-repository initialization workflow is planned after the existi
 PROJECT-OVERVIEW.md = project foundation
 AGENTS.md            = repository-wide agent entrypoint + routing
 CONTEXT.md           = current project-state projection
+DESIGN.md (if UI)    = canonical visual identity and design system
 docs/                = durable project knowledge
 .agents/rules/        = detailed/scoped agent-only rules
 .agents/references/   = non-normative supporting material

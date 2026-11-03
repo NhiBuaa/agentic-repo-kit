@@ -10,6 +10,7 @@ Favor clear ownership, low duplication, predictable discovery, and simple adopti
 
 - `PROJECT-OVERVIEW.md` — project foundation, design direction, constraints, and unresolved questions.
 - `CONTEXT.md` — current project-state projection.
+- `DESIGN.md` — canonical visual identity and design system (for projects with a user interface).
 - `docs/` — durable project knowledge.
 - `.agents/rules/` — detailed/scoped agent-only rules.
 - `.agents/references/` — non-normative supporting material for agents.
@@ -35,11 +36,12 @@ For meaningful work:
 
 1. Read this file.
 2. Read `PROJECT-OVERVIEW.md` and `CONTEXT.md` when project-level context matters.
-3. Read the relevant Issue or task.
-4. Read only the relevant numbered `docs/` areas.
-5. Read relevant `.agents/rules/` or `.agents/references/` when routed there.
-6. Use an applicable toolkit skill when the task calls for one.
-7. Inspect implementation and tests.
+3. Read root `DESIGN.md` when the task touches user interfaces.
+4. Read the relevant Issue or task.
+5. Read only the relevant numbered `docs/` areas (e.g., `docs/04-standards/ui-quality.md` when working on UI implementation and verification).
+6. Read relevant `.agents/rules/` or `.agents/references/` when routed there.
+7. Use an applicable toolkit skill when the task calls for one.
+8. Inspect implementation and tests.
 
 ## Repository Model
 
@@ -47,6 +49,7 @@ For meaningful work:
 PROJECT-OVERVIEW → project foundation
 AGENTS           → agent entrypoint + routing
 CONTEXT          → current project state
+DESIGN (if UI)   → canonical visual identity and design system
 docs             → durable project knowledge
 .agents          → project-local agent rules + references
 Issues / PRs     → work state

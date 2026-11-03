@@ -44,7 +44,7 @@ Use this vocabulary for important artifacts:
 
 Before material mutation, inspect enough to understand repository knowledge ownership:
 
-- root instructions, `PROJECT-OVERVIEW.md`, and current-context files;
+- root instructions, `PROJECT-OVERVIEW.md`, `DESIGN.md` (when UI exists), and current-context files;
 - existing architecture, product, standards, specifications, decisions, guides, runbooks, notes, and generated/reference docs;
 - `.agents/` or equivalent agent-local material;
 - Issues and Pull Requests when available as the work plane;
@@ -135,6 +135,7 @@ After mutation:
 | Project foundation | `PROJECT-OVERVIEW.md` |
 | Repository-wide agent entrypoint/routing | `AGENTS.md` |
 | Bounded current project state | `CONTEXT.md` |
+| Visual identity and design system (if UI) | `DESIGN.md` |
 | Distinct stable orientation | `docs/01-overview/` |
 | Current architecture | `docs/02-architecture/` |
 | Product/domain knowledge | `docs/03-product/` |

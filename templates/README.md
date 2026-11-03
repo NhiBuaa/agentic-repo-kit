@@ -6,14 +6,16 @@ These files are scaffolding inputs, not live authority for Agentic Repo Kit itse
 
 ## Root Templates
 
-- `PROJECT-OVERVIEW.md`
-- `AGENTS.md`
-- `CONTEXT.md`
+- `PROJECT-OVERVIEW.md` — canonical project foundation.
+- `AGENTS.md` — agent entrypoint and repository routing.
+- `CONTEXT.md` — bounded current project state.
+- `DESIGN.md` — canonical visual identity and design system (for repositories with a user interface).
 
 ## Durable Documentation Templates
 
 - `architecture.md`
 - `standard.md`
+- `ui-quality.md`
 - `spec.md`
 - `adr.md`
 - `guide.md`
