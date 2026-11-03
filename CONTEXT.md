@@ -55,7 +55,7 @@ PROJECT-OVERVIEW.md
 normalize-agentic-repo
 ```
 
-A complex existing repository will be used as the first pilot before a dedicated fresh-repository initialization skill is designed.
+A complex existing repository will be used as the pilot for existing-repo normalization, alongside dogfooding fresh-repository scaffolding via `init-agentic-repo`.
 
 ## Known Limitations
 
@@ -72,6 +72,7 @@ A complex existing repository will be used as the first pilot before a dedicated
 - Project foundation: `PROJECT-OVERVIEW.md`
 - Documentation map: `docs/README.md`
 - Project-local agent config: `.agents/README.md`
+- Fresh repository initialization: `skills/init-agentic-repo/SKILL.md`
 - Project overview workflow: `skills/establish-project-overview/SKILL.md`
 - Existing repository normalization: `skills/normalize-agentic-repo/SKILL.md`
 - Reusable templates: `templates/README.md`

@@ -21,7 +21,7 @@ Use this skill only when:
 
 If the overview is missing, stale, contradictory, or not clearly authoritative, use `establish-project-overview` first.
 
-Do not use this skill to initialize an empty repository.
+Do not use this skill to initialize an empty repository. For starting a new project from scratch in an empty or fresh repository, use `init-agentic-repo`.
 
 ## Classification
 
