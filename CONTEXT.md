@@ -60,7 +60,7 @@ A complex existing repository will be used as the pilot for existing-repo normal
 ## Known Limitations
 
 - cross-framework automated testing suite remains in progress;
-- the toolkit is currently delivered as skills rather than a CLI or validator;
+- the toolkit is currently delivered as skills and lightweight PowerShell scripts rather than a standalone compiled CLI or binary package;
 - the existing-repository workflow has not yet been stress-tested across several real project types;
 - cross-tool adapter conventions remain intentionally undecided.
 

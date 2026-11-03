@@ -138,4 +138,4 @@ The next validation target is dogfooding both fresh-initialization and existing-
 ## Open Questions
 
 - Which tool-specific adapters should eventually ship as examples?
-- Should the toolkit remain skill-only or later gain a CLI/validator layer?
+- Should the toolkit remain skill-and-script-based or later gain a compiled CLI binary package?
