@@ -309,7 +309,7 @@ When creating or modifying a UI component or page:
 2. **Assign the Surface Level:** Place standard cards on `{colors.surface-1}`, featured/lifted elements on `{colors.surface-2}`.
 3. **Reference Exact Tokens:** Use token names (`{colors.primary}`, `{typography.body}`, `{rounded.md}`, `{spacing.md}`).
 4. **Follow Do's and Don'ts:** Double-check that no unauthorized gradients, loose emojis, or unstyled pills were introduced.
-5. **Verify Normative Quality:** Check against [docs/04-standards/ui-quality.md](docs/04-standards/ui-quality.md) (non-blocking motion, keyboard a11y, contrast).
+5. **Verify Normative Quality:** Check against `docs/04-standards/ui-quality.md` (non-blocking motion, keyboard a11y, contrast).
 6. **Linter Check:** Run `npx @google/design.md lint DESIGN.md` when tooling is available to verify token references.
 
 ---
