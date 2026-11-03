@@ -13,7 +13,9 @@ These files are scaffolding inputs, not live authority for Agentic Repo Kit itse
 ## Durable Documentation Templates
 
 - `architecture.md`
+- `interface-direction.md`
 - `standard.md`
+- `ui-quality.md`
 - `spec.md`
 - `adr.md`
 - `guide.md`

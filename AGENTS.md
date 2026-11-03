@@ -36,7 +36,7 @@ For meaningful work:
 1. Read this file.
 2. Read `PROJECT-OVERVIEW.md` and `CONTEXT.md` when project-level context matters.
 3. Read the relevant Issue or task.
-4. Read only the relevant numbered `docs/` areas.
+4. Read only the relevant numbered `docs/` areas (e.g., `docs/03-product/interface-direction.md` and `docs/04-standards/ui-quality.md` when working on user interfaces).
 5. Read relevant `.agents/rules/` or `.agents/references/` when routed there.
 6. Use an applicable toolkit skill when the task calls for one.
 7. Inspect implementation and tests.

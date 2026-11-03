@@ -8,6 +8,9 @@ Examples:
 - use cases and user journeys;
 - domain concepts and terminology;
 - product behavior explanations;
+- interface direction and brand identity (`interface-direction.md`);
 - feature relationships and boundaries.
 
 Formal required behavior belongs in `docs/05-specs/`. Task status belongs in Issues.
+
+Starter for UI/UX direction: `templates/interface-direction.md`.

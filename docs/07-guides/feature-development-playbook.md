@@ -40,7 +40,14 @@ Nếu bắt đầu với một ý tưởng chưa có dự án, xem [Playbook 1 �
 
 *Ví dụ — Archive Conversation:* Frontend → API → kiểm tra quyền → Backend cập nhật trạng thái trong Database → API trả kết quả → Frontend cập nhật danh sách.
 
-**Nếu có UI:** Dựa trên User Flow tổng quan, thiết kế **wireframe/màn hình cần sửa** và các **UI states** liên quan (ví dụ: Loading, Success, Failed, Empty). Làm **prototype để thử luồng khi tương tác chưa rõ**; không bắt buộc cho mọi tính năng. Developer duyệt trước khi code.
+**Nếu có UI:** Dựa trên User Flow tổng quan và [Chuẩn chất lượng UI/UX](../../docs/04-standards/README.md) (`docs/04-standards/ui-quality.md`), thiết kế **wireframe/màn hình cần sửa**, tái sử dụng đúng design tokens/components đã có và bổ sung đầy đủ các **UI states**:
+- `Loading`: Khung xương (skeleton) hoặc spinner giữ nguyên kích thước để tránh giật bố cục (layout shift).
+- `Empty`: Hướng dẫn ngắn kèm nút hành động tiếp theo.
+- `Error`: Giải thích dễ hiểu kèm đường khôi phục (thử lại, quay về).
+- `Success`: Phản hồi rõ ràng sau khi hoàn thành.
+- `Dữ liệu dài/tràn` và `Thiếu quyền (Permission Denied)`.
+
+Làm **prototype để thử luồng khi tương tác chưa rõ**; không bắt buộc cho mọi tính năng. Developer duyệt trước khi code.
 
 **Nếu thay đổi cấu trúc database:** Cập nhật **ERD + Relational Schema** với SQL; hoặc **collection/document schema và indexes liên quan** với MongoDB. Không thay đổi dữ liệu thì không vẽ lại. Với tính năng đầu tiên, dùng thiết kế đã duyệt ở Playbook 1.
 
@@ -58,7 +65,13 @@ Nếu bắt đầu với một ý tưởng chưa có dự án, xem [Playbook 1 �
 
 - **Bạn làm:** Chạy ứng dụng, thử đúng/lỗi; với dữ liệu được bảo vệ, **test khi chưa đăng nhập, sai quyền hoặc truy cập dữ liệu người khác**. Đọc diff, kiểm tra chức năng cũ và chỉ merge khi bạn hiểu thay đổi.
 - **Agent giúp:** Tổng hợp những gì đã sửa, kết quả test và điểm chưa kiểm chứng.
-- **Xong khi:** PR rõ ràng, tests có kết quả thực, bạn tự xác nhận chức năng đạt yêu cầu.
+  - **Với tính năng UI:** Áp dụng vòng kiểm tra kết quả render: **Nhìn → Thao tác → Ghi lỗi → Sửa → Kiểm lại**. Thu thập bằng chứng theo 4 lớp của `docs/04-standards/ui-quality.md`:
+    1. *Hình ảnh:* Chụp ảnh màn hình (screenshot) bản render ở kích thước mục tiêu;
+    2. *Sử dụng:* Thử hoàn thành tác vụ, xử lý lỗi và quay lại;
+    3. *Chuyển động:* Kiểm tra tương tác trực tiếp, thao tác nhanh/bấm liên tục không bị gián đoạn, hỗ trợ reduced-motion;
+    4. *Kỹ thuật:* Responsive, độ tương phản (contrast) và điều hướng bàn phím/focus.
+  - *Lưu ý:* Nếu môi trường của agent thiếu công cụ trình duyệt hoặc quyền chạy ứng dụng thực tế, agent **bắt buộc phải báo rõ phần chưa thể kiểm chứng bằng mắt/thao tác thật**, không tự nhận UI đã đạt chỉ dựa vào việc code không lỗi.
+- **Xong khi:** PR rõ ràng, tests có kết quả thực, bạn tự xác nhận chức năng và giao diện đạt yêu cầu.
 
 Nếu kiến trúc hoặc cách dùng đã thay đổi, cập nhật **đúng tài liệu liên quan**; không tạo bản sao của Issue trong `docs/`.
 
