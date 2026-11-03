@@ -8,6 +8,7 @@
 
 - `PROJECT-OVERVIEW.md` — project foundation and explicit open questions.
 - `CONTEXT.md` — current project-state projection.
+- `DESIGN.md` — canonical visual identity and design system (for projects with a user interface).
 - `docs/` — durable project knowledge.
 - `.agents/rules/` — detailed/scoped agent-only rules.
 - `.agents/references/` — non-normative supporting material for agents.
@@ -23,10 +24,11 @@ For meaningful work:
 
 1. Read this file.
 2. Read `PROJECT-OVERVIEW.md` and `CONTEXT.md` when the task requires project-level context.
-3. Read the relevant Issue or task.
-4. Read only the relevant numbered `docs/` areas (e.g., `docs/03-product/interface-direction.md` and `docs/04-standards/ui-quality.md` when working on user interfaces).
-5. Read applicable `.agents/rules/` or `.agents/references/` when useful.
-6. Inspect implementation and tests.
+3. Read root `DESIGN.md` when the task touches user interfaces.
+4. Read the relevant Issue or task.
+5. Read only the relevant numbered `docs/` areas (e.g., `docs/04-standards/ui-quality.md` when working on UI implementation and verification).
+6. Read applicable `.agents/rules/` or `.agents/references/` when useful.
+7. Inspect implementation and tests.
 
 ## Critical Invariants
 

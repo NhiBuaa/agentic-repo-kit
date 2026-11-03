@@ -8,9 +8,8 @@ Examples:
 - use cases and user journeys;
 - domain concepts and terminology;
 - product behavior explanations;
-- interface direction and brand identity (`interface-direction.md`);
 - feature relationships and boundaries.
 
 Formal required behavior belongs in `docs/05-specs/`. Task status belongs in Issues.
 
-Starter for UI/UX direction: `templates/interface-direction.md`.
+When a repository includes a user interface, visual identity, brand personality, and design tokens are canonically owned by root `DESIGN.md` (Starter: `templates/DESIGN.md`), while normative UI implementation and verification rules belong in `docs/04-standards/ui-quality.md`.

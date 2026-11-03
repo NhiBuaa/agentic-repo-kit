@@ -18,7 +18,7 @@ How the current system works: components, boundaries, ownership, runtime structu
 
 ## `03-product/`
 
-Durable product and domain knowledge: users, domain concepts, user flows, terminology, product rules that are broader than one specification, and interface direction (`interface-direction.md`).
+Durable product and domain knowledge: users, domain concepts, user flows, terminology, and product rules that are broader than one specification. For repositories with a user interface, visual identity and design tokens are owned by root `DESIGN.md`.
 
 ## `04-standards/`
 

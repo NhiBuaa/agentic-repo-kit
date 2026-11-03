@@ -31,7 +31,7 @@ UI decisions MUST be driven by the **primary purpose of the screen**, not by rig
 
 ### 2.2 Visual Identity & Brand Cohesion ("Độ nhận dạng")
 To prevent bland, generic, or "AI-slop" interfaces:
-- **MUST** establish and adhere to the project's design tokens (defined in `docs/03-product/interface-direction.md` or code):
+- **MUST** establish and adhere to the project's design tokens (defined in root `DESIGN.md` or code):
   - **Typography:** Pair an expressive, brand-aligned Heading/Display font with a highly legible Body font.
   - **Color Palette:** Define semantic color roles (`primary`, `neutral`, `surface`, `accent`, `danger`, `warning`, `success`). Accent colors MUST be used with clear intent for key actions/focus, not as decorative clutter.
   - **Geometry & Rhythm:** Maintain consistent border-radius scales, elevation/shadows, and spacing increments (e.g., 4px/8px grid).

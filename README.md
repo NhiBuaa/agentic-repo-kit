@@ -24,7 +24,7 @@ Fresh-repository initialization is intentionally not shipped as a separate skill
 
 Start with the guide that matches your work:
 
-1. **[Playbook 1 — Start a project from zero](docs/07-guides/project-start-playbook.md)**: initialize repo → core value → use case diagram → navigation/user flows & UI direction (if UI) → system architecture → auth/security model → technology → database design → MVP-first phased plan.
+1. **[Playbook 1 — Start a project from zero](docs/07-guides/project-start-playbook.md)**: initialize repo → core value → use case diagram → navigation/user flows & UI direction / `DESIGN.md` (if UI) → system architecture → auth/security model → technology → database design → MVP-first phased plan.
 2. **[Playbook 2 — Develop a feature](docs/07-guides/feature-development-playbook.md)**: understand architecture/code → feature requirements → impact → technical workflow + UI detail/states (if any) → implement/test → render review & PR.
 
 These are **human-facing, step-by-step guides**. The developer understands and approves the decisions; agents assist within the scope given. No new skills or automation are included in this PR.
@@ -35,6 +35,7 @@ These are **human-facing, step-by-step guides**. The developer understands and a
 PROJECT-OVERVIEW.md = what are we building and why?
 AGENTS.md            = how should coding agents work here?
 CONTEXT.md           = where is the project now?
+DESIGN.md (if UI)    = how should the interface look and feel?
 docs/                = durable project knowledge
 .agents/             = project-local agent rules + references
 Issues               = work scope / planning / progress
@@ -51,6 +52,7 @@ project/
 ├── PROJECT-OVERVIEW.md
 ├── AGENTS.md
 ├── CONTEXT.md
+├── DESIGN.md (for repositories with a user interface)
 │
 ├── docs/
 │   ├── README.md
@@ -149,7 +151,7 @@ The numbers organize discovery, not authority priority.
 
 ## Templates
 
-Reusable source templates live under `templates/`, including foundations for architecture, product interface direction (`interface-direction.md`), engineering standards, UI/UX quality (`ui-quality.md`), specifications, decisions, guides, and runbooks. They are scaffolding inputs, not live authority for Agentic Repo Kit itself.
+Reusable source templates live under `templates/`, including foundations for root files (`PROJECT-OVERVIEW.md`, `AGENTS.md`, `CONTEXT.md`, `DESIGN.md`), architecture, engineering standards, UI/UX quality (`ui-quality.md`), specifications, decisions, guides, and runbooks. They are scaffolding inputs, not live authority for Agentic Repo Kit itself.
 
 ## Project Status
 
