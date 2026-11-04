@@ -246,6 +246,7 @@ if (-not $LinksOnly) {
             "templates/AGENTS.md",
             "templates/DESIGN.md",
             "templates/ui-quality.md",
+            "templates/ui-skill-routing.md",
             "templates/architecture.md",
             "templates/standard.md",
             "templates/spec.md",
@@ -268,6 +269,7 @@ if (-not $LinksOnly) {
         if ($hasUi -or (Test-Path $designFile)) {
             $allMandatory.Add("DESIGN.md")
             $allMandatory.Add("docs/04-standards/ui-quality.md")
+            $allMandatory.Add(".agents/rules/ui-skill-routing.md")
         }
     }
 

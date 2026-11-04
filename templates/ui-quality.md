@@ -19,6 +19,15 @@ UI decisions MUST be driven by the **primary purpose of the screen**, not by rig
 | **Content / Documentation** | Reading comprehension & study | Typography, reading rhythm, table of contents, diagrams, code clarity | Minimal motion; text and media are the product |
 | **Portfolio / Experience** | Brand immersion & storytelling | Visual showcase, art direction, memorable interaction | High expressive motion, but user retains control (no scroll-jacking) |
 
+### 1.1 The 4-Stage UI Development Lifecycle
+
+UI development MUST proceed through 4 disciplined stages. AI coding agents assisting with UI implementation MUST obey the stage-based skill activation matrix defined in `.agents/rules/ui-skill-routing.md`:
+
+1. **Stage 1 — Layout & Visual Identity:** Establish layout hierarchy, scannable content chunks, and strict adherence to root `DESIGN.md` design tokens.
+2. **Stage 2 — Interaction Ergonomics & States:** Refine touch/click feedback, micro-interactions, complete states (`Loading`, `Empty`, `Error`, `Success`), and non-blocking motion.
+3. **Stage 3 — Runtime Inspection & Accessibility (a11y):** Inspect rendered DOM, keyboard navigation, color contrast, touch target sizes, and responsive reflow in a real browser.
+4. **Stage 4 — Performance Optimization:** Verify composite-only animations, eliminate layout thrashing, and stay within the 60/120fps budget.
+
 ---
 
 ## 2. Core Normative Rules
