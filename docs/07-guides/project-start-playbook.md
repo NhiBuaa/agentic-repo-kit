@@ -36,7 +36,7 @@
   - Xác định **cấu trúc điều hướng** (các khu vực/màn hình chính) và vẽ **User Flow chính**: người dùng đi qua những bước nào để hoàn thành việc quan trọng nhất.
   - Chốt **định hướng giao diện & độ nhận dạng** nếu sản phẩm cần cá tính riêng: phân loại mục đích màn hình (thuyết phục, thao tác nhanh, hay đọc tài liệu), chọn phong cách, font chữ chính, màu chủ đạo và một bộ icon duy nhất (như Lucide, Phosphor; không dùng emoji hoặc icon chắp vá làm nút bấm). Lưu vào file `DESIGN.md` ở thư mục gốc của dự án (tham khảo `templates/DESIGN.md`).
   - Áp dụng **tiêu chuẩn chất lượng UI/UX** từ `docs/04-standards/ui-quality.md` (tham khảo `templates/ui-quality.md`): ít chữ nhưng đủ hiểu, chia khối dễ quét, chuyển động nhẹ không cản trở thao tác và đủ các trạng thái thực tế.
-- **Agent giúp:** Gợi ý cách điều hướng dễ hiểu, phát hiện bước thừa hoặc điểm người dùng bị kẹt; đề xuất tokens và quy tắc chất lượng phù hợp với ngữ cảnh sản phẩm.
+- **Agent giúp:** Gợi ý cách điều hướng dễ hiểu, phát hiện bước thừa hoặc điểm người dùng bị kẹt; đề xuất tokens và quy tắc chất lượng phù hợp với ngữ cảnh sản phẩm. Tuân thủ ma trận điều phối skill trong `.agents/rules/ui-skill-routing.md` (chỉ dùng `impeccable` hoặc `design-taste-frontend` cho giai đoạn lên khung layout và tokens, không tự ý nạp chồng chéo nhiều skill phong cách).
 - **Xong khi:** Bạn chỉ được người dùng bắt đầu ở đâu, đi qua những bước nào để đạt giá trị cốt lõi, và định hình được ngôn ngữ thị giác cơ bản của sản phẩm.
 
 *Ví dụ:* Workspace → chọn Upload → chọn PDF → xem tiến trình xử lý → nhận kết quả → đặt câu hỏi. Định hướng: giao diện dạng công cụ (workspace), ưu tiên quét dữ liệu nhanh, font rõ ràng, màu accent dùng có chủ đích cho nút hành động chính, icon Lucide đồng bộ.

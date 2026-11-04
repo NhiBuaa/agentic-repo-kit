@@ -310,9 +310,15 @@ if ($WithUI) {
     if (Test-Path $qualitySource) {
         Copy-Item -Path $qualitySource -Destination (Join-Path $resolvedTarget "docs/04-standards/ui-quality.md") -Force
     }
+
+    # Copy ui-skill-routing.md to .agents/rules/
+    $routingSource = Join-Path $kitRoot "templates/ui-skill-routing.md"
+    if (Test-Path $routingSource) {
+        Copy-Item -Path $routingSource -Destination (Join-Path $resolvedTarget ".agents/rules/ui-skill-routing.md") -Force
+    }
 }
 
 Write-Host "`n[OK] Repository successfully initialized at: $resolvedTarget" -ForegroundColor Green
 Write-Host "[OK] Canonical folders and READMEs created." -ForegroundColor Green
-Write-Host "[OK] Foundation files created: PROJECT-OVERVIEW.md, AGENTS.md, CONTEXT.md, README.md$(if ($WithUI) { ', DESIGN.md' })" -ForegroundColor Green
+Write-Host "[OK] Foundation files created: PROJECT-OVERVIEW.md, AGENTS.md, CONTEXT.md, README.md$(if ($WithUI) { ', DESIGN.md, .agents/rules/ui-skill-routing.md' })" -ForegroundColor Green
 Write-Host "`nNext Step: Open 'docs/07-guides/project-start-playbook.md' and begin Step 2: Xác định ý tưởng và giá trị cốt lõi." -ForegroundColor Yellow

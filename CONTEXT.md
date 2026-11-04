@@ -1,6 +1,6 @@
 ---
 status: current
-last_verified: 2026-09-26
+last_verified: 2026-11-04
 ---
 
 # Current Project Context
@@ -12,7 +12,7 @@ Agentic Repo Kit currently defines:
 - `PROJECT-OVERVIEW.md`, `AGENTS.md`, `CONTEXT.md`, and optional `DESIGN.md` (when UI exists) as root project context files;
 - numbered durable documentation under `docs/`;
 - project-local agent configuration under `.agents/`;
-- reusable source templates under `templates/` (including architecture, standards, UI quality, DESIGN.md, specs, guides, runbooks);
+- reusable source templates under `templates/` (including architecture, standards, UI quality, UI skill routing rule, DESIGN.md, specs, guides, runbooks);
 - toolkit-provided skills under root `skills/`.
 
 The current toolkit skills are:

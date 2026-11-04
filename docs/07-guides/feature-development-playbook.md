@@ -40,7 +40,7 @@ Nếu bắt đầu với một ý tưởng chưa có dự án, xem [Playbook 1 �
 
 *Ví dụ — Archive Conversation:* Frontend → API → kiểm tra quyền → Backend cập nhật trạng thái trong Database → API trả kết quả → Frontend cập nhật danh sách.
 
-**Nếu có UI:** Dựa trên User Flow tổng quan và [Chuẩn chất lượng UI/UX](../../docs/04-standards/README.md) (`docs/04-standards/ui-quality.md`), thiết kế **wireframe/màn hình cần sửa**, tái sử dụng đúng design tokens/components đã có và bổ sung đầy đủ các **UI states**:
+**Nếu có UI:** Dựa trên User Flow tổng quan, [Chuẩn chất lượng UI/UX](../../docs/04-standards/README.md) (`docs/04-standards/ui-quality.md`) và luật điều phối skill (`.agents/rules/ui-skill-routing.md`), thiết kế **wireframe/màn hình cần sửa** (dùng `emil-design-eng` hoặc `animate` cho micro-interaction, dùng `chrome-devtools` và `a11y-debugging` để kiểm chứng render thực tế), tái sử dụng đúng design tokens/components đã có và bổ sung đầy đủ các **UI states**:
 - `Loading`: Khung xương (skeleton) hoặc spinner giữ nguyên kích thước để tránh giật bố cục (layout shift).
 - `Empty`: Hướng dẫn ngắn kèm nút hành động tiếp theo.
 - `Error`: Giải thích dễ hiểu kèm đường khôi phục (thử lại, quay về).

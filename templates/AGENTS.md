@@ -24,7 +24,7 @@ For meaningful work:
 
 1. Read this file.
 2. Read `PROJECT-OVERVIEW.md` and `CONTEXT.md` when the task requires project-level context.
-3. Read root `DESIGN.md` when the task touches user interfaces.
+3. Read root `DESIGN.md` and `.agents/rules/ui-skill-routing.md` when the task touches user interfaces.
 4. Read the relevant Issue or task.
 5. Read only the relevant numbered `docs/` areas (e.g., `docs/04-standards/ui-quality.md` when working on UI implementation and verification).
 6. Read applicable `.agents/rules/` or `.agents/references/` when useful.

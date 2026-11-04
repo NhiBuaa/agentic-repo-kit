@@ -179,8 +179,8 @@ Checks 100% of internal links & GFM anchor slugs, 13 canonical docs/agent direct
 
 ## Templates
 
-Reusable source templates live under `templates/`, including foundations for root files (`PROJECT-OVERVIEW.md`, `AGENTS.md`, `CONTEXT.md`, `DESIGN.md`), architecture, engineering standards, UI/UX quality (`ui-quality.md`), specifications, decisions, guides, and runbooks. They are scaffolding inputs, not live authority for Agentic Repo Kit itself.
+Reusable source templates live under `templates/`, including foundations for root files (`PROJECT-OVERVIEW.md`, `AGENTS.md`, `CONTEXT.md`, `DESIGN.md`), architecture, engineering standards, UI/UX quality (`ui-quality.md`), scoped agent rules (`ui-skill-routing.md`), specifications, decisions, guides, and runbooks. They are scaffolding inputs, not live authority for Agentic Repo Kit itself.
 
 ## Project Status
 
-This repository is actively maintained. Current capabilities include complete scaffolding for fresh repositories (`init-agentic-repo`), automated integrity validation (`check-kit.ps1`), normalization workflows for existing codebases (`normalize-agentic-repo`), and comprehensive UI/UX standards (`DESIGN.md`, `ui-quality.md`).
+This repository is actively maintained. Current capabilities include complete scaffolding for fresh repositories (`init-agentic-repo`), automated integrity validation (`check-kit.ps1`), normalization workflows for existing codebases (`normalize-agentic-repo`), and comprehensive UI/UX standards and governance (`DESIGN.md`, `ui-quality.md`, `ui-skill-routing.md`).

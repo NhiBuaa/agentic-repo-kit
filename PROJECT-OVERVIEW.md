@@ -19,7 +19,7 @@ For fresh repositories, `init-agentic-repo` and `scripts/init-repo.ps1` scaffold
 - canonical root project-context files;
 - ordered durable documentation categories;
 - project-local agent rules and references under `.agents/`;
-- reusable templates (including architecture, standards, UI/UX quality, DESIGN.md, specs, guides, runbooks);
+- reusable templates (including architecture, standards, UI/UX quality, DESIGN.md, UI skill routing, specs, guides, runbooks);
 - a skill for scaffolding fresh repositories (`init-agentic-repo`) and helper script;
 - an automated integrity validator script (`scripts/check-kit.ps1`) for link, skeleton, frontmatter, and SSoT checks;
 - a skill for establishing or reconciling `PROJECT-OVERVIEW.md`;
