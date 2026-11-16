@@ -68,6 +68,8 @@ The scaffolding creates:
 - **Use case modeling standard** for every surface: `docs/04-standards/use-case-modeling.md`, instantiated from the kit's [single reusable source](../../templates/use-case-modeling.md). It governs the method; product actors and rules are authored later in `docs/03-product/` through Playbook 1, not invented by scaffolding.
 
 #### Surface Scope Tailoring:
+
+Every surface also receives `docs/04-standards/bugfix-review.md` from [the reusable source](../../templates/bugfix-review.md), with a root AGENTS route for bug fixes and review. This is an engineering method, not a product decision. Existing accepted review rules are preserved even with `-Force`; other scaffold files may still be overwritten, so use normalization for existing repositories.
 - **With UI (`-WithUI`):**
   - Instantiates root `DESIGN.md` (Google Stitch / VoltAgent standard);
   - Instantiates `docs/04-standards/ui-quality.md`;
@@ -108,5 +110,6 @@ Before reporting initialization complete, verify:
 - [ ] `docs/04-standards/use-case-modeling.md` is present and routed from root `AGENTS.md` for UI and non-UI projects; no example product model was installed as project truth.
 - [ ] Existing use-case modeling rules are preserved, including on the script's `-Force` path. This does not authorize using init for an established repository; other scaffold files may still be overwritten.
 - [ ] All internal markdown links resolve correctly.
+- [ ] `docs/04-standards/bugfix-review.md` is distributed and routed for UI and non-UI projects. Integrity PASS establishes structure, not agent compliance; behavioral trials need separate observed evidence.
 - [ ] Repository passes automated integrity verification (`./scripts/check-kit.ps1 -TargetPath "<target-dir>"`).
 - [ ] Developer received a clear hand-off to Playbook 1 Step 2.

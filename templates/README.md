@@ -2,7 +2,7 @@
 
 `templates/` contains source templates used when establishing, normalizing, or extending another repository.
 
-These files are scaffolding inputs, not live authority for Agentic Repo Kit itself.
+These files are scaffolding inputs, not owners of the kit's product architecture or work state. Shared methods explicitly routed from the kit's standards index also apply to kit contributors without a second copy.
 
 ## Root Templates
 
@@ -15,6 +15,7 @@ These files are scaffolding inputs, not live authority for Agentic Repo Kit itse
 
 - `architecture.md`
 - `standard.md`
+- [bugfix-review.md](bugfix-review.md) — root-cause analysis, regression evidence, whole-flow review and exact-SHA finding closure; adopted as `docs/04-standards/bugfix-review.md` for UI and non-UI projects.
 - `ui-quality.md`
 - [use-case-modeling.md](use-case-modeling.md) — analysis, UML notation, General-to-detail mapping, inline Mermaid and actual render verification; adopted as `docs/04-standards/use-case-modeling.md` for UI and non-UI projects. Product actors and rules stay in `docs/03-product/`.
 - `spec.md`

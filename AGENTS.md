@@ -45,6 +45,8 @@ For meaningful work:
 
 When analyzing, drawing or reviewing use cases, follow [Use Case Modeling](docs/04-standards/README.md#use-case-modeling) for the method and consult the product model in `docs/03-product/` for domain truth.
 
+Before fixing a bug, addressing review feedback or reviewing changed behavior, follow [Bugfix and Review](docs/04-standards/README.md#bugfix-and-review) and read the affected domain/API contracts.
+
 ## Repository Model
 
 ```text

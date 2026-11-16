@@ -15,4 +15,6 @@ Examples:
 
 Guides may point to Standards but should not silently invent new normative rules.
 
+Bug fixes and review remediation follow [Bugfix and Review](../04-standards/README.md#bugfix-and-review) through Playbook 2.
+
 Starter: `templates/guide.md`

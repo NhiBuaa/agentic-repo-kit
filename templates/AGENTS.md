@@ -32,6 +32,8 @@ For meaningful work:
 
 When analyzing, drawing or reviewing use cases, read `docs/04-standards/use-case-modeling.md` for the method and consult the product model in `docs/03-product/` for domain truth.
 
+Before fixing a bug, addressing review feedback or reviewing changed behavior, read `docs/04-standards/bugfix-review.md` and the affected domain/API contracts.
+
 ## Critical Invariants
 
 - Preserve security and authorization boundaries.
