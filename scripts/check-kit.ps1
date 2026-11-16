@@ -249,6 +249,7 @@ if (-not $LinksOnly) {
             "templates/ui-skill-routing.md",
             "templates/architecture.md",
             "templates/standard.md",
+            "templates/use-case-modeling.md",
             "templates/spec.md",
             "templates/adr.md",
             "templates/guide.md",

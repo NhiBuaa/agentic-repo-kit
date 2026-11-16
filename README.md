@@ -37,6 +37,8 @@ Start with the guide that matches your work:
 
 These are **human-facing, step-by-step guides**. The developer understands and approves the decisions; agents assist within the scope given.
 
+Use case analysis and diagrams follow the [reusable UML use case modeling standard](templates/use-case-modeling.md). Fresh initialization installs it at `docs/04-standards/use-case-modeling.md`; the adopting project's actual model belongs in `docs/03-product/`.
+
 ## Mental Model
 
 ```text

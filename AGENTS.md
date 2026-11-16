@@ -43,6 +43,8 @@ For meaningful work:
 7. Use an applicable toolkit skill when the task calls for one.
 8. Inspect implementation and tests.
 
+When analyzing, drawing or reviewing use cases, follow [Use Case Modeling](docs/04-standards/README.md#use-case-modeling) for the method and consult the product model in `docs/03-product/` for domain truth.
+
 ## Repository Model
 
 ```text

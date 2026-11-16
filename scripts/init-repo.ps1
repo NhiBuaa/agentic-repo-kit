@@ -159,6 +159,9 @@ foreach ($playbook in $playbooks) {
     }
 }
 
+# Use case modeling applies to UI and non-UI projects alike.
+Copy-Item -LiteralPath (Join-Path $kitRoot "templates/use-case-modeling.md") -Destination (Join-Path $resolvedTarget "docs/04-standards/use-case-modeling.md") -Force
+
 # 4. Instantiate PROJECT-OVERVIEW.md
 $inScopeSurface = if ($WithUI) { "- User-facing web/mobile interface;`r`n" } else { "- Backend service and APIs;`r`n" }
 $overviewRaw = @'

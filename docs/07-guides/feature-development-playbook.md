@@ -22,7 +22,7 @@ Nếu bắt đầu với một ý tưởng chưa có dự án, xem [Playbook 1 �
 
 *Ví dụ — Archive Conversation:* Chủ sở hữu bấm Archive thì cuộc trò chuyện rời danh sách đang hoạt động nhưng vẫn xem được trong Archived; người dùng khác không được archive cuộc trò chuyện đó.
 
-Đây là **Requirements chi tiết của tính năng**. Ghi vào GitHub Issue đủ rõ để test, không bắt buộc spec riêng. Nếu phát sinh actor/chức năng mới, cập nhật **Use Case Diagram** của dự án khi cần.
+Đây là **Requirements chi tiết của tính năng**. Ghi vào GitHub Issue đủ rõ để test, không bắt buộc spec riêng. Khi thay đổi actor, mục tiêu, quyền hoặc quan hệ use case, cập nhật mô hình trong `docs/03-product/` theo [chuẩn phân tích và vẽ UML use case](../04-standards/README.md#use-case-modeling). Phân biệt hiện trạng đã kiểm tra với mục tiêu và quyết định còn mở; hỏi từng vòng ngắn cho phần chưa chốt. Chỉ cập nhật General, ánh xạ, chi tiết/mô tả bị ảnh hưởng; không khởi động lại khám phá toàn dự án.
 
 ### 3. Xem thay đổi ảnh hưởng những đâu
 
@@ -65,6 +65,7 @@ Làm **prototype để thử luồng khi tương tác chưa rõ**; không bắt 
 
 - **Bạn làm:** Chạy ứng dụng, thử đúng/lỗi; với dữ liệu được bảo vệ, **test khi chưa đăng nhập, sai quyền hoặc truy cập dữ liệu người khác**. Đọc diff, kiểm tra chức năng cũ và chỉ merge khi bạn hiểu thay đổi.
 - **Agent giúp:** Tổng hợp những gì đã sửa, kết quả test và điểm chưa kiểm chứng.
+  - **Nếu sửa mô hình use case:** Kiểm tra ngữ nghĩa, độ bao phủ và bản render Mermaid theo chuẩn; ghi trình xem/phiên bản, kích thước và giới hạn đã quan sát trong bằng chứng PR. Test ứng dụng không thay thế kiểm tra sơ đồ.
   - **Với tính năng UI:** Áp dụng vòng kiểm tra kết quả render: **Nhìn → Thao tác → Ghi lỗi → Sửa → Kiểm lại**. Thu thập bằng chứng theo 4 lớp của `docs/04-standards/ui-quality.md`:
     1. *Hình ảnh:* Chụp ảnh màn hình (screenshot) bản render ở kích thước mục tiêu;
     2. *Sử dụng:* Thử hoàn thành tác vụ, xử lý lỗi và quay lại;
