@@ -30,6 +30,8 @@ For meaningful work:
 6. Read applicable `.agents/rules/` or `.agents/references/` when useful.
 7. Inspect implementation and tests.
 
+When analyzing, drawing or reviewing use cases, read `docs/04-standards/use-case-modeling.md` for the method and consult the product model in `docs/03-product/` for domain truth.
+
 ## Critical Invariants
 
 - Preserve security and authorization boundaries.

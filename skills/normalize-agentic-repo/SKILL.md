@@ -139,7 +139,7 @@ After mutation:
 | Distinct stable orientation | `docs/01-overview/` |
 | Current architecture | `docs/02-architecture/` |
 | Product/domain knowledge | `docs/03-product/` |
-| Normative human/software implementation rules | `docs/04-standards/` |
+| Normative engineering and modeling rules for humans/software | `docs/04-standards/` |
 | Required behavior/contracts | `docs/05-specs/` |
 | Significant decision rationale | `docs/06-decisions/` |
 | Normal procedures | `docs/07-guides/` |
@@ -151,6 +151,10 @@ After mutation:
 | Implementation/review/CI/verification | Pull Requests |
 
 `docs/01-overview/` must not mirror `PROJECT-OVERVIEW.md`. `docs/99-notes/` must not become a catch-all migration target. Do not create `.agents/commands/`, `.agents/hooks/`, or `.agents/skills/` by default.
+
+For approved use case modeling adoption, reconcile the existing method owner with [the reusable standard](../../templates/use-case-modeling.md) at `docs/04-standards/use-case-modeling.md`; preserve accepted project rules and keep actors/goals/business rules in `docs/03-product/`. Propose conflicts for resolution rather than overwriting them or copying example policies into product truth. Do not create a model merely to fill the skeleton.
+
+Include the root AGENTS adoption route defined in [Use Case Modeling](../../docs/04-standards/README.md#use-case-modeling) when that adoption is approved, so validation can detect a missing standard without requiring unrelated legacy repositories to migrate.
 
 ## Acceptance Checklist
 

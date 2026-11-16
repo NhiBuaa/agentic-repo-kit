@@ -65,6 +65,7 @@ The scaffolding creates:
   - `AGENTS.md` (authority map, read order)
   - `CONTEXT.md` (initial status: initializing, Phase 1 MVP)
   - `README.md` (mental model and playbook links)
+- **Use case modeling standard** for every surface: `docs/04-standards/use-case-modeling.md`, instantiated from the kit's [single reusable source](../../templates/use-case-modeling.md). It governs the method; product actors and rules are authored later in `docs/03-product/` through Playbook 1, not invented by scaffolding.
 
 #### Surface Scope Tailoring:
 - **With UI (`-WithUI`):**
@@ -73,7 +74,7 @@ The scaffolding creates:
   - Routes agent UI tasks to `DESIGN.md` in `AGENTS.md`.
 - **Backend / API Only:**
   - Omits `DESIGN.md`;
-  - Keeps `docs/04-standards/` clean (no `ui-quality.md`);
+  - Keeps `use-case-modeling.md` but omits `ui-quality.md`;
   - Strips UI-specific routing from `AGENTS.md` and `README.md`.
 
 ### 4. Foundation Discipline ("No Fake Decisions")
@@ -104,6 +105,8 @@ Before reporting initialization complete, verify:
 - [ ] If UI: root `DESIGN.md` and `docs/04-standards/ui-quality.md` exist and match project intent.
 - [ ] If Non-UI: `DESIGN.md` and `ui-quality.md` are omitted; `AGENTS.md` is lean.
 - [ ] All 13 canonical directories and orienting `README.md` files exist.
+- [ ] `docs/04-standards/use-case-modeling.md` is present and routed from root `AGENTS.md` for UI and non-UI projects; no example product model was installed as project truth.
+- [ ] Existing use-case modeling rules are preserved, including on the script's `-Force` path. This does not authorize using init for an established repository; other scaffold files may still be overwritten.
 - [ ] All internal markdown links resolve correctly.
 - [ ] Repository passes automated integrity verification (`./scripts/check-kit.ps1 -TargetPath "<target-dir>"`).
 - [ ] Developer received a clear hand-off to Playbook 1 Step 2.

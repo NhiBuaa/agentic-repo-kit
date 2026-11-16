@@ -22,6 +22,7 @@
 
 .PARAMETER Force
     Switch. If specified, allows initialization in a non-empty directory.
+    Existing use-case modeling rules are preserved; other scaffold files may be overwritten.
 #>
 
 [CmdletBinding()]
@@ -157,6 +158,12 @@ foreach ($playbook in $playbooks) {
     if (Test-Path $sourceFile) {
         Copy-Item -Path $sourceFile -Destination $destFile -Force
     }
+}
+
+# Use case modeling applies to UI and non-UI projects alike.
+$modelingStandard = Join-Path $resolvedTarget "docs/04-standards/use-case-modeling.md"
+if (-not (Test-Path -LiteralPath $modelingStandard)) {
+    Copy-Item -LiteralPath (Join-Path $kitRoot "templates/use-case-modeling.md") -Destination $modelingStandard
 }
 
 # 4. Instantiate PROJECT-OVERVIEW.md

@@ -37,6 +37,8 @@ Start with the guide that matches your work:
 
 These are **human-facing, step-by-step guides**. The developer understands and approves the decisions; agents assist within the scope given.
 
+Use case analysis and diagrams follow the [reusable UML use case modeling standard](templates/use-case-modeling.md). Fresh initialization installs it at `docs/04-standards/use-case-modeling.md`; the adopting project's actual model belongs in `docs/03-product/`.
+
 ## Mental Model
 
 ```text
@@ -176,6 +178,8 @@ Run the zero-dependency repository integrity validator:
 ./scripts/check-kit.ps1 -TargetPath "C:/path/to/my-project" [-Strict] [-Json]
 ```
 Checks 100% of internal links & GFM anchor slugs, 13 canonical docs/agent directories, frontmatters (CONTEXT.md, DESIGN.md, SKILL.md), and Single Source of Truth conformance.
+
+Consumer adoption of the use case standard is declared by its canonical route in `AGENTS.md`; see [Use Case Modeling](docs/04-standards/README.md#use-case-modeling). Run `./scripts/test-use-case-modeling.ps1` for UI/API scaffolding, missing-standard failures and legacy compatibility regression checks. Both text and JSON validation return a nonzero exit code on failure.
 
 ## Templates
 

@@ -16,6 +16,7 @@ These files are scaffolding inputs, not live authority for Agentic Repo Kit itse
 - `architecture.md`
 - `standard.md`
 - `ui-quality.md`
+- [use-case-modeling.md](use-case-modeling.md) — analysis, UML notation, General-to-detail mapping, inline Mermaid and actual render verification; adopted as `docs/04-standards/use-case-modeling.md` for UI and non-UI projects. Product actors and rules stay in `docs/03-product/`.
 - `spec.md`
 - `adr.md`
 - `guide.md`

@@ -20,9 +20,11 @@ How the current system works: components, boundaries, ownership, runtime structu
 
 Durable product and domain knowledge: users, domain concepts, user flows, terminology, and product rules that are broader than one specification. For repositories with a user interface, visual identity and design tokens are owned by root `DESIGN.md`.
 
+Product use case models belong here; analysis and diagram rules are routed through [Use Case Modeling](04-standards/README.md#use-case-modeling).
+
 ## `04-standards/`
 
-Normative implementation rules that human developers and coding agents must follow, including engineering conventions and UI quality standards (`ui-quality.md`).
+Normative engineering and modeling rules that human developers and coding agents must follow, including use case modeling (`use-case-modeling.md`) and UI quality standards (`ui-quality.md`).
 
 Agent-only working rules belong under `.agents/rules/`, not here.
 
