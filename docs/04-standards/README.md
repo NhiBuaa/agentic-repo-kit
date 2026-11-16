@@ -19,3 +19,5 @@ Starters:
 For use case analysis, diagrams or review, use `docs/04-standards/use-case-modeling.md` in the adopting project. The kit's single reusable source is `templates/use-case-modeling.md`; it owns the method, notation and render checks, while `docs/03-product/` owns the actual product model and business rules.
 
 Fresh initialization installs the standard for both UI and non-UI projects. In an existing repository, adopt or reconcile it only within the approved scope; preserve accepted rules and resolve conflicts before replacement. The playbooks route here so the same guidance works in the kit and in generated projects.
+
+The canonical `docs/04-standards/use-case-modeling.md` route in root `AGENTS.md` declares consumer adoption. The validator then requires that file; a legacy repository without that route is not required to migrate. When adopting through normalization, add the route together with the reconciled standard.

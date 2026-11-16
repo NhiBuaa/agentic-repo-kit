@@ -257,6 +257,12 @@ if (-not $LinksOnly) {
         )
         foreach ($f in $kitFiles) { $allMandatory.Add($f) }
     } else {
+        # An explicit AGENTS route opts a consumer into the modeling standard.
+        $agentsFile = Join-Path $resolvedTarget "AGENTS.md"
+        if ((Test-Path $agentsFile) -and (Read-Utf8File $agentsFile).Contains('docs/04-standards/use-case-modeling.md')) {
+            $allMandatory.Add("docs/04-standards/use-case-modeling.md")
+        }
+
         # Consumer repository: check UI surface condition
         $hasUi = $false
         $contextFile = Join-Path $resolvedTarget "CONTEXT.md"
@@ -623,6 +629,8 @@ if ($Json) {
         Passed = ($totalErrors -eq 0 -and (-not $Strict -or $totalWarnings -eq 0))
     }
     $result | ConvertTo-Json -Depth 5
+    if (-not $result.Passed) { exit 1 }
+    exit 0
 } else {
     Write-Host "`n------------------------------------------------------------" -ForegroundColor DarkGray
     Write-Host " VALIDATION RESULTS" -ForegroundColor Cyan

@@ -46,7 +46,7 @@ Semantic reference: [OMG UML 2.5.1, chapter 18](https://www.omg.org/spec/UML/2.5
 
 - The diagram source MUST be a fenced `mermaid` block directly in Markdown, displayed through a Mermaid-capable Markdown preview. Image export is not required. Separate images, HTML pages or duplicate diagram source files are not default deliverables; temporary render artifacts are verification aids.
 - For compatible viewers, use `flowchart` as a **presentation convention for UML use cases**, not a process flow or a claim of native UML notation: actor boxes labeled `«actor»`, stadium/rounded use case nodes, a system `subgraph`, and optional functional subgroups. Explain the convention beside the model.
-- Keep stable model IDs/names; use separate Mermaid node IDs for display copies. Group frames are layout labels, not new actors, use cases or service boundaries. Break long labels at readable phrases with `<br/>` when supported.
+- Keep stable model IDs/names and one Mermaid node ID per actor role in each diagram. Group frames are layout labels, not new actors, use cases or service boundaries. Break long labels at readable phrases with `<br/>` when supported.
 - Use `---` for associations and labeled dashed `-.->` arrows for `«include»` / `«extend»` in the directions above. Never add a semantic edge merely to force layout. Comment every invisible layout-only edge with its purpose and lack of model meaning.
 - Check the actual Markdown viewer/version. Native syntax, renderer availability and configuration support vary; do not assume a new syntax/plugin is installed or change user settings without authority.
 
@@ -55,32 +55,35 @@ Syntax reference: [Mermaid flowcharts](https://mermaid.js.org/syntax/flowchart.h
 ## 5. Layout for Reading
 
 1. Keep use cases inside the system and actors outside. Place actor displays on either side to reduce crossings; reversing the ends of `---` for layout preserves association meaning.
-2. Allow **multiple displays of the same logical actor** near distant groups. Keep the same role name, separate display IDs (e.g., `requester__submission`, `requester__tracking`) and a visible note explaining the duplication. Copies add no actor or permission; do not connect them as a process. Compare associations after resolving copies to their logical roles before/after a layout-only edit.
+2. Each actor role MUST appear **once per diagram**, especially on General, with one stable Mermaid node ID; connect all its participating use cases to that node. The same actor may appear again in other detail diagrams. Different Mermaid IDs create separate nodes; matching labels or a note do not make them references to one UML model element.
 3. Adjust node/column spacing and line routing until edges avoid unrelated nodes/text. Color changes alone do not fix overlaps. Spacing/curve settings are starting points, not universal required values.
 4. Keep labels legible. Permit horizontal scrolling/zoom for a large General rather than shrinking everything to fit a narrow panel. Retain one complete General before detail views.
-5. If spacing is insufficient, repeat actor displays and split detailed views. Do not remove approved goals or permissions to simplify the picture; confirm any semantic change with the developer.
+   The examples set `flowchart.useMaxWidth: false` inside each Mermaid block to retain natural size. Use a horizontally scrollable preview when needed; verify that the target viewer honors this setting and does not clip content. Do not rely on a verification harness to supply the setting absent from the Markdown source.
+5. If spacing is insufficient, try actor sides, declaration/link order, orientation and line routing; inspect the render after each change. Use detail diagrams for deeper views while retaining concrete main goals on General. Do not duplicate actors or remove approved goals/permissions to simplify the picture. If the viewer cannot meet the layout needs, report the limitation and agree on a suitable UML tool before changing format; preserve installation and viewer-setting approval boundaries.
+
+One actor per diagram is the kit's presentation convention, not a claim that UML forbids every repeated presentation. An exception requires explicit approval and tooling that maintains traceable references to the same underlying model element; creating extra Mermaid IDs is not such an exception.
 
 ## 6. Small Worked Example
 
 This fictional request system demonstrates notation and traceability only. Its roles, goals, policies and counts are **not requirements for adopting projects**. Replace the example with the confirmed product model in `docs/03-product/`; keep this Standard as the method owner.
 
-All diagrams below use the Mermaid flowchart presentation convention described above. `requester__submission` and `requester__tracking` display the **same Requester role**, not two logical actors. Reversing the tracking association places that display on the right without changing its meaning.
+All diagrams below use the Mermaid flowchart presentation convention described above. General has one `requester` node connected to both submission and tracking. The same Requester role is reused once in each relevant detail diagram; this does not add roles or permissions.
 
 ### General
 
 ```mermaid
+%%{init: {"flowchart": {"useMaxWidth": false}}}%%
 flowchart LR
-    requester__submission["«actor»<br/>Requester"]
+    requester["«actor»<br/>Requester"]
     subgraph system["Request system"]
         UC01(["UC-01 Submit request"])
         UC02(["UC-02 Review request"])
         UC03(["UC-03 Track request"])
     end
     reviewer["«actor»<br/>Reviewer"]
-    requester__tracking["«actor»<br/>Requester"]
-    requester__submission --- UC01
+    requester --- UC01
+    requester --- UC03
     UC02 --- reviewer
-    UC03 --- requester__tracking
 ```
 
 ### Coverage Mapping
@@ -93,6 +96,7 @@ flowchart LR
 ### Submission
 
 ```mermaid
+%%{init: {"flowchart": {"useMaxWidth": false}}}%%
 flowchart LR
     requester["«actor»<br/>Requester"]
     subgraph system["Request system"]
@@ -109,6 +113,7 @@ flowchart LR
 ### Review and Tracking
 
 ```mermaid
+%%{init: {"flowchart": {"useMaxWidth": false}}}%%
 flowchart LR
     reviewer["«actor»<br/>Reviewer"]
     subgraph system["Request system"]
@@ -143,7 +148,8 @@ For a real model, link the accepted permission/file policies and evidence rather
 
 - [ ] Scope, current/target view, external actors, permissions and policy decisions are confirmed or explicitly open.
 - [ ] General shows the main concrete goals; mapping covers the inventory; IDs/names agree across diagrams and descriptions.
-- [ ] Repeated actor displays resolve to the same role; a layout-only edit preserves the logical association set.
+- [ ] Each role has exactly one actor node per diagram, with a stable ID; no extra Mermaid IDs were created to shorten lines.
+- [ ] A layout-only edit preserves the semantic actor, use case and association sets.
 - [ ] Include/extend arrows, conditions and points agree with the inventory and descriptions; no relationship is used as a timeline.
 - [ ] Every Mermaid block parses **and renders**. Parse success alone does not establish readable layout.
 - [ ] Inspect actual rendered output at normal and narrow preview widths, including dense groups: labels/nodes do not overlap; edges do not cross unrelated nodes/text; arrows are unambiguous. Check scrolling/zoom when needed.

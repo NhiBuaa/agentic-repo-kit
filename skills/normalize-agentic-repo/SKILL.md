@@ -154,6 +154,8 @@ After mutation:
 
 For approved use case modeling adoption, reconcile the existing method owner with [the reusable standard](../../templates/use-case-modeling.md) at `docs/04-standards/use-case-modeling.md`; preserve accepted project rules and keep actors/goals/business rules in `docs/03-product/`. Propose conflicts for resolution rather than overwriting them or copying example policies into product truth. Do not create a model merely to fill the skeleton.
 
+Include the root AGENTS adoption route defined in [Use Case Modeling](../../docs/04-standards/README.md#use-case-modeling) when that adoption is approved, so validation can detect a missing standard without requiring unrelated legacy repositories to migrate.
+
 ## Acceptance Checklist
 
 Before reporting normalization complete, verify:

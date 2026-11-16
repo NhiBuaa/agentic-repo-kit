@@ -105,7 +105,7 @@ Before reporting initialization complete, verify:
 - [ ] If UI: root `DESIGN.md` and `docs/04-standards/ui-quality.md` exist and match project intent.
 - [ ] If Non-UI: `DESIGN.md` and `ui-quality.md` are omitted; `AGENTS.md` is lean.
 - [ ] All 13 canonical directories and orienting `README.md` files exist.
-- [ ] `docs/04-standards/use-case-modeling.md` is present for UI and non-UI projects; no example product model was installed as project truth.
+- [ ] `docs/04-standards/use-case-modeling.md` is present and routed from root `AGENTS.md` for UI and non-UI projects; no example product model was installed as project truth.
 - [ ] All internal markdown links resolve correctly.
 - [ ] Repository passes automated integrity verification (`./scripts/check-kit.ps1 -TargetPath "<target-dir>"`).
 - [ ] Developer received a clear hand-off to Playbook 1 Step 2.

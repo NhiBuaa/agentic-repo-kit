@@ -22,7 +22,7 @@ Nếu bắt đầu với một ý tưởng chưa có dự án, xem [Playbook 1 �
 
 *Ví dụ — Archive Conversation:* Chủ sở hữu bấm Archive thì cuộc trò chuyện rời danh sách đang hoạt động nhưng vẫn xem được trong Archived; người dùng khác không được archive cuộc trò chuyện đó.
 
-Đây là **Requirements chi tiết của tính năng**. Ghi vào GitHub Issue đủ rõ để test, không bắt buộc spec riêng. Khi thay đổi actor, mục tiêu, quyền hoặc quan hệ use case, cập nhật mô hình trong `docs/03-product/` theo [chuẩn phân tích và vẽ UML use case](../04-standards/README.md#use-case-modeling). Phân biệt hiện trạng đã kiểm tra với mục tiêu và quyết định còn mở; hỏi từng vòng ngắn cho phần chưa chốt. Chỉ cập nhật General, ánh xạ, chi tiết/mô tả bị ảnh hưởng; không khởi động lại khám phá toàn dự án.
+Đây là **Requirements chi tiết của tính năng**. Ghi vào GitHub Issue đủ rõ để test, không bắt buộc spec riêng. Khi thay đổi actor, mục tiêu, quyền, quan hệ use case, điều kiện trước, luồng, kết quả sau hoặc ngoại lệ/xử lý lỗi, cập nhật mô hình trong `docs/03-product/` theo [chuẩn phân tích và vẽ UML use case](../04-standards/README.md#use-case-modeling). Phân biệt hiện trạng đã kiểm tra với mục tiêu và quyết định còn mở; hỏi từng vòng ngắn cho phần chưa chốt. Đồng bộ mọi tạo tác bị ảnh hưởng: General, bảng ánh xạ, sơ đồ chi tiết/mô tả, bảng quan hệ, quy tắc và quyết định/tham chiếu liên quan tại đúng nguồn sở hữu. Giữ phạm vi tập trung, không khởi động lại khám phá toàn dự án.
 
 ### 3. Xem thay đổi ảnh hưởng những đâu
 

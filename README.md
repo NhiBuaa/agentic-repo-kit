@@ -179,6 +179,8 @@ Run the zero-dependency repository integrity validator:
 ```
 Checks 100% of internal links & GFM anchor slugs, 13 canonical docs/agent directories, frontmatters (CONTEXT.md, DESIGN.md, SKILL.md), and Single Source of Truth conformance.
 
+Consumer adoption of the use case standard is declared by its canonical route in `AGENTS.md`; see [Use Case Modeling](docs/04-standards/README.md#use-case-modeling). Run `./scripts/test-use-case-modeling.ps1` for UI/API scaffolding, missing-standard failures and legacy compatibility regression checks. Both text and JSON validation return a nonzero exit code on failure.
+
 ## Templates
 
 Reusable source templates live under `templates/`, including foundations for root files (`PROJECT-OVERVIEW.md`, `AGENTS.md`, `CONTEXT.md`, `DESIGN.md`), architecture, engineering standards, UI/UX quality (`ui-quality.md`), scoped agent rules (`ui-skill-routing.md`), specifications, decisions, guides, and runbooks. They are scaffolding inputs, not live authority for Agentic Repo Kit itself.
