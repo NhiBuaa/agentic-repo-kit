@@ -64,6 +64,16 @@ foreach ($surface in @('api', 'ui')) {
     Assert-Validation $target $true
     Move-Item -LiteralPath $saved -Destination $standard
     Assert-Validation $target $false
-    Write-Output "$surface PASS: scaffold, missing JSON/text failure, restore, legacy compatibility and explicit adoption"
+
+    # Force may bypass freshness checks, but must retain accepted modeling rules.
+    $customRules = "# Accepted project modeling rules`r`n`r`nKeep this project-specific exception unchanged.`r`n"
+    [System.IO.File]::WriteAllText($standard, $customRules, [System.Text.UTF8Encoding]::new($false))
+    $customHash = (Get-FileHash -LiteralPath $standard).Hash
+    & (Join-Path $PSScriptRoot 'init-repo.ps1') @options -Force *> $null
+    if ((Get-FileHash -LiteralPath $standard).Hash -ne $customHash) {
+        throw "Force initialization overwrote accepted project modeling rules: $surface"
+    }
+    Assert-Validation $target $false
+    Write-Output "$surface PASS: scaffold, missing JSON/text failure, restore, legacy compatibility, explicit adoption and Force preservation"
 }
 Write-Output "Fixtures retained at: $testRoot"

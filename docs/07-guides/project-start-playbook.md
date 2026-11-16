@@ -26,7 +26,7 @@
 
 - **Bạn làm:** Theo [chuẩn phân tích và vẽ UML use case](../04-standards/README.md#use-case-modeling), chốt phạm vi sản phẩm mục tiêu, actor và các mục tiêu chính. Bao gồm phần mở rộng đã xác nhận, phân biệt với đề xuất còn mở; lưu mô hình Mermaid trực tiếp trong Markdown ở `docs/03-product/` để review.
 - **Agent giúp:** Hỏi từng vòng ngắn để chốt phần chưa rõ; lập General, bảng ánh xạ và sơ đồ chi tiết theo chuẩn, đối chiếu nguồn quyết định và kiểm tra bản render thực tế.
-- **Xong khi:** Bạn duyệt mô hình và các quyết định được phép để mở; General thể hiện các use case chính, ánh xạ đủ xuống chi tiết/mô tả và có bằng chứng kiểm tra render. Sơ đồ mục tiêu được duyệt chưa phải bằng chứng phần mềm đã hoạt động.
+- **Xong khi:** Bạn duyệt mô hình và các quyết định được phép để mở; General thể hiện các use case chính, ánh xạ đủ xuống sơ đồ chi tiết và mô tả ở mức mục tiêu theo [độ sâu mô tả từng giai đoạn trong chuẩn](../04-standards/README.md#use-case-modeling), kèm bằng chứng kiểm tra render. Giữ chi tiết đã xác nhận; phần chưa chốt được ghi mở, không bắt buộc đặc tả luồng/lỗi cho mọi tính năng tương lai. Hoàn thiện phần bị ảnh hưởng trước triển khai từng tính năng ở [Playbook 2](feature-development-playbook.md). Sơ đồ mục tiêu được duyệt chưa phải bằng chứng phần mềm đã hoạt động.
 
 *Ví dụ:* Actor **Người dùng** liên kết với các use case **Upload PDF**, **Đặt câu hỏi**, **Xem trích dẫn**, **Quản lý hội thoại**. Việc chọn chức năng nào thuộc MVP sẽ chốt ở Bước 9.
 

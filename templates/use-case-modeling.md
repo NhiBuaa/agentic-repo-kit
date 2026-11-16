@@ -30,6 +30,12 @@ Present the model in this order: **system-wide General → coverage mapping → 
 
 A main use case expresses an actor goal with an observable outcome, not a button, endpoint or internal component. Included/extension behavior supports that goal. All views describe one model; grouping or decomposition does not create UML relationships. Actor, group and use case counts follow actual scope, with no fixed quota.
 
+### Description Depth by Stage
+
+During initial project modeling, describe every inventoried use case at goal level: stable ID/name, known primary/supporting actors and participation, intended observable outcome, confirmed constraints and linked open decisions. Keep General → mapping → detail views at that level; diagram detail does not require fully specified execution steps for the entire system. Preserve already confirmed flows and exceptions. Mark unknown triggers, preconditions, steps and alternatives explicitly open instead of inventing them or requiring all future-feature requirements before the initial model can be reviewed.
+
+Before implementing a feature, refine its affected descriptions through the feature-development playbook: trigger, preconditions, main flow, postconditions, alternatives/errors and applicable rules/decisions. Resolve decisions that block that feature, and synchronize the affected views, actor inventory and relationship table. Future-feature details may remain open. The description fields above are the full contract at this stage, not an instruction to specify the entire product upfront.
+
 ## 3. UML Meaning and Permissions
 
 - An **actor** is a role outside the boundary being modeled, played by a person or another system. An internal component or interaction channel is not automatically an actor.
@@ -70,6 +76,8 @@ One actor per diagram is the kit's presentation convention, not a claim that UML
 ## 6. Small Worked Example
 
 This fictional request system demonstrates notation and traceability only. Its roles, goals, policies and counts are **not requirements for adopting projects**. Replace the example with the confirmed product model in `docs/03-product/`; keep this Standard as the method owner.
+
+The detailed flows below illustrate the feature-refined stage. An initial model may keep goal-level descriptions and linked open decisions as specified in [Description Depth by Stage](#description-depth-by-stage).
 
 All diagrams below use the Mermaid flowchart presentation convention described above. General has one `requester` node connected to both submission and tracking. The same Requester role is reused once in each relevant detail diagram; this does not add roles or permissions. The fictional Status service is outside the system boundary and supports UC-03 directly; it grants neither actor access to other requests.
 
@@ -170,6 +178,7 @@ For a real model, link the accepted permission/file policies and evidence rather
 
 - [ ] Scope, current/target view, external actors, permissions and policy decisions are confirmed or explicitly open.
 - [ ] General shows the main concrete goals; mapping covers the inventory; IDs/names agree across diagrams and descriptions.
+- [ ] Description depth matches the stage: initial modeling covers every goal and known constraints with explicit open details; affected feature descriptions are refined before implementation. Confirmed detail is retained, and unrelated future-feature detail is not required upfront.
 - [ ] Primary/supporting actors agree per use case across General, detail, inventory and descriptions; direct, included, conditional and exception-only participation is distinguished with IDs/conditions. Associations do not imply unrestricted permissions.
 - [ ] Each external-service interaction, including error paths, has a supporting actor at the responsible use case or a traceable explanation of another owner; include/extend is not used for ordering or asynchronous timing.
 - [ ] Each role has exactly one actor node per diagram, with a stable ID; no extra Mermaid IDs were created to shorten lines.
