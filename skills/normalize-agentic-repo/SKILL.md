@@ -158,6 +158,8 @@ Include the root AGENTS adoption route defined in [Use Case Modeling](../../docs
 
 ## Acceptance Checklist
 
+For approved bugfix/review adoption, reconcile [the reusable standard](../../templates/bugfix-review.md) with the existing review/test owner. Preserve accepted project rules and unresolved business decisions; consolidate rather than add a competing owner. Add the AGENTS route and Playbook 2 reference together with the adopted standard, following [Bugfix and Review](../../docs/04-standards/README.md#bugfix-and-review). Do not use initialization with `-Force` as an upgrade. Verify distribution and project checks separately from observed agent behavior.
+
 Before reporting normalization complete, verify:
 
 - [ ] A trustworthy root `PROJECT-OVERVIEW.md` existed before normalization.

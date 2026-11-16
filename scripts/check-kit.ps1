@@ -250,6 +250,7 @@ if (-not $LinksOnly) {
             "templates/architecture.md",
             "templates/standard.md",
             "templates/use-case-modeling.md",
+            "templates/bugfix-review.md",
             "templates/spec.md",
             "templates/adr.md",
             "templates/guide.md",
@@ -261,6 +262,9 @@ if (-not $LinksOnly) {
         $agentsFile = Join-Path $resolvedTarget "AGENTS.md"
         if ((Test-Path $agentsFile) -and (Read-Utf8File $agentsFile).Contains('docs/04-standards/use-case-modeling.md')) {
             $allMandatory.Add("docs/04-standards/use-case-modeling.md")
+        }
+        if ((Test-Path $agentsFile) -and (Read-Utf8File $agentsFile).Contains('docs/04-standards/bugfix-review.md')) {
+            $allMandatory.Add("docs/04-standards/bugfix-review.md")
         }
 
         # Consumer repository: check UI surface condition

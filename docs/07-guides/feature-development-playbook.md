@@ -4,6 +4,8 @@
 
 Nếu bắt đầu với một ý tưởng chưa có dự án, xem [Playbook 1 — Bắt đầu từ con số 0](project-start-playbook.md).
 
+**Khi sửa lỗi, xử lý phản hồi review hoặc review hành vi thay đổi:** đọc [chuẩn sửa lỗi và review](../04-standards/README.md#bugfix-and-review) trước khi sửa. Dùng chuẩn này ở các bước phân tích, test hồi quy, tự kiểm tra và đóng finding; nguồn nghiệp vụ/hợp đồng API của dự án vẫn quyết định hành vi đúng. Không khởi động lại khám phá toàn dự án.
+
 ## 6 bước thực hiện
 
 ### 1. Xem kiến trúc và code liên quan
@@ -57,6 +59,7 @@ Làm **prototype để thử luồng khi tương tác chưa rõ**; không bắt 
 
 - **Bạn làm:** Sau khi duyệt thiết kế, chia việc trong Issue, nêu cách test từng phần rồi code trên branch riêng. Review diff khi agent thay đổi code.
 - **Agent giúp:** Đề xuất kế hoạch, code và viết test đúng phạm vi được giao.
+- **Nếu sửa lỗi:** Thực hiện chu trình hồi quy đỏ trước sửa → xanh sau sửa và tự kiểm tra toàn luồng theo chuẩn sửa lỗi/review đã dẫn ở đầu playbook; ghi bằng chứng trong Issue/PR.
 - **Xong khi:** Tính năng chạy được, các trường hợp quan trọng đã được kiểm tra, không có thay đổi ngoài yêu cầu.
 
 *Ví dụ:* Cập nhật database/API → test quyền và archive/restore → cập nhật UI → thử toàn bộ luồng.
@@ -65,6 +68,7 @@ Làm **prototype để thử luồng khi tương tác chưa rõ**; không bắt 
 
 - **Bạn làm:** Chạy ứng dụng, thử đúng/lỗi; với dữ liệu được bảo vệ, **test khi chưa đăng nhập, sai quyền hoặc truy cập dữ liệu người khác**. Đọc diff, kiểm tra chức năng cũ và chỉ merge khi bạn hiểu thay đổi.
 - **Agent giúp:** Tổng hợp những gì đã sửa, kết quả test và điểm chưa kiểm chứng.
+  - **Khi review bản sửa:** Dùng chuẩn sửa lỗi/review để xét lỗi gốc và hồi quy liên quan, đối chiếu tài liệu/hợp đồng API và bằng chứng tại đúng SHA trước khi đóng finding.
   - **Nếu sửa mô hình use case:** Kiểm tra ngữ nghĩa, độ bao phủ và bản render Mermaid theo chuẩn; ghi trình xem/phiên bản, kích thước và giới hạn đã quan sát trong bằng chứng PR. Test ứng dụng không thay thế kiểm tra sơ đồ.
   - **Với tính năng UI:** Áp dụng vòng kiểm tra kết quả render: **Nhìn → Thao tác → Ghi lỗi → Sửa → Kiểm lại**. Thu thập bằng chứng theo 4 lớp của `docs/04-standards/ui-quality.md`:
     1. *Hình ảnh:* Chụp ảnh màn hình (screenshot) bản render ở kích thước mục tiêu;

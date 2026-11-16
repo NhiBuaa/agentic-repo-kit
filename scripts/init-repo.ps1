@@ -166,6 +166,12 @@ if (-not (Test-Path -LiteralPath $modelingStandard)) {
     Copy-Item -LiteralPath (Join-Path $kitRoot "templates/use-case-modeling.md") -Destination $modelingStandard
 }
 
+# Review discipline applies to every surface; preserve accepted project rules.
+$reviewStandard = Join-Path $resolvedTarget "docs/04-standards/bugfix-review.md"
+if (-not (Test-Path -LiteralPath $reviewStandard)) {
+    Copy-Item -LiteralPath (Join-Path $kitRoot "templates/bugfix-review.md") -Destination $reviewStandard
+}
+
 # 4. Instantiate PROJECT-OVERVIEW.md
 $inScopeSurface = if ($WithUI) { "- User-facing web/mobile interface;`r`n" } else { "- Backend service and APIs;`r`n" }
 $overviewRaw = @'

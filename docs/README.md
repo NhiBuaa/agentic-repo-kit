@@ -28,6 +28,8 @@ Normative engineering and modeling rules that human developers and coding agents
 
 Agent-only working rules belong under `.agents/rules/`, not here.
 
+Bug fixes and review remediation use [Bugfix and Review](04-standards/README.md#bugfix-and-review), shared by humans and agents.
+
 ## `05-specs/`
 
 Durable required behavior for capabilities whose contracts should survive individual tasks.

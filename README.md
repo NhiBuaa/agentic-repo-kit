@@ -181,9 +181,13 @@ Checks 100% of internal links & GFM anchor slugs, 13 canonical docs/agent direct
 
 Consumer adoption of the use case standard is declared by its canonical route in `AGENTS.md`; see [Use Case Modeling](docs/04-standards/README.md#use-case-modeling). Run `./scripts/test-use-case-modeling.ps1` for UI/API scaffolding, missing-standard failures and legacy compatibility regression checks. Both text and JSON validation return a nonzero exit code on failure.
 
+Bug fixes and review remediation follow [Bugfix and Review](docs/04-standards/README.md#bugfix-and-review). The kit keeps one reusable source at `templates/bugfix-review.md`; fresh projects receive `docs/04-standards/bugfix-review.md` and its AGENTS route. Run `./scripts/test-bugfix-review.ps1` for UI/API distribution, explicit-adoption missing-file detection, legacy compatibility and accepted-rule preservation. These checks establish structure, not that an agent followed the process.
+
+For projects already using the kit, follow the reconciliation steps in that standards index: review against the current owner, preserve accepted rules, adopt the standard and routing together, and verify the affected project. Do not rerun `init-repo.ps1 -Force` to upgrade an established project. Adoption is per project within approved scope.
+
 ## Templates
 
-Reusable source templates live under `templates/`, including foundations for root files (`PROJECT-OVERVIEW.md`, `AGENTS.md`, `CONTEXT.md`, `DESIGN.md`), architecture, engineering standards, UI/UX quality (`ui-quality.md`), scoped agent rules (`ui-skill-routing.md`), specifications, decisions, guides, and runbooks. They are scaffolding inputs, not live authority for Agentic Repo Kit itself.
+Reusable source templates live under `templates/`, including foundations for root files (`PROJECT-OVERVIEW.md`, `AGENTS.md`, `CONTEXT.md`, `DESIGN.md`), architecture, engineering standards, UI/UX quality (`ui-quality.md`), scoped agent rules (`ui-skill-routing.md`), specifications, decisions, guides, and runbooks. They are scaffolding inputs; shared methods explicitly routed from the kit's standards index apply to kit contributors from the same source.
 
 ## Project Status
 
